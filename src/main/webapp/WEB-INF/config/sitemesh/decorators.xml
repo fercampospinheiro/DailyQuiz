@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/WEB-INF/views/templates">
+    <decorator name="main" page="MainTemplate.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+    <decorator name="login" page="LoginTemplate.jsp">
+        <pattern>/login*</pattern>
+    </decorator>
+</decorators>
