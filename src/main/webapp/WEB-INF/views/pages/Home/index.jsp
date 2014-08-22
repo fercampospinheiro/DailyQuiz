@@ -7,16 +7,7 @@
 </head>
 <body>
 
-<h1>Dashboard</h1>
-
-<%--
-
-Se membro está logado
-    Imprimir 'Bom dia <membro.nome>!'
-Caso contrário
-    Imprimir 'Nenhum membro autenticado'
-
---%>
+<h3>Olá, [NOME DO USUARIO LOGADO]!</h3>
 
 </body>
 </html>
