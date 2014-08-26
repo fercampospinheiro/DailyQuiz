@@ -31,7 +31,7 @@ public class LoginController {
 		Membro membro = membroRepository.contemUsuarioNosMembros(username,senha);
 
 		if(existeMembro(membro)){
-			inicializaSessaoDoMembro(sessao,membro);
+            sessao.setAttribute("membroAutenticado",membro);
 			return "/Home/index";
 		}else{
 			return "/Login/login";
@@ -45,9 +45,6 @@ public class LoginController {
 		return membro.equals(null)? false : true;
 	}
 
-	public void inicializaSessaoDoMembro(HttpSession sessao, Membro membro){
-		sessao.setAttribute("membroAutenticado",membro);
 
-	}
 
 }

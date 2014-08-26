@@ -21,7 +21,10 @@ public class MembroRepository {
 
 	public Membro contemUsuarioNosMembros(String userName, String senha){
 		Membro  membro = (Membro)entityManager.createQuery
-				("select membro from membro where membro.userName ="+userName +"  and membro.senha = "+ senha).getSingleResult();
+            (
+                "select membro from membro where membro.userName ="+userName +"  and membro.senha = "+ senha
+            )
+            .getSingleResult();
 			return membro;
 	}
 
