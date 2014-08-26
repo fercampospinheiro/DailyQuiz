@@ -10,6 +10,8 @@ public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String goHome() {
-        return "/Home/index";
+        return "redirect:/Login";
     }
+
+
 }
