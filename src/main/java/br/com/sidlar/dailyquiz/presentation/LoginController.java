@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -14,24 +15,25 @@ import javax.servlet.http.HttpSession;
  * Created by Fernando_2 on 25/08/14.
  */
 @Controller
+@RequestMapping("/Login")
 public class LoginController {
 
 	@Autowired
 	private MembroRepository membroRepository;
 
 
-	@RequestMapping(value = "/Login", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String carregaLogin(){
 		return "/Login/login";
 	}
 
-	@RequestMapping(value = "/Login", method = RequestMethod.POST)
-	public String efetuaLogin(String username, String senha, HttpSession sessao){
+	@RequestMapping(method = RequestMethod.POST)
+	public String efetuaLogin(String username, String senha,HttpServletRequest request){
 
-		Membro membro = membroRepository.contemUsuarioNosMembros(username,senha);
+		Membro membro = membroRepository.buscaMembroComUserName(username, senha);
 
-		if(existeMembro(membro)){
-			inicializaSessaoDoMembro(sessao,membro);
+		if(membro != null){
+			request.getSession().setAttribute("membroAutenticado",membro);
 			return "/Home/index";
 		}else{
 			return "/Login/login";
@@ -41,13 +43,7 @@ public class LoginController {
 	}
 
 
-	public boolean existeMembro(Membro membro){
-		return membro.equals(null)? false : true;
-	}
 
-	public void inicializaSessaoDoMembro(HttpSession sessao, Membro membro){
-		sessao.setAttribute("membroAutenticado",membro);
 
-	}
 
 }

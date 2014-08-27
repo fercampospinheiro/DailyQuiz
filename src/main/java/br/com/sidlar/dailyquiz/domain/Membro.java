@@ -1,9 +1,6 @@
 package br.com.sidlar.dailyquiz.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 
 /**
  * Created by Fernando_2 on 22/08/14.
@@ -12,14 +9,21 @@ import javax.persistence.IdClass;
 public class Membro {
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String nome;
+	@Column(name="username")
 	private String userName;
+	@Column(length = 64)
 	private String senha;
 
 	public Membro() {
 
 	}
+
+	public void geraHashCodeDaSenhaDoMembro(){
+		this.senha = String.valueOf(senha.hashCode());
+	}
+
 
 	public String getNome() {
 		return nome;
@@ -71,6 +75,7 @@ public class Membro {
 		if (!userName.equals(membro.userName)) return false;
 
 		return true;
+
 	}
 
 	@Override
@@ -81,4 +86,7 @@ public class Membro {
 		result = 31 * result + senha.hashCode();
 		return result;
 	}
+
+
+
 }

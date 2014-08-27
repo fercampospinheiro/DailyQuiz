@@ -12,9 +12,10 @@ create table membro
 (
   id int auto_increment not null,
   nome varchar(50)not null ,
-  username varchar(10) not null,
+  username varchar(20) not null,
   senha char(64) not null,
   unique(nome),
+  unique(username),
   primary key (id));
 
 
