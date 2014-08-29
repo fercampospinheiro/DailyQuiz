@@ -6,39 +6,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpSession;
+
 
 /**
- * @author  Fernando de Campos Pinheiro
+ * Created by Fernando_2 on 25/08/14.
  */
 @Controller
-@RequestMapping("/Login")
 public class LoginController {
 
 	@Autowired
 	private MembroRepository membroRepository;
 
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/Login", method = RequestMethod.GET)
 	public String carregaLogin(){
 		return "/Login/login";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String efetuaLogin(String username, String senha,HttpServletRequest request){
+	@RequestMapping(value = "/Login", method = RequestMethod.POST)
+	public String efetuaLogin(String username, String senha, HttpSession sessao){
 
-		Membro membro = membroRepository.buscaMembroPorCredencial(username, senha);
+		Membro membro = membroRepository.contemUsuarioNosMembros(username,senha);
 
-		if(membro.getUserName().equals(username) && membro.getSenha().equals(senha)){
-			request.getSession().setAttribute("membroAutenticado", membro);
+		if(existeMembro(membro)){
+			inicializaSessaoDoMembro(sessao,membro);
 			return "/Home/index";
-		}
-		else{
+		}else{
 			return "/Login/login";
 		}
 
 
 	}
 
+
+	public boolean existeMembro(Membro membro){
+		return membro.equals(null)? false : true;
+	}
+
+	public void inicializaSessaoDoMembro(HttpSession sessao, Membro membro){
+		sessao.setAttribute("membroAutenticado",membro);
+
+	}
 
 }
