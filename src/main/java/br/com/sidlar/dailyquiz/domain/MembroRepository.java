@@ -19,7 +19,7 @@ public class MembroRepository {
 		return entityManager.find(Membro.class,membro);
 	}
 
-	public Membro contemUsuarioNosMembros(String userName, String senha){
+	public Membro buscaMembroPorCredencial(String userName, String senha){
 		Membro  membro = (Membro)entityManager.createQuery
 				("select membro from membro where membro.userName ="+userName +"  and membro.senha = "+ senha).getSingleResult();
 			return membro;
