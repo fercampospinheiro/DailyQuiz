@@ -33,8 +33,9 @@ public class CadastroMembroController {
 	public String cadastraMembro(FormularioCadastroMembro formulario,Model model,HttpServletRequest request){
 
 		Membro novoMembro = cadastroMembroService.geraMembroComInformacaoDoformulario(formulario);
-		Membro  membroNoBanco = membroRepository.buscaMembroPorCredencial(novoMembro.getUserName(), novoMembro.getSenha());
-
+        System.out.println(novoMembro.getNome());
+        Membro  membroNoBanco = membroRepository.buscaMembroPorCredencial(novoMembro.getUserName(), novoMembro.getSenha());
+        System.out.println(membroNoBanco.getNome());
 		if(membroNoBanco.getUserName().equals(novoMembro.getUserName())){
 			model.addAttribute("usuarioExistente","Usuario já existente!");
 			return "/CadastroDeMembro/cadastroDeMembro";
