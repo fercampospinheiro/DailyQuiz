@@ -1,6 +1,8 @@
 package br.com.sidlar.dailyquiz.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author  Fernando de Campos Pinheiro
@@ -8,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CadastroMembroService {
+
+    @Autowired
+    private MembroRepository membroRepository;
 
 	public String geraHashCodeDaSenhaDoMembro(String Senha){
 		//implementação
@@ -23,6 +28,11 @@ public class CadastroMembroService {
 
 		return membro;
 	}
+
+    @Transactional(readOnly = false)
+    public void cadastraNovoMembro(Membro membro) {
+        membroRepository.insereNovoMembro(membro);
+    }
 
 	public NivelSeguranca obtemNivelDeSegurancaDaSenhaDoMebro(String senha){
 

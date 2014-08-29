@@ -34,14 +34,13 @@ public class CadastroMembroController {
 
 		Membro novoMembro = cadastroMembroService.geraMembroComInformacaoDoformulario(formulario);
         System.out.println(novoMembro.getNome());
-        Membro  membroNoBanco = membroRepository.buscaMembroPorCredencial(novoMembro.getUserName(), novoMembro.getSenha());
-        System.out.println(membroNoBanco.getNome());
-		if(membroNoBanco.getUserName().equals(novoMembro.getUserName())){
+        Membro  membroDoBanco = membroRepository.buscaMembroPorCredencial(novoMembro.getUserName(), novoMembro.getSenha());
+		if(membroDoBanco != null){
 			model.addAttribute("usuarioExistente","Usuario já existente!");
 			return "/CadastroDeMembro/cadastroDeMembro";
 		}
 		else{
-			membroRepository.insereNovoMembro(novoMembro);
+			cadastroMembroService.cadastraNovoMembro(novoMembro);
 			request.getSession().setAttribute("usuarioAutenticado",novoMembro);
 			return  "/Home/index";
 		}

@@ -1,7 +1,9 @@
 package br.com.sidlar.dailyquiz.domain;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Nullable;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -16,7 +18,7 @@ public class MembroRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public Membro buscaMembroPorCredencial(String userName, String senha){
+	public @Nullable Membro buscaMembroPorCredencial(String userName, String senha){
 		try {
 			Membro  membro = (Membro)entityManager.createQuery
 				(
@@ -29,7 +31,7 @@ public class MembroRepository {
 			return membro;
 		}
 		catch (NoResultException e) {
-			return new Membro();
+			return null;
 		}
 	}
 
