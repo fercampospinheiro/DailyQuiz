@@ -9,11 +9,13 @@
 <body>
     <form:form modelAttribute="membro" method="post" >
         <form:label path="">Nome :</form:label>
-        <form:input path="nome" maxlength="50"  />
+        <form:input path="nome" maxlength="50"  /><br>
         <form:label path="">UserName :</form:label>
-        <form:input path="userName"/>
+        <form:input path="userName"/><br>
+        <form:label path="">${usuarioExistente}</form:label>
+        <br>
         <form:label path="">Senha :</form:label>
-        <form:password path="senha"/>
+        <form:password path="senha"/><br>
         <form:button>Cadastrar</form:button>
     </form:form>
 </body>

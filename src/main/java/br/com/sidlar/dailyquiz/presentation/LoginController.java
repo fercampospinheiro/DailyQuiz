@@ -6,13 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 
 /**
- * Created by Fernando_2 on 25/08/14.
+ * @author  Fernando de Campos Pinheiro
  */
 @Controller
 @RequestMapping("/Login")
@@ -30,20 +27,18 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String efetuaLogin(String username, String senha,HttpServletRequest request){
 
-		Membro membro = membroRepository.buscaMembroComUserName(username, senha);
+		Membro membro = membroRepository.buscaMembroPorCredencial(username, senha);
 
-		if(membro != null){
-			request.getSession().setAttribute("membroAutenticado",membro);
+		if(membro.getUserName().equals(username) && membro.getSenha().equals(senha)){
+			request.getSession().setAttribute("membroAutenticado", membro);
 			return "/Home/index";
-		}else{
+		}
+		else{
 			return "/Login/login";
 		}
 
 
 	}
-
-
-
 
 
 }
