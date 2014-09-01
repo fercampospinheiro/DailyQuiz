@@ -1,9 +1,6 @@
 package br.com.sidlar.dailyquiz.presentation;
 
-import br.com.sidlar.dailyquiz.domain.CadastroMembroService;
-import br.com.sidlar.dailyquiz.domain.FormularioCadastroMembro;
-import br.com.sidlar.dailyquiz.domain.Membro;
-import br.com.sidlar.dailyquiz.domain.MembroRepository;
+import br.com.sidlar.dailyquiz.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +19,8 @@ public class CadastroMembroController {
 	private MembroRepository membroRepository;
 	@Autowired
 	private CadastroMembroService cadastroMembroService;
+    @Autowired
+    private MembroFactory membroFactory;
 
 	@RequestMapping( method = RequestMethod.GET)
 	public String carregaCadastroMembro(Membro membro,Model model){
@@ -32,7 +31,7 @@ public class CadastroMembroController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String cadastraMembro(FormularioCadastroMembro formulario,Model model,HttpServletRequest request){
 
-		Membro novoMembro = cadastroMembroService.geraMembroComInformacaoDoformulario(formulario);
+		Membro novoMembro = membroFactory.geraMembroComInformacaoDoformulario(formulario);
         System.out.println(novoMembro.getNome());
         Membro  membroDoBanco = membroRepository.buscaMembroPorCredencial(novoMembro.getUserName(), novoMembro.getSenha());
 		if(membroDoBanco != null){

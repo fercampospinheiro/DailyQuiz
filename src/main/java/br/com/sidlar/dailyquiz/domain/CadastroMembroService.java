@@ -14,21 +14,6 @@ public class CadastroMembroService {
     @Autowired
     private MembroRepository membroRepository;
 
-	public String geraHashCodeDaSenhaDoMembro(String Senha){
-		//implementação
-		return "";
-	}
-
-	public Membro geraMembroComInformacaoDoformulario(FormularioCadastroMembro formulario){
-		Membro membro = new Membro();
-		membro.setNome(formulario.getNome());
-		membro.setUserName(formulario.getUserName());
-		String senhaComHashCode = geraHashCodeDaSenhaDoMembro(formulario.getSenha());
-		membro.setSenha(senhaComHashCode);
-
-		return membro;
-	}
-
     @Transactional(readOnly = false)
     public void cadastraNovoMembro(Membro membro) {
         membroRepository.insereNovoMembro(membro);
