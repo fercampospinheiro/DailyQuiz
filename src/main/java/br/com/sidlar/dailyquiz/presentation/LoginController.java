@@ -29,7 +29,7 @@ public class LoginController {
 
 		Membro membro = membroRepository.buscaMembroPorCredencial(username, senha);
 
-		if(membro.getUserName().equals(username) && membro.getSenha().equals(senha)){
+		if(membro != null){
 			request.getSession().setAttribute("membroAutenticado", membro);
 			return "/Home/index";
 		}

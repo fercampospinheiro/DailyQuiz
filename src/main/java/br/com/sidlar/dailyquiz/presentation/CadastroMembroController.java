@@ -40,7 +40,7 @@ public class CadastroMembroController {
 		}
 		else{
 			cadastroMembroService.cadastraNovoMembro(novoMembro);
-			request.getSession().setAttribute("usuarioAutenticado",novoMembro);
+			request.getSession().setAttribute("membroAutenticado",novoMembro);
 			return  "/Home/index";
 		}
 

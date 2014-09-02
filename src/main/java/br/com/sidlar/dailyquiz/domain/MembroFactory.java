@@ -3,7 +3,7 @@ package br.com.sidlar.dailyquiz.domain;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by FERNANDOSIS on 01/09/14.
+ * @author Fernando de Campos pinheiro
  */
 @Component
 public class MembroFactory {

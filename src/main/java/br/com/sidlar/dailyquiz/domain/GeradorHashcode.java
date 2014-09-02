@@ -1,16 +1,12 @@
 package br.com.sidlar.dailyquiz.domain;
-
-import org.apache.commons.codec.CharEncoding;
-import org.apache.commons.codec.StringEncoder;
-import org.apache.commons.codec.StringEncoderComparator;
+import static org.apache.commons.codec.digest.DigestUtils.*;
 
 /**
- * Created by FERNANDOSIS on 01/09/14.
+ * @author Fernando de Campos Pinheiro
  */
 public class GeradorHashcode {
 
-    public String geraHashCodeDeString(String Senha){
-
-        return "";
+    public String geraHashCodeDeString(String senha){
+		return sha1Hex(senha);
     }
 }

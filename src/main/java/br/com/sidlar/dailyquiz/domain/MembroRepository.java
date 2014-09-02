@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 
 
 /**
- * @author Fernando
+ * @author Fernando de Campos Pinheiro
  */
 @Repository
 public class MembroRepository {
@@ -22,7 +22,7 @@ public class MembroRepository {
 		try {
 			Membro  membro = (Membro)entityManager.createQuery
 				(
-					"select m from membro as m where m.userName = :userName and m.senha = :senha "
+					"select m from Membro as m where m.userName = :userName and m.senha = :senha "
 				)
 				.setParameter("userName", userName)
 				.setParameter("senha", senha)

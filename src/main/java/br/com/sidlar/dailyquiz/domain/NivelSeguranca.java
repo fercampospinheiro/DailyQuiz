@@ -1,7 +1,7 @@
 package br.com.sidlar.dailyquiz.domain;
 
 /**
- * Created by Fernando_2 on 29/08/14.
+ * @author Fernando de Campos Pinheiro
  */
 public enum NivelSeguranca {
 	FRACO,MEDIO,FORTE

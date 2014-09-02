@@ -5,7 +5,8 @@ import javax.persistence.*;
 /**
  * Created by Fernando_2 on 22/08/14.
  */
-@Entity(name = "membro")
+@Entity
+@Table(name="membro")
 public class Membro {
 	@Id
 	@GeneratedValue
