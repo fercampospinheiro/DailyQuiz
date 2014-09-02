@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 
 /**
+ * Classe que disponibiliza os membros do domínio e métodos para sua manipulação
  * @author Fernando de Campos Pinheiro
  */
 @Repository
@@ -18,6 +19,12 @@ public class MembroRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	/**
+	 * Procura a existência do membro com credênciais informadas
+	 * @param userName
+	 * @param senha
+	 * @return Membro
+	 */
 	public @Nullable Membro buscaMembroPorCredencial(String userName, String senha){
 		try {
 			Membro  membro = (Membro)entityManager.createQuery
@@ -35,7 +42,11 @@ public class MembroRepository {
 		}
 	}
 
-	public void insereNovoMembro(Membro membro){
+	/**
+	 * Adiciona um novo membro ao repositório
+	 * @param membro
+	 */
+	public void adicionaNovoMembro(Membro membro){
 		entityManager.persist(membro);
 	}
 

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author  Fernando de Campos Pinheiro
+ *
+ * Delega solicitações da view <b>login</b> aos serviços e repositorios do dominio do Membro
+ * referentes ao processo de Login e Autenticação
+ *
  */
 @Controller
 @RequestMapping("/Login")
@@ -18,12 +22,22 @@ public class LoginController {
 	@Autowired
 	private MembroRepository membroRepository;
 
-
+	/**
+	 * @return String : view do login
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String carregaLogin(){
 		return "/Login/login";
 	}
 
+	/**
+	 * Verifica se o username e senha pertence a alguma crendecial no {@link br.com.sidlar.dailyquiz.domain.MembroRepository}
+	 * e efetua autenticação
+	 * @param username
+	 * @param senha
+	 * @param request
+	 * @return String : view Home  ou Login
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public String efetuaLogin(String username, String senha,HttpServletRequest request){
 

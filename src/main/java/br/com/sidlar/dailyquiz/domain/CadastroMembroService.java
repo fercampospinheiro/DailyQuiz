@@ -5,20 +5,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * Serviço de suporte ao cadastro de um membro
  * @author  Fernando de Campos Pinheiro
  */
 
 @Service
 public class CadastroMembroService {
 
-    @Autowired
-    private MembroRepository membroRepository;
 
-    @Transactional(readOnly = false)
-    public void cadastraNovoMembro(Membro membro) {
-        membroRepository.insereNovoMembro(membro);
-    }
-
+	/**
+	 * Serviço que verifica o nivel de segurança da senha no cadastro de membro
+	 * @param senha
+	 * @return NivelSeguranca
+	 */
 	public NivelSeguranca obtemNivelDeSegurancaDaSenhaDoMebro(String senha){
 
 		return NivelSeguranca.MEDIO;
