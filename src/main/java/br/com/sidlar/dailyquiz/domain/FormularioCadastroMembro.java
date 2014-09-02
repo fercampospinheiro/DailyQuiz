@@ -1,6 +1,7 @@
 package br.com.sidlar.dailyquiz.domain;
 
 /**
+ * Classe modelo de um formulario para cricação de novos membros
  * @author  Fernando de Campos Pinheiro
  */
 public class FormularioCadastroMembro {
