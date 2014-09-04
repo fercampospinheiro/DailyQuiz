@@ -24,6 +24,7 @@ public class MembroRepository {
 	 * @param userName
 	 * @param senha
 	 * @return Membro
+	 * @throws br.com.sidlar.dailyquiz.domain.NotExistsUserException
 	 */
 	public @Nullable Membro buscaMembroPorCredencial(String userName, String senha){
 		try {
@@ -38,7 +39,7 @@ public class MembroRepository {
 			return membro;
 		}
 		catch (NoResultException e) {
-			return null;
+			throw new NotExistsUserException("Usuário nao existe",e);
 		}
 	}
 

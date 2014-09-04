@@ -51,13 +51,15 @@ public class CadastroMembroController {
 
 		Membro novoMembro = membroFactory.geraMembroComInformacaoDoformulario(formulario);
 
-		Membro  membroDoBanco = membroRepository.buscaMembroPorCredencial(novoMembro.getUserName(), novoMembro.getSenha());
-
-		if(membroDoBanco != null){
-			model.addAttribute("usuarioExistente","Usuario já existente!");
+		try
+		{
+			Membro membroDoBanco = membroRepository
+			.buscaMembroPorCredencial(novoMembro.getUserName(), novoMembro.getSenha());
+			model.addAttribute("usuarioExistente", "Usuario já existente!");
 			return "/CadastroDeMembro/cadastroDeMembro";
 		}
-		else{
+		catch(NotExistsUserException e )
+		{
 			membroRepository.adicionaNovoMembro(novoMembro);
 			request.getSession().setAttribute("membroAutenticado",novoMembro);
 			return  "/Home/index";

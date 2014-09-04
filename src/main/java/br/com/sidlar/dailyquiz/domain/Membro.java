@@ -3,7 +3,8 @@ package br.com.sidlar.dailyquiz.domain;
 import javax.persistence.*;
 
 /**
- * Created by Fernando_2 on 22/08/14.
+ * Model da camada de negócio
+ * @author Fernando de Campos Pinheiro
  */
 @Entity
 @Table(name="membro")
