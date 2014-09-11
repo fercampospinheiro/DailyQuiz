@@ -22,7 +22,7 @@ public class MembroRepository {
 	 * Procura a existência do membro com o e-mail informado e retorna o mesmo
 	 * @param email e-mail do membro do site
 	 * @return Membro entidade retornada
-	 * @throws UsuarioOuSenhaInexistenteException
+	 * @throws EmailOuSenhaInexistenteException
 	 */
 	public @Nullable Membro buscaPorEmail(String email){
 
@@ -35,7 +35,7 @@ public class MembroRepository {
 			return query.getSingleResult();
 		}
 		catch (NoResultException e) {
-			throw new EntidadeNaoExistenteException("Entidade não encontrada no banco com o e-mail : "+ email,e);
+			throw new EntidadeInexistenteException("Entidade não encontrada no banco com o e-mail : "+ email,e);
 		}
 	}
 

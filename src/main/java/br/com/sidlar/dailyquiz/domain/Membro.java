@@ -45,7 +45,9 @@ public class Membro {
 		this.senha = senha;
 	}
 
-
+	public boolean validaSenha(String senha){
+		return	senha.equals(senha);
+	}
 
 	@Override
 	public boolean equals(Object o) {

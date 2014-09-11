@@ -58,7 +58,7 @@ public class CadastroMembroController {
 			model.addAttribute("usuarioExistente", "Usuario já existente!");
 			return "/CadastroDeMembro/cadastroDeMembro";
 		}
-		catch(UsuarioOuSenhaInexistenteException e )
+		catch(EmailOuSenhaInexistenteException e )
 		{
 			membroRepository.adicionaNovoMembro(novoMembro);
 			request.getSession().setAttribute("membroAutenticado",novoMembro);
