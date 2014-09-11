@@ -10,9 +10,9 @@
     <form:form modelAttribute="membro" method="post" >
         <form:label path="">Nome :</form:label>
         <form:input path="nome" maxlength="50"  /><br>
-        <form:label path="">UserName :</form:label>
-        <form:input path="userName"/><br>
-        <form:label path="">${usuarioExistente}</form:label>
+        <form:label path="">E-mail :</form:label>
+        <form:input path="email"/><br>
+        <form:label path="">${emailExistente}</form:label>
         <br>
         <form:label path="">Senha :</form:label>
         <form:password path="senha"/><br>

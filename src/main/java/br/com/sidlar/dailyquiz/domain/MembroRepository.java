@@ -1,12 +1,11 @@
 package br.com.sidlar.dailyquiz.domain;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nullable;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 
 /**
@@ -20,28 +19,26 @@ public class MembroRepository {
 	private EntityManager entityManager;
 
 	/**
-	 * Procura a existência do membro com credênciais informadas
-	 * @param userName
-	 * @param senha
-	 * @return Membro
-	 * @throws br.com.sidlar.dailyquiz.domain.NotExistsUserException
+	 * Procura a existência do membro com o e-mail informado e retorna o mesmo
+	 * @param email e-mail do membro do site
+	 * @return Membro entidade retornada
+	 * @throws UsuarioOuSenhaInexistenteException
 	 */
-	public @Nullable Membro buscaMembroPorCredencial(String userName, String senha){
-		try {
-			Membro  membro = (Membro)entityManager.createQuery
-				(
-					"select m from Membro as m where m.userName = :userName and m.senha = :senha "
-				)
-				.setParameter("userName", userName)
-				.setParameter("senha", senha)
-				.getSingleResult();
+	public @Nullable Membro buscaPorEmail(String email){
 
-			return membro;
+		String jpql = "select m from Membro as m where m.email = :email ";
+
+		TypedQuery<Membro> query = entityManager.createQuery(jpql,Membro.class);
+		query.setParameter("email",email);
+
+		try {
+			return query.getSingleResult();
 		}
 		catch (NoResultException e) {
-			throw new NotExistsUserException("Usuário nao existe",e);
+			throw new EntidadeNaoExistenteException("Entidade não encontrada no banco com o e-mail : "+ email,e);
 		}
 	}
+
 
 	/**
 	 * Adiciona um novo membro ao repositório

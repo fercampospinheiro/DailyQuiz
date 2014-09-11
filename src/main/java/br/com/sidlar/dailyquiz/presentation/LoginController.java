@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -33,15 +35,15 @@ public class LoginController {
 	/**
 	 * Verifica se o username e senha pertence a alguma crendecial no {@link br.com.sidlar.dailyquiz.domain.MembroRepository}
 	 * e efetua autenticação
-	 * @param username
+	 * @param email
 	 * @param senha
-	 * @param request
+	 * @param req
 	 * @return String : view Home  ou Login
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String efetuaLogin(String username, String senha,HttpServletRequest request){
+	public String efetuaLogin(@RequestParam("email")String email,@RequestParam("senha")String senha, HttpServletRequest req){
 
-		Membro membro = membroRepository.buscaMembroPorCredencial(username, senha);
+		Membro membro = membroRepository.buscaPorEmail(email);
 
 		if(membro != null){
 			request.getSession().setAttribute("membroAutenticado", membro);

@@ -20,7 +20,7 @@ public class MembroFactory {
     public Membro geraMembroComInformacaoDoformulario(FormularioCadastroMembro formulario){
         Membro membro = new Membro();
         membro.setNome(formulario.getNome());
-        membro.setUserName(formulario.getUserName());
+        membro.setEmail(formulario.getUserName());
         String senhaComHashCode = hashcode.geraHashCodeDeString(formulario.getSenha());
         membro.setSenha(senhaComHashCode);
         return membro;

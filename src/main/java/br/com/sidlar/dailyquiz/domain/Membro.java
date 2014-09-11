@@ -13,17 +13,11 @@ public class Membro {
 	@GeneratedValue
 	private Integer id;
 	private String nome;
-	@Column(name="username")
-	private String userName;
-	@Column(length = 64)
+	private String email;
 	private String senha;
 
 	public Membro() {
 
-	}
-
-	public void geraHashCodeDaSenhaDoMembro(){
-		this.senha = String.valueOf(senha.hashCode());
 	}
 
 
@@ -35,12 +29,12 @@ public class Membro {
 		this.nome = nome;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
@@ -53,17 +47,6 @@ public class Membro {
 
 
 
-
-	@Override
-	public String toString() {
-		return "Membro{" +
-				"id=" + id +
-				", nome='" + nome + '\'' +
-				", userName='" + userName + '\'' +
-				", senha='" + senha + '\'' +
-				'}';
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -74,20 +57,12 @@ public class Membro {
 		if (id != membro.id) return false;
 		if (!nome.equals(membro.nome)) return false;
 		if (!senha.equals(membro.senha)) return false;
-		if (!userName.equals(membro.userName)) return false;
+		if (!email.equals(membro.email)) return false;
 
 		return true;
 
 	}
 
-	@Override
-	public int hashCode() {
-		int result = id;
-		result = 31 * result + nome.hashCode();
-		result = 31 * result + userName.hashCode();
-		result = 31 * result + senha.hashCode();
-		return result;
-	}
 
 
 

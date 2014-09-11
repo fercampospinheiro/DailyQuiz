@@ -54,11 +54,11 @@ public class CadastroMembroController {
 		try
 		{
 			Membro membroDoBanco = membroRepository
-			.buscaMembroPorCredencial(novoMembro.getUserName(), novoMembro.getSenha());
+			.buscaMembroPorCredencial(novoMembro.getEmail(), novoMembro.getSenha());
 			model.addAttribute("usuarioExistente", "Usuario já existente!");
 			return "/CadastroDeMembro/cadastroDeMembro";
 		}
-		catch(NotExistsUserException e )
+		catch(UsuarioOuSenhaInexistenteException e )
 		{
 			membroRepository.adicionaNovoMembro(novoMembro);
 			request.getSession().setAttribute("membroAutenticado",novoMembro);
