@@ -1,5 +1,6 @@
 package br.com.sidlar.dailyquiz.domain;
 
+import br.com.sidlar.dailyquiz.infrastructure.HashcodeSha1;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MembroFactory {
 
-    private GeradorHashcode hashcode = new GeradorHashcode();
+    private HashcodeSha1 hashcode = new HashcodeSha1();
 
 	/**
 	 * Cria um membro com dados oriundos do {@link br.com.sidlar.dailyquiz.domain.FormularioCadastroMembro}

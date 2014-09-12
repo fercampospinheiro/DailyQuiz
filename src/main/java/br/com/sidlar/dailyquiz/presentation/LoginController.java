@@ -1,7 +1,9 @@
 package br.com.sidlar.dailyquiz.presentation;
 
+import br.com.sidlar.dailyquiz.domain.EmailOuSenhaInexistenteException;
 import br.com.sidlar.dailyquiz.domain.Membro;
 import br.com.sidlar.dailyquiz.domain.MembroRepository;
+import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/Login")
 public class LoginController {
 
-	@Autowired
-	private MembroRepository membroRepository;
+	@Autowired private AutenticacaoService autenticacaoService;
 
 	/**
 	 * @return String : view do login
@@ -43,16 +44,13 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String efetuaLogin(@RequestParam("email")String email,@RequestParam("senha")String senha, HttpServletRequest req){
 
-		Membro membro = membroRepository.buscaPorEmail(email);
-
-		if(membro != null){
-			request.getSession().setAttribute("membroAutenticado", membro);
+		try {
+			autenticacaoService.autenticaEmailESenhaDoMembro(email, senha);
 			return "/Home/index";
 		}
-		else{
+		catch (EmailOuSenhaInexistenteException e){
 			return "/Login/login";
 		}
-
 
 	}
 

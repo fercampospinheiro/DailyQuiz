@@ -1,5 +1,7 @@
 package br.com.sidlar.dailyquiz.domain;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 
 /**
@@ -15,11 +17,15 @@ public class Membro {
 	private String nome;
 	private String email;
 	private String senha;
+	private DateTime dataNascimento;
 
 	public Membro() {
 
 	}
 
+	public void setDataNascimento(int dia, int mes ,int ano) {
+		this.dataNascimento = new DateTime().withDate(ano,mes,dia);
+	}
 
 	public String getNome() {
 		return nome;
