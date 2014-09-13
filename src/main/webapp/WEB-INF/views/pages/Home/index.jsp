@@ -7,7 +7,10 @@
 </head>
 <body>
 
-<h3>Olá, [${membroAutenticado.nome}]!</h3>
+<h3>Olá, [${sessionScope.get("dadosDaAutenticacao").membro.nome}]!</h3>
+<h3>[${sessionScope.get("dadosDaAutenticacao").membro.nome}]!,
+    parabéns pelos seus ${sessionScope.get("dadosDaAutenticacao").membro.idade}! anos de vida.'</h3>
+
 
 </body>
 </html>

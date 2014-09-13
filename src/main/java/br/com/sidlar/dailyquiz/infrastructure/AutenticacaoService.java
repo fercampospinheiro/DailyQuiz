@@ -24,11 +24,17 @@ public class AutenticacaoService {
 	public void autenticaEmailESenhaDoMembro(String email,String senha) throws EmailOuSenhaInexistenteException {
 		Membro membro =  obtemMembroPeloEmail(email);
 		validaSenhaDoMembro(senha, membro);
-		adicionaDadosDeAutenticacaoNaSessao(new DadosDeAutenticação(membro,new DateTime()));
+		adicionaMembroNaSessao(membro);
 	}
 
-	private void adicionaDadosDeAutenticacaoNaSessao(DadosDeAutenticação dadosDeAutenticação){
-		this.session.setAttribute("dadosDaAutenticacao",dadosDeAutenticação);
+
+	public void autenticaMembro(Membro membro){
+		adicionaMembroNaSessao(membro);
+	}
+
+	private void adicionaMembroNaSessao(Membro membro){
+		DateTime instanteDaAutenticao = DateTime.now(DateTimeZone.getDefault());
+		this.session.setAttribute("dadosDaAutenticacao",new DadosDeAutenticação(membro,instanteDaAutenticao));
 	}
 
 	private Membro obtemMembroPeloEmail(String email){

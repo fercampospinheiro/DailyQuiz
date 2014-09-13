@@ -23,8 +23,12 @@ public class Membro {
 
 	}
 
-	public void setDataNascimento(int dia, int mes ,int ano) {
-		this.dataNascimento = new DateTime().withDate(ano,mes,dia);
+	public void setDataNascimento(DateTime dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public int getIdade(){
+		return DateTime.now().getYear() - dataNascimento.getYear();
 	}
 
 	public String getNome() {
@@ -53,6 +57,10 @@ public class Membro {
 
 	public boolean validaSenha(String senha){
 		return	senha.equals(senha);
+	}
+
+	public boolean ehDiaDeAniversario(DateTime diaAtual){
+		return dataNascimento.equals(diaAtual);
 	}
 
 	@Override

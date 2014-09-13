@@ -1,6 +1,8 @@
 package br.com.sidlar.dailyquiz.domain;
 
+import br.com.sidlar.dailyquiz.infrastructure.GeradorHascode;
 import br.com.sidlar.dailyquiz.infrastructure.HashcodeSha1;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MembroFactory {
 
-    private HashcodeSha1 hashcode = new HashcodeSha1();
+    @Autowired private GeradorHascode geradorHascode;
 
 	/**
 	 * Cria um membro com dados oriundos do {@link br.com.sidlar.dailyquiz.domain.FormularioCadastroMembro}
@@ -22,7 +24,7 @@ public class MembroFactory {
         Membro membro = new Membro();
         membro.setNome(formulario.getNome());
         membro.setEmail(formulario.getUserName());
-        String senhaComHashCode = hashcode.geraHashCodeDeString(formulario.getSenha());
+        String senhaComHashCode = geradorHascode.geraHashcode(formulario.getSenha());
         membro.setSenha(senhaComHashCode);
         return membro;
     }

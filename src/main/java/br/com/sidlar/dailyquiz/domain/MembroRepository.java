@@ -42,10 +42,25 @@ public class MembroRepository {
 
 	/**
 	 * Adiciona um novo membro ao repositório
+	 * Seguindo os passos abaixo:
+	 * <ul>
+	 * <li>Procura no banco algum membro com o email informado</li>
+	 * <li>Se o usuário não existir grava no banco</li>
+	 * <li>Caso o usuário ja exista lança uma {@code EmailOuSenhaInexistenteException }</li>
+	 * </ul>
 	 * @param membro
 	 */
-	public void adicionaNovoMembro(Membro membro){
-		entityManager.persist(membro);
+	public void adicionaNovoMembro(Membro membro) {
+		if(!contem(membro)) {
+			entityManager.persist(membro);
+		}
+		else{
+			throw  new EntidadeJaExistenteException("Membro já existente no repositório");
+		}
+	}
+
+	private boolean contem(Membro membro){
+		return entityManager.contains(membro);
 	}
 
 }

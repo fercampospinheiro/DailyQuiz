@@ -12,15 +12,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CadastroMembroService {
 
+	@Autowired private MembroRepository membroRepository;
 
-	/**
-	 * Serviço que verifica o nivel de segurança da senha no cadastro de membro
-	 * @param senha
-	 * @return NivelSeguranca
-	 */
-	public NivelSeguranca obtemNivelDeSegurancaDaSenhaDoMebro(String senha){
-
-		return NivelSeguranca.MEDIO;
+	public void cadastraNovoMembro(Membro membro) throws EmailOuSenhaJaExistenteException{
+		verificaExistenciaDeEmail(membro.getEmail());
+		membroRepository.adicionaNovoMembro(membro);
 	}
+
+	private void verificaExistenciaDeEmail(String email){
+
+		try {
+			Membro membroRecuperadoDoBanco = membroRepository.buscaPorEmail(email);
+			throw new EmailOuSenhaJaExistenteException(String.format("Email % já existe!",email));
+		}
+		catch (EntidadeInexistenteException e){
+			throw  new EmailOuSenhaInexistenteException("Email não existe!");
+		}
+
+
+
+	}
+
 
 }

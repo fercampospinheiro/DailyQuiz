@@ -15,4 +15,8 @@ public class DadosDeAutenticação {
 		this.membro = membro;
 		this.momentoDaAutenticacao = momentoDaAutenticacao;
 	}
+
+	public Membro getMembro() {
+		return membro;
+	}
 }

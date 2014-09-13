@@ -1,6 +1,7 @@
 package br.com.sidlar.dailyquiz.presentation;
 
 import br.com.sidlar.dailyquiz.domain.*;
+import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/CadastraMembro")
 public class CadastroMembroController {
 
-	@Autowired
-	private MembroRepository membroRepository;
-	@Autowired
-	private CadastroMembroService cadastroMembroService;
-    @Autowired
-    private MembroFactory membroFactory;
+	@Autowired private MembroRepository membroRepository;
+	@Autowired private CadastroMembroService cadastroMembroService;
+    @Autowired private MembroFactory membroFactory;
+	@Autowired private AutenticacaoService autenticacaoService;
 
 	/**
 	 * Carrega a pagina de Cadastro de Membro
@@ -42,36 +41,20 @@ public class CadastroMembroController {
 	 * Delega a {@link br.com.sidlar.dailyquiz.domain.MembroFactory}  a criação de um membro com dados do {@link br.com.sidlar.dailyquiz.domain.FormularioCadastroMembro},
 	 * verifica a existencia deste membro no {@link br.com.sidlar.dailyquiz.domain.MembroRepository} e faz a membroAutenticado do mesmo.
 	 * @param formulario
-	 * @param model
-	 * @param request
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String cadastraMembro(FormularioCadastroMembro formulario,Model model,HttpServletRequest request){
+	public String cadastraMembro(FormularioCadastroMembro formulario){
 
-		Membro novoMembro = membroFactory.geraMembroComInformacaoDoformulario(formulario);
-
-		try
-		{
-			Membro membroDoBanco = membroRepository
-			.buscaMembroPorCredencial(novoMembro.getEmail(), novoMembro.getSenha());
-			model.addAttribute("usuarioExistente", "Usuario já existente!");
+		Membro membro = membroFactory.geraMembroComInformacaoDoformulario(formulario);
+		try {
+			cadastroMembroService.cadastraNovoMembro(membro);
+			autenticacaoService.autenticaMembro(membro);
+			return "/CadastroDeMembro/cadastroComSucesso";
+		}
+		catch (EmailOuSenhaJaExistenteException e){
 			return "/CadastroDeMembro/cadastroDeMembro";
 		}
-		catch(EmailOuSenhaInexistenteException e )
-		{
-			membroRepository.adicionaNovoMembro(novoMembro);
-			request.getSession().setAttribute("membroAutenticado",novoMembro);
-			return  "/Home/index";
-		}
-
-	}
-
-	@RequestMapping(value = "/NivelSegurancaSenha", method = RequestMethod.POST)
-	public String verificaNivelDeSegurancaDaSenha(String senha, Model model){
-		//implementação
-		model.addAttribute("nivelSeguranca",cadastroMembroService.obtemNivelDeSegurancaDaSenhaDoMebro(senha));
-		return "";
 	}
 
 
