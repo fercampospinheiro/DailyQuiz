@@ -1,8 +1,12 @@
 package br.com.sidlar.dailyquiz.domain;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
+import org.joda.time.Years;
 
 import javax.persistence.*;
+import java.time.Year;
 
 /**
  * Model da camada de negócio
@@ -17,18 +21,27 @@ public class Membro {
 	private String nome;
 	private String email;
 	private String senha;
-	private DateTime dataNascimento;
+	@Column(name = "datanascimento")
+	private LocalDate dataNascimento;
 
 	public Membro() {
 
 	}
 
-	public void setDataNascimento(DateTime dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
 	public int getIdade(){
-		return DateTime.now().getYear() - dataNascimento.getYear();
+		return  Years.yearsBetween(dataNascimento,LocalDate.now()).getYears();
+	}
+
+	public boolean eHDiaDoAniversario(LocalDate dataAtual ){
+		return dataNascimento == dataAtual ;
+	}
+
+	public int diasRestantesParaProximoAniversario(){
+		return Days.daysBetween(LocalDate.now(),dataNascimento.plusYears(1)).getDays();
 	}
 
 	public String getNome() {
@@ -59,9 +72,7 @@ public class Membro {
 		return	senha.equals(senha);
 	}
 
-	public boolean ehDiaDeAniversario(DateTime diaAtual){
-		return dataNascimento.equals(diaAtual);
-	}
+
 
 	@Override
 	public boolean equals(Object o) {

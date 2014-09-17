@@ -14,6 +14,7 @@ create table membro
   nome varchar(50)not null ,
   email varchar(20) not null,
   senha char(64) not null,
+  datanascimento DATE,
   unique(nome),
   unique(email),
   primary key (id));

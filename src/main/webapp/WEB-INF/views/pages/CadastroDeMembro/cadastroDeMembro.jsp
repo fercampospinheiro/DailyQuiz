@@ -15,7 +15,7 @@
         <form:label path="">${emailExistente}</form:label>
         <br>
         <form:label path="">Senha :</form:label>
-        <form:password path="senha"/><br>
+        <form:password path="senha" /><br>
         <form:label path="">Data de Nascimento :</form:label>
         <form:password path="dataDeNasacimento"/><br>
         <form:button>Cadastrar</form:button>

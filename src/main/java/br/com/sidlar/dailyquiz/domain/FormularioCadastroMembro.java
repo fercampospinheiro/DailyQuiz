@@ -1,6 +1,6 @@
 package br.com.sidlar.dailyquiz.domain;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 /**
  * Classe modelo de um formulario para cricação de novos membros
@@ -10,29 +10,21 @@ public class FormularioCadastroMembro {
 	private String nome;
 	private String UserName;
 	private String senha;
-	private DateTime dataNascimento;
-
-	public String getNome() {
-		return nome;
-	}
+	private LocalDate dataNascimento;
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getUserName() {
-		return UserName;
 	}
 
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 }
