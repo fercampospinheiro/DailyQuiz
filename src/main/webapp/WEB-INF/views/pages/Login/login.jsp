@@ -15,7 +15,7 @@
         <button type="submit">Entrar</button>
     </form>
     <br>
-    <a href = "/CadastraMembro">Cadastrar usuario</a>
+    <a href = "/CadastraMembro">Cadastrar novo usuario</a>
 
 </body>
 </html>

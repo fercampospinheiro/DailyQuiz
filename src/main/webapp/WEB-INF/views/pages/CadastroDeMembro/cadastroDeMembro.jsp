@@ -17,8 +17,13 @@
         <form:label path="">Senha :</form:label>
         <form:password path="senha" /><br>
         <form:label path="">Data de Nascimento :</form:label>
-        <form:password path="dataDeNasacimento"/><br>
+        <form:input path="dataDeNascimento"  /><br>
         <form:button>Cadastrar</form:button>
     </form:form>
+
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Erro no formulario :</strong> ${"emailOuSenhaInvalida"}${"dadosInvalidos"}
+    </div>
 </body>
 </html>

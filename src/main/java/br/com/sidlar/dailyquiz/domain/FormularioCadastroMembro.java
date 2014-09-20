@@ -9,7 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 public class FormularioCadastroMembro {
 	private String nome;
-	private String UserName;
+	private String email;
 	private String senha;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
@@ -18,8 +18,8 @@ public class FormularioCadastroMembro {
 		this.nome = nome;
 	}
 
-	public void setUserName(String userName) {
-		UserName = userName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setSenha(String senha) {
@@ -34,8 +34,8 @@ public class FormularioCadastroMembro {
 		return nome;
 	}
 
-	public String getUserName() {
-		return UserName;
+	public String getEmail() {
+		return email;
 	}
 
 	public String getSenha() {

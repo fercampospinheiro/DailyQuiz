@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import javax.servlet.http.HttpServletRequest;
 /**
  * @author  Fernando de Campos Pinheiro
  *
@@ -44,17 +43,23 @@ public class CadastroMembroController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String cadastraMembro(FormularioCadastroMembro formulario){
+	public String cadastraMembro(FormularioCadastroMembro formulario,Model model){
 
-		Membro membro = membroFactory.geraMembroComInformacaoDoformulario(formulario);
-		try {
-			cadastroMembroService.cadastraNovoMembro(membro);
+        try {
+            ValidadorUtils.validaFormulario(formulario);
+            Membro membro = membroFactory.geraMembroComInformacaoDoformulario(formulario);
+            cadastroMembroService.cadastraNovoMembro(membro);
 			autenticacaoService.autenticaMembro(membro);
 			return "/CadastroDeMembro/cadastroComSucesso";
 		}
 		catch (EmailOuSenhaJaExistenteException e){
-			return "/CadastroDeMembro/cadastroDeMembro";
+			model.addAttribute("emailOuSenhaInvalida",e.getMessage());
+            return "/CadastroDeMembro/cadastroDeMembro";
 		}
+        catch (DadosInvalidosException e){
+            model.addAttribute("dadosInvalidos",e.getMessage());
+            return "/CadastroDeMembro/cadastroDeMembro";
+        }
 	}
 
 

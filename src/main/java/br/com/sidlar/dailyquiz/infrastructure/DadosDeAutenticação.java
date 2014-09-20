@@ -38,8 +38,8 @@ public class DadosDeAutenticação {
 	}
 
 	private void diasParaProximoAniversario(){
-		diasParaProximoAniversario = membro.diasRestantesParaProximoAniversario();
-	}
+        diasParaProximoAniversario = membro.diasRestantesParaProximoAniversario();
+    }
 
 
 

@@ -41,8 +41,8 @@ public class Membro {
 	}
 
 	public Days diasRestantesParaProximoAniversario(){
-		return Days.daysBetween(LocalDate.now(),dataNascimento.plusYears(1));
-	}
+        return Days.daysBetween(LocalDate.now(), dataNascimento.plusYears(LocalDate.now().getYear()));
+    }
 
 	public String getNome() {
 		return nome;
