@@ -2,6 +2,7 @@ package br.com.sidlar.dailyquiz.infrastructure;
 
 import br.com.sidlar.dailyquiz.domain.Membro;
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 
 /**
@@ -12,7 +13,7 @@ public class DadosDeAutenticação {
 	private Membro membro;
 	private DateTime momentoDaAutenticacao;
 	private boolean ehDiaDeAniversario;
-	private int diasParaProximoAniversario;
+	private Days diasParaProximoAniversario;
 
 	public DadosDeAutenticação(Membro membro, DateTime momentoDaAutenticacao) {
 		this.membro = membro;
@@ -28,7 +29,7 @@ public class DadosDeAutenticação {
 		return ehDiaDeAniversario;
 	}
 
-	public int getDiasParaProximoAniversario() {
+	public Days getDiasParaProximoAniversario() {
 		return diasParaProximoAniversario;
 	}
 

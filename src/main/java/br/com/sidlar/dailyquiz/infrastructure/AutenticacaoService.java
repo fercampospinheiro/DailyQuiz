@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @Service
 public class AutenticacaoService {
 
-	@Autowired private HttpSession session;
+	@Autowired HttpSession session;
 	@Autowired private MembroRepository membroRepository;
 	@Autowired private GeradorHascode geradorHascode;
 
@@ -46,13 +46,19 @@ public class AutenticacaoService {
 
 	}
 
-	private void validaSenhaDoMembro(String senha, Membro membro){
+	private void validaSenhaDoMembro(String senha, Membro membro) {
 
 		String HascodeDaSenha = geradorHascode.geraHashcode(senha);
-		if (!membro.validaSenha(HascodeDaSenha)){
+		if (!membro.validaSenha(HascodeDaSenha)) {
 			throw new EmailOuSenhaInexistenteException("Senha inválida");
 		}
+
 	}
+
+	public DadosDeAutenticação obtemDadosDeAutenticacao(){
+			return (DadosDeAutenticação)this.session.getAttribute("dadosDaAutenticacao");
+	}
+
 
 }
 

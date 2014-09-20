@@ -32,16 +32,16 @@ public class Membro {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public int getIdade(){
-		return  Years.yearsBetween(dataNascimento,LocalDate.now()).getYears();
+	public Years getIdade(){
+		return  Years.yearsBetween(dataNascimento,LocalDate.now());
 	}
 
 	public boolean eHDiaDoAniversario(LocalDate dataAtual ){
 		return dataNascimento == dataAtual ;
 	}
 
-	public int diasRestantesParaProximoAniversario(){
-		return Days.daysBetween(LocalDate.now(),dataNascimento.plusYears(1)).getDays();
+	public Days diasRestantesParaProximoAniversario(){
+		return Days.daysBetween(LocalDate.now(),dataNascimento.plusYears(1));
 	}
 
 	public String getNome() {
