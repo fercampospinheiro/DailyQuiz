@@ -26,21 +26,23 @@ public class CadastroMembroController {
 
 	/**
 	 * Carrega a pagina de Cadastro de Membro
-	 * @param membro
-	 * @param model
-	 * @return String
+	 * @param formulario : Envia um objeto formulario para JSP para ser populado pelo Spring
 	 */
 	@RequestMapping( method = RequestMethod.GET)
-	public String carregaCadastroMembro(Membro membro,Model model){
-		model.addAttribute(membro);
+	public String carregaCadastroMembro(FormularioCadastroMembro formulario,Model model){
+		model.addAttribute(formulario);
 		return "/CadastroDeMembro/cadastroDeMembro";
 	}
 
 	/**
-	 * Delega a {@link br.com.sidlar.dailyquiz.domain.MembroFactory}  a criação de um membro com dados do {@link br.com.sidlar.dailyquiz.domain.FormularioCadastroMembro},
-	 * verifica a existencia deste membro no {@link br.com.sidlar.dailyquiz.domain.MembroRepository} e faz a membroAutenticado do mesmo.
-	 * @param formulario
-	 * @return
+	 * Cadastra um novo membro seguindo os seguintes passos :
+     * - Recebe os dados do JSP em um objeto do tipo Formulario
+     * - Valida os dados deste objeto poe uma classe utilitária
+     * - Se não estiverem consistentes devolve exceções informando os erros de validação.
+     * - Se estiverem consistentes gera um membro atraves de uma fábrica de membros
+     * - Cadastra o novo membro no repositorios de membros
+     * - E autentica os dados de autenticação do membro e redireciona para a home.
+	 * @param formulario : Recebe um objeto Formulario populado
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public String cadastraMembro(FormularioCadastroMembro formulario,Model model){
@@ -50,14 +52,14 @@ public class CadastroMembroController {
             Membro membro = membroFactory.geraMembroComInformacaoDoformulario(formulario);
             cadastroMembroService.cadastraNovoMembro(membro);
 			autenticacaoService.autenticaMembro(membro);
-			return "/CadastroDeMembro/cadastroComSucesso";
+            return "redirect:/";
 		}
 		catch (EmailOuSenhaJaExistenteException e){
-			model.addAttribute("emailOuSenhaInvalida",e.getMessage());
+            model.addAttribute("dadosInvalidos",e);
             return "/CadastroDeMembro/cadastroDeMembro";
 		}
         catch (DadosInvalidosException e){
-            model.addAttribute("dadosInvalidos",e.getMessage());
+            model.addAttribute("dadosInvalidos",e);
             return "/CadastroDeMembro/cadastroDeMembro";
         }
 	}

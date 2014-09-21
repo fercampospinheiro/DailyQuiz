@@ -7,23 +7,23 @@
     <title>Cadastro de Novo Membro</title>
 </head>
 <body>
-    <form:form modelAttribute="membro" method="post" >
+    <form:form modelAttribute="formulario" method="post" >
         <form:label path="">Nome :</form:label>
-        <form:input path="nome" maxlength="50"  /><br>
+        <form:input path="nome" /><br>
         <form:label path="">E-mail :</form:label>
         <form:input path="email"/><br>
-        <form:label path="">${emailExistente}</form:label>
-        <br>
         <form:label path="">Senha :</form:label>
-        <form:password path="senha" /><br>
+        <form:password path="senha"/><br>
         <form:label path="">Data de Nascimento :</form:label>
-        <form:input path="dataDeNascimento"  /><br>
+        <form:input path="dataNascimento" /><br>
         <form:button>Cadastrar</form:button>
     </form:form>
 
     <div class="alert">
         <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Erro no formulario :</strong> ${"emailOuSenhaInvalida"}${"dadosInvalidos"}
+       <c:if test="${dadosInvalidos.message != ''}">
+           <strong>Erro no formulario :</strong> ${dadosInvalidos.message}
+       </c:if>
     </div>
 </body>
 </html>

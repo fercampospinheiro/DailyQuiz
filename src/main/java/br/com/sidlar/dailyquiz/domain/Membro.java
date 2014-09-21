@@ -72,9 +72,11 @@ public class Membro {
 		return	senha.equals(senha);
 	}
 
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
 
-
-	@Override
+    @Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Membro)) return false;

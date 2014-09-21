@@ -2,11 +2,13 @@ package br.com.sidlar.dailyquiz.domain;
 
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 /**
  * Classe modelo de um formulario para cricação de novos membros
  * @author  Fernando de Campos Pinheiro
  */
+@Component
 public class FormularioCadastroMembro {
 	private String nome;
 	private String email;

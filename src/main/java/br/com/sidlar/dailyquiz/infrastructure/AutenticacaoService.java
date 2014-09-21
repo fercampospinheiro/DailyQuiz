@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Serviço que controla o processo de autenticação
  * @author  Fernando de Campos Pinheiro
  */
 @Service
