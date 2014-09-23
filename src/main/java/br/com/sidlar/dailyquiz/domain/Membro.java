@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.time.Year;
@@ -18,7 +19,7 @@ public class Membro {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private String nome;
+    private String nome;
 	private String email;
 	private String senha;
 	@Column(name = "datanascimento")
@@ -37,11 +38,11 @@ public class Membro {
 	}
 
 	public boolean eHDiaDoAniversario(LocalDate dataAtual ){
-		return dataNascimento == dataAtual ;
+		return dataNascimento.equals(dataAtual) ;
 	}
 
 	public Days diasRestantesParaProximoAniversario(){
-        return Days.daysBetween(LocalDate.now(), dataNascimento.plusYears(LocalDate.now().getYear()));
+        return Days.daysBetween(LocalDate.now(), dataNascimento.plusYears(getIdade().getYears()));
     }
 
 	public String getNome() {

@@ -25,6 +25,7 @@ public class MembroFactory {
         membro.setEmail(formulario.getEmail());
         String senhaComHashCode = geradorHascode.geraHashcode(formulario.getSenha());
         membro.setSenha(senhaComHashCode);
+        membro.setDataNascimento(formulario.getDataNascimento());
         return membro;
     }
 }
