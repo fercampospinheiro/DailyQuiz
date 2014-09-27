@@ -12,26 +12,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CadastroMembroService {
 
-	@Autowired private MembroRepository membroRepository;
+    @Autowired private MembroRepository membroRepository;
 
-	public void cadastraNovoMembro(Membro membro) throws EmailOuSenhaJaExistenteException{
-		verificaExistenciaDeEmail(membro.getEmail());
-		membroRepository.adicionaNovoMembro(membro);
-	}
+    public void cadastraNovoMembro(Membro membro) throws EmailOuSenhaJaExistenteException{
+        verificaExistenciaDeEmail(membro.getEmail());
+        membroRepository.adicionaNovoMembro(membro);
+    }
 
-	private void verificaExistenciaDeEmail(String email){
+    private void verificaExistenciaDeEmail(String email){
 
-		try {
-			Membro membroRecuperadoDoBanco = membroRepository.buscaPorEmail(email);
-			throw new EmailOuSenhaJaExistenteException(String.format("Email % já existe!",email));
-		}
-		catch (EntidadeInexistenteException e){
-			throw  new EmailOuSenhaInexistenteException("Email não existe!");
-		}
+        try {
+            Membro membroRecuperadoDoBanco = membroRepository.buscaPorEmail(email);
+            throw new EmailOuSenhaJaExistenteException(String.format("Email % já existe!",email));
+        }
+        catch (EntidadeInexistenteException e){
+            throw  new EmailOuSenhaInexistenteException("Email não existe!");
+        }
 
 
 
-	}
+    }
 
 
 }

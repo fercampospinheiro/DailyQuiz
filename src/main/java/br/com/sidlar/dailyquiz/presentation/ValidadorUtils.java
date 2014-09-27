@@ -9,6 +9,9 @@ import org.joda.time.LocalDate;
  */
 public class ValidadorUtils {
 
+    private static final String FORMATO_DE_EMAIL_VALIDO = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
     public static void validaFormulario(FormularioCadastroMembro formulario) throws DadosInvalidosException {
             validaNome(formulario.getNome());
             validaEmail(formulario.getEmail());
@@ -27,7 +30,7 @@ public class ValidadorUtils {
      * Se o E-mail for no formato inválido retorna uma excpetio informando da incosistencia
      */
     private static void validaEmail(String email){
-        if(!email.matches(" \\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b"))
+        if(!email.matches(FORMATO_DE_EMAIL_VALIDO))
             throw new DadosInvalidosException("E-mail inválido");
     }
     /**

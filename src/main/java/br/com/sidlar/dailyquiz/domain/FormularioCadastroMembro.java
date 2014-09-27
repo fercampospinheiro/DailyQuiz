@@ -1,6 +1,7 @@
 package br.com.sidlar.dailyquiz.domain;
 
 import org.joda.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Classe modelo de um formulario para cricação de novos membros
@@ -10,7 +11,8 @@ public class FormularioCadastroMembro {
 	private String nome;
 	private String email;
 	private String senha;
-	private LocalDate dataNascimento;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dataNascimento;
 
 	public void setNome(String nome) {
 		this.nome = nome;

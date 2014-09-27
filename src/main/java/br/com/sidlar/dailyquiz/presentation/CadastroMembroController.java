@@ -5,8 +5,11 @@ import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 /**
  * @author  Fernando de Campos Pinheiro
  *
@@ -30,7 +33,7 @@ public class CadastroMembroController {
 	 */
 	@RequestMapping( method = RequestMethod.GET)
 	public String carregaCadastroMembro(FormularioCadastroMembro formulario,Model model){
-		model.addAttribute(formulario);
+		model.addAttribute("formulario",formulario);
 		return "/CadastroDeMembro/cadastroDeMembro";
 	}
 
@@ -45,7 +48,7 @@ public class CadastroMembroController {
 	 * @param formulario : Recebe um objeto Formulario populado
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String cadastraMembro(FormularioCadastroMembro formulario,Model model){
+	public String cadastraMembro(@ModelAttribute("formulario")FormularioCadastroMembro formulario,Model model){
 
         try {
             ValidadorUtils.validaFormulario(formulario);

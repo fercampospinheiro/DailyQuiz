@@ -7,7 +7,7 @@
     <title>Cadastro de Novo Membro</title>
 </head>
 <body>
-    <form:form modelAttribute="formulario" method="post" >
+    <form:form modelAttribute="formulario" method="post" action="/CadastraMembro" >
         <form:label path="">Nome :</form:label>
         <form:input path="nome" /><br>
         <form:label path="">E-mail :</form:label>
@@ -15,7 +15,7 @@
         <form:label path="">Senha :</form:label>
         <form:password path="senha"/><br>
         <form:label path="">Data de Nascimento :</form:label>
-        <form:input path="dataNascimento" /><br>
+        <form:input type="date" path="dataNascimento" /><br>
         <form:button>Cadastrar</form:button>
     </form:form>
 
