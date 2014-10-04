@@ -1,13 +1,12 @@
 package br.com.sidlar.dailyquiz.infrastructure;
 
-import br.com.sidlar.dailyquiz.domain.EmailOuSenhaInexistenteException;
-import br.com.sidlar.dailyquiz.domain.EntidadeInexistenteException;
+import br.com.sidlar.dailyquiz.domain.Excecoes.EmailOuSenhaInexistenteException;
+import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeInexistenteException;
 import br.com.sidlar.dailyquiz.domain.Membro;
 import br.com.sidlar.dailyquiz.domain.MembroRepository;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +20,7 @@ public class AutenticacaoService {
 
 	@Autowired HttpSession session;
 	@Autowired private MembroRepository membroRepository;
-	@Autowired private GeradorHascode geradorHascode;
+	@Autowired private GeradorHashcode geradorHascode;
 
 	public void autenticaEmailESenhaDoMembro(String email,String senha) throws EmailOuSenhaInexistenteException {
 		Membro membro =  obtemMembroPeloEmail(email);
@@ -51,7 +50,7 @@ public class AutenticacaoService {
 	private void validaSenhaDoMembro(String senha, Membro membro) {
 
 		String HascodeDaSenha = geradorHascode.geraHashcode(senha);
-		if (!membro.validaSenha(HascodeDaSenha)) {
+		if (!membro.possuiSenhaValida(HascodeDaSenha)) {
 			throw new EmailOuSenhaInexistenteException("Senha inválida");
 		}
 

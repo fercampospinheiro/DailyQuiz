@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * Classe modelo de um formulario para cricação de novos membros
  * @author  Fernando de Campos Pinheiro
  */
-public class FormularioCadastroMembro {
+public class FormularioMembro {
 	private String nome;
 	private String email;
 	private String senha;

@@ -1,8 +1,6 @@
 package br.com.sidlar.dailyquiz.presentation;
 
-import br.com.sidlar.dailyquiz.domain.EmailOuSenhaInexistenteException;
-import br.com.sidlar.dailyquiz.domain.Membro;
-import br.com.sidlar.dailyquiz.domain.MembroRepository;
+import br.com.sidlar.dailyquiz.domain.Excecoes.EmailOuSenhaInexistenteException;
 import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author  Fernando de Campos Pinheiro
- *
- * Delega solicitações da view <b>login</b> aos serviços e repositorios do dominio do Membro
- * referentes ao processo de Login e Autenticação
- *
+ *Responsável pelas solicitações de login
  */
 @Controller
 @RequestMapping("/Login")
@@ -26,7 +21,7 @@ public class LoginController {
 	@Autowired private AutenticacaoService autenticacaoService;
 
 	/**
-	 * @return String : view do login
+	 * Prepara a tela de login para o usuario do site
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String carregaLogin(){
@@ -34,11 +29,9 @@ public class LoginController {
 	}
 
 	/**
-	 * Verifica se o username e senha pertence a alguma crendecial no {@link br.com.sidlar.dailyquiz.domain.MembroRepository}
-	 * e efetua autenticação
-	 * @param email
-	 * @param senha
-	 * @param req
+	 * Efetua o processo de autenticão de um possivel membro através do e-mail e senha.
+	 * @param email do  membro da aplicação
+	 * @param senha do membro da aplicação
 	 * @return String : view Home  ou Login
 	 */
 	@RequestMapping(method = RequestMethod.POST)

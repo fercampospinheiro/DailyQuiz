@@ -1,4 +1,7 @@
 package br.com.sidlar.dailyquiz.domain;
+import br.com.sidlar.dailyquiz.domain.Excecoes.EmailInexistenteException;
+import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeInexistenteException;
+import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeJaExistenteException;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Nullable;
@@ -9,7 +12,7 @@ import javax.persistence.TypedQuery;
 
 
 /**
- * Classe que disponibiliza os membros do domínio e métodos para sua manipulação
+ * Repositório de membros da apilacação
  * @author Fernando de Campos Pinheiro
  */
 @Repository
@@ -19,10 +22,10 @@ public class MembroRepository {
 	private EntityManager entityManager;
 
 	/**
-	 * Procura a existência do membro com o e-mail informado e retorna o mesmo
-	 * @param email e-mail do membro do site
-	 * @return Membro entidade retornada
-	 * @throws EmailOuSenhaInexistenteException
+	 * Busca por membros que possuam o e-mail informado
+	 * @param email do membro do site
+	 * @return Membro com email especificado
+	 * @throws EntidadeInexistenteException caso não exista membro
 	 */
 	public @Nullable Membro buscaPorEmail(String email){
 
@@ -62,5 +65,25 @@ public class MembroRepository {
 	private boolean contem(Membro membro){
 		return entityManager.contains(membro);
 	}
+
+    /**
+     * Verifica se existe o e-mail informado entre os membros da aplicação
+     */
+
+    public boolean  existeEmail(String email){
+
+        String jpql = "select m from Membro as m where m.email = :email ";
+
+        TypedQuery<Membro> query = entityManager.createQuery(jpql,Membro.class);
+        query.setParameter("email",email);
+
+        try {
+            query.getSingleResult().getEmail();
+            return true;
+        }
+        catch (EmailInexistenteException e) {
+            return false;
+        }
+    }
 
 }

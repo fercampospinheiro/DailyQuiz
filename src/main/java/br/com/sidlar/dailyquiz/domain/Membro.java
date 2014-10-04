@@ -1,5 +1,6 @@
 package br.com.sidlar.dailyquiz.domain;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
@@ -22,7 +23,7 @@ public class Membro {
     private String nome;
 	private String email;
 	private String senha;
-	@Column(name = "datanascimento")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	private LocalDate dataNascimento;
 
 	public Membro() {
@@ -37,11 +38,11 @@ public class Membro {
 		return  Years.yearsBetween(dataNascimento,LocalDate.now());
 	}
 
-	public boolean eHDiaDoAniversario(LocalDate dataAtual ){
+	public boolean fazAniversarioHoje(LocalDate dataAtual){
 		return dataNascimento.equals(dataAtual) ;
 	}
 
-	public Days diasRestantesParaProximoAniversario(){
+	public Days obtemDiasParaProximoAniversario(){
         return Days.daysBetween(LocalDate.now(), dataNascimento.plusYears(getIdade().getYears()));
     }
 
@@ -69,7 +70,7 @@ public class Membro {
 		this.senha = senha;
 	}
 
-	public boolean validaSenha(String senha){
+	public boolean possuiSenhaValida(String senha){
 		return	senha.equals(senha);
 	}
 
@@ -84,9 +85,6 @@ public class Membro {
 
 		Membro membro = (Membro) o;
 
-		if (id != membro.id) return false;
-		if (!nome.equals(membro.nome)) return false;
-		if (!senha.equals(membro.senha)) return false;
 		if (!email.equals(membro.email)) return false;
 
 		return true;

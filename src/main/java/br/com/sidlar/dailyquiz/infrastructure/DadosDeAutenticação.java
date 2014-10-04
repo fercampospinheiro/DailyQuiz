@@ -34,11 +34,11 @@ public class DadosDeAutenticação {
 	}
 
 	private void verificaAniversario(LocalDate diaDaAutenticacao){
-		this.ehDiaDeAniversario = membro.eHDiaDoAniversario(diaDaAutenticacao);
+		this.ehDiaDeAniversario = membro.fazAniversarioHoje(diaDaAutenticacao);
 	}
 
 	private void diasParaProximoAniversario(){
-        diasParaProximoAniversario = membro.diasRestantesParaProximoAniversario();
+        diasParaProximoAniversario = membro.obtemDiasParaProximoAniversario();
     }
 
 

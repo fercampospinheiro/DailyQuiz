@@ -11,8 +11,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @author  Fernando de Campos Pinheiro
  *
- * Delega solicitações da view <b>home</b> aos serviços e repositorios
- * referentes ao domínio home.
+ * Reponsalvel pelas chamadas relacionadas a paginal principal da Aplicacao a Home.
  *
  */
 @RequestMapping("/")
