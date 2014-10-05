@@ -31,11 +31,11 @@ public class ValidadorFormulario {
      */
     private void validaNome(String nome) {
         if (nome.length() > 50){
-            resultado.reject(ERRO_NO_NOME, "Nome com mais 50 caracteres !");
+            resultado.rejectValue(ERRO_NO_NOME,"resultado", "Nome com mais 50 caracteres !");
             throw new DadosInvalidosException("Nome possui mais de 50 cacteres !");
         }
         else if(nome.isEmpty()){
-            resultado.reject(ERRO_NO_NOME, "O nome não foi informado!");
+            resultado.rejectValue(ERRO_NO_NOME,"resultado", "O nome não foi informado!");
             throw new DadosInvalidosException("Nome não informado !");
         }
     }
@@ -45,7 +45,7 @@ public class ValidadorFormulario {
      */
     private void validaEmail(String email){
         if(!email.matches(FORMATO_DE_EMAIL_VALIDO))
-            resultado.reject(ERRO_NO_EMAIL,"Email inválido !");
+            resultado.rejectValue(ERRO_NO_EMAIL,"resultado","Email inválido !");
             throw new DadosInvalidosException("O e-mail é inválido !");
     }
     /**
@@ -53,11 +53,11 @@ public class ValidadorFormulario {
      */
     private void validaSenha(String senha){
         if(senha.length() < 6 || senha.length() >10 ) {
-            resultado.reject(ERRO_NA_SENHA, "Senha menor de 6 caracteres !");
+            resultado.rejectValue(ERRO_NA_SENHA,"resultado", "Senha menor de 6 caracteres !");
             throw new DadosInvalidosException("Senha tem mais de 6.");
         }
         else if(senha.length()> 10)
-            resultado.reject(ERRO_NA_SENHA, "Senha maior que 10 caracteres !");
+            resultado.rejectValue(ERRO_NA_SENHA,"resultado", "Senha maior que 10 caracteres !");
             throw new DadosInvalidosException("Senha tem mais de 10 cacteres.");
         }
 

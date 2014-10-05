@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.time.Year;
 
 /**
- * Model da camada de negócio
+ * Membro da aplicação
  * @author Fernando de Campos Pinheiro
  */
 @Entity
@@ -38,8 +38,8 @@ public class Membro {
 		return  Years.yearsBetween(dataNascimento,LocalDate.now());
 	}
 
-	public boolean fazAniversarioHoje(LocalDate dataAtual){
-		return dataNascimento.equals(dataAtual) ;
+	public boolean fazAniversarioHoje(){
+		return dataNascimento.equals(LocalDate.now()) ;
 	}
 
 	public Days obtemDiasParaProximoAniversario(){
@@ -70,7 +70,7 @@ public class Membro {
 		this.senha = senha;
 	}
 
-	public boolean possuiSenhaValida(String senha){
+	public boolean possuiSenhaInformada(String senha){
 		return	senha.equals(senha);
 	}
 

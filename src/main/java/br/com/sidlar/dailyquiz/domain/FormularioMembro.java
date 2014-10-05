@@ -4,7 +4,7 @@ import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * Classe modelo de um formulario para cricação de novos membros
+ * Formulario para criação de novos membros
  * @author  Fernando de Campos Pinheiro
  */
 public class FormularioMembro {

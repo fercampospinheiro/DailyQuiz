@@ -1,17 +1,17 @@
 package br.com.sidlar.dailyquiz.domain;
 
-import br.com.sidlar.dailyquiz.infrastructure.GeradorHashcode;
+import br.com.sidlar.dailyquiz.infrastructure.GeradorHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Fabrica de membro com processos específicos
+ * Responsavel pela geração de um membro com dados do formulário
  * @author Fernando de Campos pinheiro
  */
 @Component
 public class MembroFactory {
 
-    @Autowired private GeradorHashcode geradorHascode;
+    @Autowired private GeradorHash geradorHascode;
 
 	/**
 	 * Cria um membro com dados do {@link FormularioMembro}
@@ -22,8 +22,8 @@ public class MembroFactory {
         Membro membro = new Membro();
         membro.setNome(formulario.getNome());
         membro.setEmail(formulario.getEmail());
-        String hashCodeDaSenha = geradorHascode.geraHashcode(formulario.getSenha());
-        membro.setSenha(hashCodeDaSenha);
+        String hashDaSenha = geradorHascode.geraHash(formulario.getSenha());
+        membro.setSenha(hashDaSenha);
         membro.setDataNascimento(formulario.getDataNascimento());
         return membro;
     }

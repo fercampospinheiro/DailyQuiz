@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Responsavel pelo processo de cadastramento de um novo membro
+ * Responsável pelo processo de cadastramento de um novo membro
  * @author  Fernando de Campos Pinheiro
  */
 
@@ -17,7 +17,7 @@ public class CadastroMembroService {
     @Autowired private MembroRepository membroRepository;
 
     /**
-     *Cadastra um novo membro se os dados deste não constarem no repositorio de membros
+     * Cadastra um novo membro se os dados deste não constarem no repositorio de membros
      * @throws EmailJaCadastradoException caso o e-mail informado como membro já exista
      */
     public void cadastraNovoMembro(Membro membro) throws EmailJaCadastradoException {

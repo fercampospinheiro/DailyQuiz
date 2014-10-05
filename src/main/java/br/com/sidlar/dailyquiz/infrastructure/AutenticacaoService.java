@@ -20,9 +20,9 @@ public class AutenticacaoService {
 
 	@Autowired HttpSession session;
 	@Autowired private MembroRepository membroRepository;
-	@Autowired private GeradorHashcode geradorHascode;
+	@Autowired private GeradorHash geradorHascode;
 
-	public void autenticaEmailESenhaDoMembro(String email,String senha) throws EmailOuSenhaInexistenteException {
+	public void autenticaEmailESenhaDoMembro(String email, String senha) throws EmailOuSenhaInexistenteException {
 		Membro membro =  obtemMembroPeloEmail(email);
 		validaSenhaDoMembro(senha, membro);
 		adicionaMembroNaSessao(membro);
@@ -34,8 +34,8 @@ public class AutenticacaoService {
 	}
 
 	private void adicionaMembroNaSessao(Membro membro){
-		DateTime instanteDaAutenticao = DateTime.now(DateTimeZone.getDefault());
-		this.session.setAttribute("dadosDaAutenticacao",new DadosDeAutenticação(membro,instanteDaAutenticao));
+		DateTime momentoDaAutenticao = DateTime.now(DateTimeZone.getDefault());
+		this.session.setAttribute("dadosDeAutenticacao", new DadosDeAutenticacao(membro, momentoDaAutenticao));
 	}
 
 	private Membro obtemMembroPeloEmail(String email){
@@ -49,15 +49,15 @@ public class AutenticacaoService {
 
 	private void validaSenhaDoMembro(String senha, Membro membro) {
 
-		String HascodeDaSenha = geradorHascode.geraHashcode(senha);
-		if (!membro.possuiSenhaValida(HascodeDaSenha)) {
+		String HascodeDaSenha = geradorHascode.geraHash(senha);
+		if (!membro.possuiSenhaInformada(HascodeDaSenha)) {
 			throw new EmailOuSenhaInexistenteException("Senha inválida");
 		}
 
 	}
 
-	public DadosDeAutenticação obtemDadosDeAutenticacao(){
-			return (DadosDeAutenticação)this.session.getAttribute("dadosDaAutenticacao");
+	public DadosDeAutenticacao obtemDadosDeAutenticacao(){
+			return (DadosDeAutenticacao)this.session.getAttribute("dadosDeAutenticacao");
 	}
 
 

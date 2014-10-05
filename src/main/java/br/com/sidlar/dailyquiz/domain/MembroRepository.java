@@ -74,8 +74,8 @@ public class MembroRepository {
 
         String jpql = "select m from Membro as m where m.email = :email ";
 
-        TypedQuery<Membro> query = entityManager.createQuery(jpql,Membro.class);
-        query.setParameter("email",email);
+        TypedQuery<Membro> query = entityManager.createQuery(jpql , Membro.class);
+        query.setParameter("email", email);
 
         try {
             query.getSingleResult().getEmail();

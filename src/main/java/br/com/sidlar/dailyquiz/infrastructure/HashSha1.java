@@ -9,10 +9,10 @@ import static org.apache.commons.codec.digest.DigestUtils.*;
  */
 
 @Component
-public class HashcodeSha1 implements GeradorHashcode {
+public class HashSha1 implements GeradorHash {
 
 	@Override
-	public String geraHashcode(String texto) {
+	public String geraHash(String texto) {
 		return sha1Hex(texto);
 
 	}

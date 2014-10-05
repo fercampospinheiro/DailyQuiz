@@ -7,20 +7,20 @@
 </head>
 <body>
 
-<h3>Olá, [${sessionScope.get("dadosDaAutenticacao").membro.nome}]!</h3>
+<h3>Olá, [${sessionScope.get("dadosDeAutenticacao").membro.nome}]!</h3>
     <c:choose>
         <br>
-        <c:when test="${sessionScope.get('dadosDaAUtenticacao').diaDeAniversario}">
+        <c:when test="${sessionScope.get('dadosDeAUtenticacao').membro.fazAniversarioHoje}">
             <p>
-                ${sessionScope.get("dadosDaAutenticacao").membro.nome} parabéns pelos seus
-                ${sessionScope.get("dadosDaAutenticacao").membro.idade.years} anos de vida!
+                ${sessionScope.get("dadosDeAutenticacao").membro.nome} parabéns pelos seus
+                ${sessionScope.get("dadosDeAutenticacao").membro.idade.years} anos de vida!
             </p>
         </c:when>
         <br>
-        <c:when test="${sessionScope.get('dadosDaAUtenticacao').diasParaProximoAniversario.days <= 5 }">
+        <c:when test="${sessionScope.get('dadosDeAUtenticacao').membro.obtemDiasParaProximoAniversario.days <= 5 }">
             <p>
-                ${sessionScope.get("dadosDaAutenticacao").membro.nome} faltam apenas
-                ${sessionScope.get("dadosDaAUtenticacao").diasParaProximoAniversario.days} dias para o seu aniversário.
+                ${sessionScope.get("dadosDeAutenticacao").membro.nome} faltam apenas
+                ${sessionScope.get("dadosDeAUtenticacao").membro.obtemDiasParaProximoAniversario.days} dias para o seu aniversário.
             </p>
         </c:when>
     </c:choose>
