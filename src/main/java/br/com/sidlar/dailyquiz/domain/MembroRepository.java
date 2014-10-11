@@ -3,6 +3,7 @@ import br.com.sidlar.dailyquiz.domain.Excecoes.EmailInexistenteException;
 import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeInexistenteException;
 import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeJaExistenteException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nullable;
 import javax.persistence.EntityManager;
@@ -27,6 +28,7 @@ public class MembroRepository {
 	 * @return Membro com email especificado
 	 * @throws EntidadeInexistenteException caso não exista membro
 	 */
+    @Transactional
 	public @Nullable Membro buscaPorEmail(String email){
 
 		String jpql = "select m from Membro as m where m.email = :email ";
@@ -53,6 +55,7 @@ public class MembroRepository {
 	 * </ul>
 	 * @param membro
 	 */
+    @Transactional
 	public void adicionaNovoMembro(Membro membro) {
 		if(!contem(membro)) {
 			entityManager.persist(membro);
@@ -62,6 +65,7 @@ public class MembroRepository {
 		}
 	}
 
+    @Transactional
 	private boolean contem(Membro membro){
 		return entityManager.contains(membro);
 	}
@@ -69,7 +73,7 @@ public class MembroRepository {
     /**
      * Verifica se existe o e-mail informado entre os membros da aplicação
      */
-
+    @Transactional
     public boolean  existeEmail(String email){
 
         String jpql = "select m from Membro as m where m.email = :email ";
@@ -81,7 +85,7 @@ public class MembroRepository {
             query.getSingleResult().getEmail();
             return true;
         }
-        catch (EmailInexistenteException e) {
+        catch (NoResultException e) {
             return false;
         }
     }

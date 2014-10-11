@@ -3,6 +3,7 @@ package br.com.sidlar.dailyquiz.presentation;
 import br.com.sidlar.dailyquiz.domain.*;
 import br.com.sidlar.dailyquiz.domain.Excecoes.EmailJaCadastradoException;
 import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
+import br.com.sidlar.dailyquiz.presentation.Excecoes.DadosInvalidosException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,16 +50,21 @@ public class CadastroMembroController {
         ){
 
         try {
-            new ValidadorFormulario(formulario,resultado);
-            Membro membro = membroFactory.geraMembroComInformacaoDoformulario(formulario);
+            ValidadorFormulario validador = new ValidadorFormulario(formulario,resultado);
+            validador.validaCampos();
+            Membro membro = membroFactory.geraMembroPorformulario(formulario);
             cadastroMembroService.cadastraNovoMembro(membro);
 			autenticacaoService.autenticaMembro(membro);
             return "redirect:/";
 		}
 		catch (EmailJaCadastradoException e) {
-            resultado.reject("ErroDeEmail",e.getMessage());
+            resultado.rejectValue("email","resultado",e.getMessage());
             return "/CadastroDeMembro/cadastroDeMembro";
         }
+        catch (DadosInvalidosException e){
+            return "/CadastroDeMembro/cadastroDeMembro";
+        }
+
 	}
 
 

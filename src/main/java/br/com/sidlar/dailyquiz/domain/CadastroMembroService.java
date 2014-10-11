@@ -27,7 +27,7 @@ public class CadastroMembroService {
 
     private void verificaExistenciaDeEmail(String email){
         if(membroRepository.existeEmail(email))
-            throw new EmailJaCadastradoException(String.format("Email % já existe!", email));
+            throw new EmailJaCadastradoException("Email  "+ email + "  já existe!");
     }
 
 }

@@ -18,7 +18,7 @@ public class MembroFactory {
 	 * @param formulario com dados do novo membro
 	 * @return Membro populado com sua informações
 	 */
-    public Membro geraMembroComInformacaoDoformulario(FormularioMembro formulario){
+    public Membro geraMembroPorformulario(FormularioMembro formulario){
         Membro membro = new Membro();
         membro.setNome(formulario.getNome());
         membro.setEmail(formulario.getEmail());

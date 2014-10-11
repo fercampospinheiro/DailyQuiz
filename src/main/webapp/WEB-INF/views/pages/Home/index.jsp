@@ -8,15 +8,15 @@
 <body>
 
 <h3>Olá, [${sessionScope.get("dadosDeAutenticacao").membro.nome}]!</h3>
+    <br>
+
     <c:choose>
-        <br>
         <c:when test="${sessionScope.get('dadosDeAUtenticacao').membro.fazAniversarioHoje}">
             <p>
                 ${sessionScope.get("dadosDeAutenticacao").membro.nome} parabéns pelos seus
                 ${sessionScope.get("dadosDeAutenticacao").membro.idade.years} anos de vida!
             </p>
         </c:when>
-        <br>
         <c:when test="${sessionScope.get('dadosDeAUtenticacao').membro.obtemDiasParaProximoAniversario.days <= 5 }">
             <p>
                 ${sessionScope.get("dadosDeAutenticacao").membro.nome} faltam apenas

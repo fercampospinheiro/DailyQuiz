@@ -23,9 +23,9 @@ public class HomeController {
     public String goHome() {
 
         DadosDeAutenticacao dadosDeAutenticação;
-        dadosDeAutenticação = (DadosDeAutenticacao) session.getAttribute("dadosDaAutenticacao");
+        dadosDeAutenticação = (DadosDeAutenticacao) session.getAttribute("dadosDeAutenticacao");
 
-        if (dadosDeAutenticação != null) return "Home/index";
+        if (dadosDeAutenticação != null) return "/Home/index";
         else return "redirect:/Login";
     }
 

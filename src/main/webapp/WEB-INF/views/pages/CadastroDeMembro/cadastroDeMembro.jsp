@@ -4,26 +4,52 @@
 
 <html>
 <head>
+   <style type="text/css">
+        .erros{
+            color : #c9302c;
+            font-style: normal;
+        }
+
+    </style>
     <title>Cadastro de Novo Membro</title>
 </head>
 <body>
 
-    <h2>Informe os seus dados</h2>
 
-    <form:form modelAttribute="formulario" method="post" >
-        <label>Nome :</label>
-        <form:input path="nome" /><br>
-        <form:errors path="ErroNoNome"/>
-        <label>E-mail :</label>
-        <form:input path="email"/><br>
-        <form:errors path="ErroNoEmail"/>
-        <label>Senha :</label>
-        <form:password path="senha"/><br
-        <form:errors path="ErroNaSenha"/>>
-        <label>Data de Nascimento :</label>
-        <form:input type="date" path="dataNascimento" /><br>
-        <form:button>Cadastrar</form:button>
-    </form:form>
+    <div class="row">
+        <d iv class="col-md-6 col-md-offset-2">
+            <h2>Informe os seus dados</h2>
+            <form:form modelAttribute="formulario" method="post" >
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-user"></span>
+                    <form:input path="nome" cssClass="form-control" placeholder="Nome"/>
+                </div>
+                <form:errors path="nome"  cssClass="erros"/>
 
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <form:input path="email" cssClass="form-control" placeholder="E-Mail"/>
+                </div>
+                <form:errors path="email" cssClass="erros"/>
+
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                    <form:input type="password" path="senha"  cssClass="form-control" placeholder="Senha"/>
+                </div>
+                <form:errors path="senha" cssClass="erros"/><br>
+
+                <label>Data de Nascimento :</label>
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                    <form:input type ="date" path="dataNascimento"  cssClass="form-control"/>
+                </div>
+                <br>
+                <form:button class="btn btn-default">Cadastrar</form:button>
+            </form:form>
+        </div>
+    </div>
+    </body>
 </body>
 </html>
