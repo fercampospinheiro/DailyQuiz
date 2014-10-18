@@ -8,6 +8,7 @@ import org.joda.time.Years;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import java.time.MonthDay;
 import java.time.Year;
 
 /**
@@ -30,7 +31,7 @@ public class Membro {
 
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -39,10 +40,17 @@ public class Membro {
 	}
 
 	public boolean fazAniversarioHoje(){
-		return dataNascimento.equals(LocalDate.now()) ;
-	}
+		int diaAtual = LocalDate.now().getDayOfMonth();
+        int mesAtual = LocalDate.now().getMonthOfYear();
+        int diaDoAniversario = this.dataNascimento.getDayOfMonth();
+        int mesDoAniversario = this.dataNascimento.getMonthOfYear();
+
+        return (diaDoAniversario == diaAtual) && (mesDoAniversario == mesAtual);
+    }
 	public Days obtemDiasParaProximoAniversario(){
-        return Days.daysBetween(LocalDate.now(), dataNascimento.plusYears(getIdade().getYears()));
+        LocalDate dataDeHoje = LocalDate.now();
+        LocalDate dataDoProximoAniversario = dataNascimento.plusYears(getIdade().getYears()+1);
+        return Days.daysBetween(dataDeHoje, dataDoProximoAniversario );
     }
 
 	public String getNome() {

@@ -36,12 +36,42 @@
         <jadira-usertype-core.version>3.2.0.GA</jadira-usertype-core.version>
 
     </properties>
-
-    <repositories>
-    </repositories>
-
+    
 
     <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.10.8</version>
+            <exclusions>
+                <exclusion> <!-- Pois é uma versão antiga do hamcrest! -->
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Que tal criar testes usando a linguagem groovy? -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>2.4.0-beta-3</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>

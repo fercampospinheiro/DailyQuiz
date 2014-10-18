@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/CadastraMembro")
 public class CadastroMembroController {
 
-	@Autowired private CadastroMembroService cadastroMembroService;
     @Autowired private MembroFactory membroFactory;
 	@Autowired private AutenticacaoService autenticacaoService;
-	/**
+	@Autowired MembroRepository repository;
+    /**
 	 * Carrega a página o formulario para cadastro de um novo membro
 	 */
 	@RequestMapping( method = RequestMethod.GET)
@@ -50,10 +50,10 @@ public class CadastroMembroController {
         ){
 
         try {
-            ValidadorFormulario validador = new ValidadorFormulario(formulario,resultado);
-            validador.validaCampos();
-            Membro membro = membroFactory.geraMembroPorformulario(formulario);
-            cadastroMembroService.cadastraNovoMembro(membro);
+            ValidadorFormulario validador = new ValidadorFormulario(resultado);
+            validador.validaCampos(formulario.getNome(),formulario.getEmail(),formulario.getSenha());
+            Membro membro = membroFactory.fabricaPorformulario(formulario);
+            repository.adicionaNovoMembro(membro);
 			autenticacaoService.autenticaMembro(membro);
             return "redirect:/";
 		}

@@ -11,25 +11,22 @@ import org.springframework.validation.BindingResult;
  */
 public class ValidadorFormulario {
 
-    private static final String FORMATO_DE_EMAIL_VALIDO = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
+    private static final String FORMATO_DE_EMAIL_VALIDO = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*$";
     private static final String CAMPO_NOME = "nome";
     private static final String CAMPO_EMAIL = "email";
     private static final String CAMPO_SENHA = "senha";
 
     private BindingResult resultado;
-    private FormularioMembro formulario;
 
-    public ValidadorFormulario(FormularioMembro formulario, BindingResult resultado){
-        this.formulario = formulario;
+    public ValidadorFormulario( BindingResult resultado){
         this.resultado = resultado;
     }
 
-    public void validaCampos() throws DadosInvalidosException{
-        validaNome(formulario.getNome());
-        validaEmail(formulario.getEmail());
-        validaSenha(formulario.getSenha());
+    public void validaCampos(String nome,String email,String senha ) throws DadosInvalidosException{
+        validaNome(nome);
+        validaEmail(email);
+        validaSenha(senha);
     }
-
 
     /**
      * Se o nome for maior que 50 caracteres ou não informado lança uma execeção com a descrição do erro
@@ -48,7 +45,7 @@ public class ValidadorFormulario {
     /**
      * Se o E-mail for um formato inválido retorna uma exceção informando da incosistência
      */
-    private void validaEmail(String email) {
+    public void validaEmail(String email) {
         if (!email.matches(FORMATO_DE_EMAIL_VALIDO)) {
             resultado.rejectValue(CAMPO_EMAIL, "resultado", "Email inválido !");
             throw new DadosInvalidosException("O e-mail é inválido !");
