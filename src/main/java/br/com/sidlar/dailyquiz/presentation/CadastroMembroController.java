@@ -4,6 +4,7 @@ import br.com.sidlar.dailyquiz.domain.*;
 import br.com.sidlar.dailyquiz.domain.Excecoes.EmailJaCadastradoException;
 import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
 import br.com.sidlar.dailyquiz.presentation.Excecoes.DadosInvalidosException;
+import br.com.sidlar.dailyquiz.presentation.Validacoes.ValidadorFormulario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,8 +51,8 @@ public class CadastroMembroController {
         ){
 
         try {
-            ValidadorFormulario validador = new ValidadorFormulario(resultado);
-            validador.validaCampos(formulario.getNome(),formulario.getEmail(),formulario.getSenha());
+            ValidadorFormulario validador = new ValidadorFormulario(formulario,resultado);
+            validador.validaCampos();
             Membro membro = membroFactory.fabricaPorformulario(formulario);
             repository.adicionaNovoMembro(membro);
 			autenticacaoService.autenticaMembro(membro);

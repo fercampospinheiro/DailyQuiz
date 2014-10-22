@@ -4,6 +4,7 @@ import br.com.sidlar.dailyquiz.domain.Excecoes.EmailOuSenhaInexistenteException;
 import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeInexistenteException;
 import br.com.sidlar.dailyquiz.domain.Membro;
 import br.com.sidlar.dailyquiz.domain.MembroRepository;
+import br.com.sidlar.dailyquiz.domain.ValidadorMembro;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,41 +20,28 @@ import javax.servlet.http.HttpSession;
 public class AutenticacaoService {
 
 	@Autowired HttpSession session;
-	@Autowired private MembroRepository membroRepository;
-	@Autowired private GeradorHash geradorHascode;
+	@Autowired private MembroRepository repository;
 
-	public void autenticaEmailESenhaDoMembro(String email, String senha) throws EmailOuSenhaInexistenteException {
-		Membro membro =  obtemMembroPeloEmail(email);
-		validaSenhaDoMembro(senha, membro);
-		adicionaMembroNaSessao(membro);
+	public void autenticaEmailESenhaDoMembro(String email, String senha){
+		try {
+
+            Membro membro = repository.buscaPorEmail(email);
+            ValidadorMembro validador = new ValidadorMembro(repository);
+            validador.validaSenha(senha, membro);
+            adicionaMembroNaSessao(membro);
+
+        }
+        catch (EntidadeInexistenteException | EmailOuSenhaInexistenteException e){
+            throw new EmailOuSenhaInexistenteException(e.getMessage());
+        }
 	}
 
-
-	public void autenticaMembro(Membro membro){
-		adicionaMembroNaSessao(membro);
-	}
-
+    public void autenticaMembro(Membro membro){
+        adicionaMembroNaSessao(membro);
+    }
 	private void adicionaMembroNaSessao(Membro membro){
 		DateTime momentoDaAutenticao = DateTime.now(DateTimeZone.getDefault());
 		this.session.setAttribute("dadosDeAutenticacao", new DadosDeAutenticacao(membro, momentoDaAutenticao));
-	}
-
-	private Membro obtemMembroPeloEmail(String email){
-		try {
-			return membroRepository.buscaPorEmail(email);
-		} catch (EntidadeInexistenteException e) {
-			throw new EmailOuSenhaInexistenteException(String.format("Não foi possivel encontra um membro com o e-mail:%",email),e);
-		}
-
-	}
-
-	private void validaSenhaDoMembro(String senha, Membro membro) {
-
-		String HascodeDaSenha = geradorHascode.geraHash(senha);
-		if (!membro.possuiSenhaInformada(HascodeDaSenha)) {
-			throw new EmailOuSenhaInexistenteException("Senha inválida");
-		}
-
 	}
 
 	public DadosDeAutenticacao obtemDadosDeAutenticacao(){

@@ -1,6 +1,8 @@
 package br.com.sidlar.dailyquiz.domain;
 
 import br.com.sidlar.dailyquiz.domain.Excecoes.EmailJaCadastradoException;
+import br.com.sidlar.dailyquiz.domain.Excecoes.EmailOuSenhaInexistenteException;
+import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeInexistenteException;
 import br.com.sidlar.dailyquiz.infrastructure.GeradorHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,5 +36,6 @@ public class MembroFactory {
 
         return membro;
      }
+
 
 }
