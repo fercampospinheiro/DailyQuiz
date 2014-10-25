@@ -21,15 +21,14 @@ public class AutenticacaoService {
 
 	@Autowired HttpSession session;
 	@Autowired private MembroRepository repository;
+    @Autowired private ValidadorMembro validador;
 
 	public void autenticaEmailESenhaDoMembro(String email, String senha){
 		try {
-
             Membro membro = repository.buscaPorEmail(email);
-            ValidadorMembro validador = new ValidadorMembro(repository);
+            validador = new ValidadorMembro(repository);
             validador.validaSenha(senha, membro);
             adicionaMembroNaSessao(membro);
-
         }
         catch (EntidadeInexistenteException | EmailOuSenhaInexistenteException e){
             throw new EmailOuSenhaInexistenteException(e.getMessage());
@@ -49,5 +48,12 @@ public class AutenticacaoService {
 	}
 
 
+    public void setRepository(MembroRepository repository) {
+        this.repository = repository;
+    }
+
+    public void setValidador(ValidadorMembro validador) {
+        this.validador = validador;
+    }
 }
 

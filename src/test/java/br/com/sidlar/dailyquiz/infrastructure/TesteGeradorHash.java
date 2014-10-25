@@ -6,17 +6,17 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class TesteGeracaoHash {
+public class TesteGeradorHash {
 
     @Test
-    public void hashGeradoEhIgualHashSha1(){
+    public void hashGeradoEhIgualHashSha1Hex(){
         //Fixture
         GeradorHash gerador = new HashSha1();
         //exercise SUT
         String hashDoTexto = gerador.geraHash("olá");
-
         //verify
         assertThat(hashDoTexto, is(DigestUtils.sha1Hex("olá")));
-
     }
+
+
 }

@@ -31,4 +31,8 @@ public class ValidadorMembro {
             throw new EmailOuSenhaInexistenteException("Senha inválida");
         }
     }
+
+    public void setRepository(MembroRepository repository) {
+        this.repository = repository;
+    }
 }
