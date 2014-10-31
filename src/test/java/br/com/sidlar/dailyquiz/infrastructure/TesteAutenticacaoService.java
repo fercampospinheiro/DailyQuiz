@@ -43,8 +43,16 @@ public class TesteAutenticacaoService {
         //Fixture
         Membro membro = mock(Membro.class);
         ValidadorMembro validador = mock(ValidadorMembro.class);
+        GeradorHash gerador = mock(HashSha1.class);
+
+        validador.setGerador(gerador);
         autenticador.setValidador(validador);
+
         when(repository.buscaPorEmail(anyString())).thenReturn(membro);
+        when(gerador.geraHash(anyString())).thenReturn(anyString());
+        doNothing().when(membro.possuiSenhaInformada(anyString()));
+        doThrow(EmailOuSenhaInexistenteException.class).when(validador).validaSenha(anyString(), anyObject());
+
         //Exercise Sut
         autenticador.autenticaEmailESenhaDoMembro(null, null);
     }

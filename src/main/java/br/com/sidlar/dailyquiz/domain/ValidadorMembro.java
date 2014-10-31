@@ -35,4 +35,8 @@ public class ValidadorMembro {
     public void setRepository(MembroRepository repository) {
         this.repository = repository;
     }
+
+    public void setGerador(GeradorHash gerador) {
+        this.gerador = gerador;
+    }
 }
