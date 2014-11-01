@@ -1,7 +1,6 @@
-package br.com.sidlar.dailyquiz.domain;
-import br.com.sidlar.dailyquiz.domain.Excecoes.EmailInexistenteException;
-import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeInexistenteException;
-import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeJaExistenteException;
+package br.com.sidlar.dailyquiz.domain.membro;
+import br.com.sidlar.dailyquiz.domain.excecoes.EntidadeInexistenteException;
+import br.com.sidlar.dailyquiz.domain.excecoes.EntidadeJaExistenteException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

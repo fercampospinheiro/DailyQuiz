@@ -1,9 +1,7 @@
 package br.com.sidlar.dailyquiz.infrastructure;
 
-import br.com.sidlar.dailyquiz.domain.Membro;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.LocalDate;
 
 /**
  * @author  Fernando de Campos Pinheiro

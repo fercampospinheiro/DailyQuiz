@@ -1,10 +1,10 @@
 package br.com.sidlar.dailyquiz.infrastructure;
 
-import br.com.sidlar.dailyquiz.domain.Excecoes.EmailOuSenhaInexistenteException;
-import br.com.sidlar.dailyquiz.domain.Excecoes.EntidadeInexistenteException;
-import br.com.sidlar.dailyquiz.domain.Membro;
-import br.com.sidlar.dailyquiz.domain.MembroRepository;
-import br.com.sidlar.dailyquiz.domain.ValidadorMembro;
+import br.com.sidlar.dailyquiz.domain.excecoes.EmailOuSenhaInexistenteException;
+import br.com.sidlar.dailyquiz.domain.excecoes.EntidadeInexistenteException;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
+import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
+import br.com.sidlar.dailyquiz.domain.validacoes.ValidadorMembro;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;

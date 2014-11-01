@@ -1,5 +1,5 @@
-package br.com.sidlar.dailyquiz.presentation.Validacoes;
-import br.com.sidlar.dailyquiz.presentation.Excecoes.DadosInvalidosException;
+package br.com.sidlar.dailyquiz.presentation.validacoes;
+import br.com.sidlar.dailyquiz.presentation.excecoes.DadosInvalidosException;
 import org.springframework.validation.BindingResult;
 
 /**

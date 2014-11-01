@@ -1,11 +1,12 @@
-package br.com.sidlar.dailyquiz.domain;
+package br.com.sidlar.dailyquiz.domain.validacoes;
 
-import br.com.sidlar.dailyquiz.domain.Excecoes.EmailJaCadastradoException;
-import br.com.sidlar.dailyquiz.domain.Excecoes.EmailOuSenhaInexistenteException;
+import br.com.sidlar.dailyquiz.domain.excecoes.EmailJaCadastradoException;
+import br.com.sidlar.dailyquiz.domain.excecoes.EmailOuSenhaInexistenteException;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
+import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
 import br.com.sidlar.dailyquiz.infrastructure.GeradorHash;
 import br.com.sidlar.dailyquiz.infrastructure.HashSha1;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.BindingResult;
 
 /**
  * Valida dados do formulário com as informações do Repositório de Membro

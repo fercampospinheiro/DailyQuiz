@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.domain.Excecoes;
+package br.com.sidlar.dailyquiz.domain.excecoes;
 
 /**
  * Created by Fernando_2 on 10/09/2014.

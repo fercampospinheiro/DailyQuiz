@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.domain.Excecoes;
+package br.com.sidlar.dailyquiz.domain.excecoes;
 
 import javax.persistence.NoResultException;
 

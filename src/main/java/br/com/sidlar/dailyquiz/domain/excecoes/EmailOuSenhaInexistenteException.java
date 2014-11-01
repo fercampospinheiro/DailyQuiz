@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.domain.Excecoes;
+package br.com.sidlar.dailyquiz.domain.excecoes;
 
 /**
  * Exceção por inexistencia de usuário

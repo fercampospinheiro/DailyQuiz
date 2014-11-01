@@ -1,15 +1,13 @@
-package br.com.sidlar.dailyquiz.domain;
+package br.com.sidlar.dailyquiz.domain.membro;
 
+import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaDoQuestionario;
+import com.google.common.collect.Lists;
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
-import org.springframework.validation.annotation.Validated;
-
+import java.util.List;
 import javax.persistence.*;
-import java.time.MonthDay;
-import java.time.Year;
 
 /**
  * Membro da aplicação
@@ -26,6 +24,9 @@ public class Membro {
 	private String senha;
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	private LocalDate dataNascimento;
+	@OneToMany
+	@JoinColumn(name = "membro_id")
+	private List<RespostaDoQuestionario> respostas = Lists.newArrayList();
 
 	public Membro() {
 
@@ -98,7 +99,9 @@ public class Membro {
 
 	}
 
-
+	public void adicionaRespostaQuestionario(RespostaDoQuestionario respostaDoQuestionario){
+		this.respostas.add(respostaDoQuestionario);
+	}
 
 
 }

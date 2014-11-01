@@ -1,9 +1,8 @@
-package br.com.sidlar.dailyquiz.presentation.Validacoes;
+package br.com.sidlar.dailyquiz.presentation.validacoes;
 
-import br.com.sidlar.dailyquiz.presentation.Excecoes.DadosInvalidosException;
+import br.com.sidlar.dailyquiz.presentation.excecoes.DadosInvalidosException;
 import static org.junit.Assert.*;
-import br.com.sidlar.dailyquiz.presentation.Validacoes.ValidaEmail;
-import org.aspectj.lang.annotation.Before;
+
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 import org.springframework.validation.BindingResult;

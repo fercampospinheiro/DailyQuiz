@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.domain;
+package br.com.sidlar.dailyquiz.domain.formularios;
 
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;

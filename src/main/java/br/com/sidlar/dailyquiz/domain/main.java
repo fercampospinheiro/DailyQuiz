@@ -1,5 +1,12 @@
 package br.com.sidlar.dailyquiz.domain;
 
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Alternativa;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questao;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
+import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaDaQuestao;
+import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaDoQuestionario;
+
 public class main {
 
 	
@@ -8,32 +15,44 @@ public class main {
 		//Crio Questionario
 		Questionario questionario = new Questionario("Perguntas da Bíblia");
 
-		//Primeira questao
-		Questao questao = new Questao("Quem foi João na Bíblia");
+			//Criar questao
+			Questao questao = new Questao("Quem foi João na Bíblia");
 
-		questao.formulaPergunta("Quantos livros tem a Biblia?");
-		questao.adicionaAlternativa(Opcao.A, new Alternativa("67"));
-		questao.adicionaAlternativa(Opcao.B, new Alternativa("66"));
-		questao.adicionaAlternativa(Opcao.C,new Alternativa("68"));
-		questao.defineAlternativaCorreta(Opcao.B);
+				//Primeira Alternativa
+				Alternativa alternativa = new Alternativa("O meu Vizinho");
+				questao.adicionaAlternativa(alternativa);
+				//Segunda Alternativa
+				Alternativa alternativa2 = new Alternativa("O Pai de Jesus");
+				questao.adicionaAlternativa(alternativa2);
+				//Terceira Alternativa
+				Alternativa alternativa3 = new Alternativa("Um apóstolo");
+				questao.defineAlternativaCorreta(alternativa3);
 
-		questionario.adicionaQuestao(2,questao);
+		//Adicionar questões ao questionário
+		questionario.adicionaQuestao(questao);
 
-		//Respostas ao questionario
+		//Tornar Membro
+		Membro membro = new Membro();
+
+		//Responder Questionario
+		RespostaDoQuestionario respostaDoQuestionario = new RespostaDoQuestionario(questionario);
+		//Responder questoes
+		RespostaDaQuestao respostaDaQuestao = new RespostaDaQuestao(questao);
+		//Qual alternativa respondida de uma questa
+		respostaDaQuestao.is(alternativa3);
 
 
-		RespostaQuestionario respostaQuestionario = new RespostaQuestionario(questionario);
-		respostaQuestionario.respondidoPor(new Membro());
+		//Adiciona resposta da Questao ao questionario respondido
+		respostaDoQuestionario.adicionaRespostaDaQuestao(respostaDaQuestao);
 
-		RespostaQuestao respostaQuestao = new RespostaQuestao(2,questao);
-		respostaQuestao.is(Opcao.B);
+		respostaDoQuestionario.respondidoPor(membro);
 
-		respostaQuestionario.adicionaRespostaDaQuestao(respostaQuestao);
+		membro.adicionaRespostaQuestionario(respostaDoQuestionario);
 
-		System.out.println(respostaQuestao.visualizaPergunta());
-		System.out.println(respostaQuestao.visualiaResposta());
-		System.out.println(respostaQuestao.estaCorreta());
-
+		//Verifica se questao esta correta
+		System.out.println(questao.exibe());
+		System.out.println(respostaDaQuestao.exibe());
+		System.out.println( respostaDaQuestao.estaCorreta());
 
 	}
 }

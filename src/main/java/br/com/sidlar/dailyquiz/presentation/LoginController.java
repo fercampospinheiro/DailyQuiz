@@ -1,6 +1,6 @@
 package br.com.sidlar.dailyquiz.presentation;
 
-import br.com.sidlar.dailyquiz.domain.Excecoes.EmailOuSenhaInexistenteException;
+import br.com.sidlar.dailyquiz.domain.excecoes.EmailOuSenhaInexistenteException;
 import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

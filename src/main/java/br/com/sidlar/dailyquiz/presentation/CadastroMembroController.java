@@ -1,10 +1,13 @@
 package br.com.sidlar.dailyquiz.presentation;
 
-import br.com.sidlar.dailyquiz.domain.*;
-import br.com.sidlar.dailyquiz.domain.Excecoes.EmailJaCadastradoException;
+import br.com.sidlar.dailyquiz.domain.excecoes.EmailJaCadastradoException;
+import br.com.sidlar.dailyquiz.domain.formularios.FormularioMembro;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
+import br.com.sidlar.dailyquiz.domain.membro.MembroFactory;
+import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
 import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
-import br.com.sidlar.dailyquiz.presentation.Excecoes.DadosInvalidosException;
-import br.com.sidlar.dailyquiz.presentation.Validacoes.ValidadorFormulario;
+import br.com.sidlar.dailyquiz.presentation.excecoes.DadosInvalidosException;
+import br.com.sidlar.dailyquiz.presentation.validacoes.ValidadorFormulario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +27,8 @@ public class CadastroMembroController {
 
     @Autowired private MembroFactory membroFactory;
 	@Autowired private AutenticacaoService autenticacaoService;
-	@Autowired MembroRepository repository;
+	@Autowired
+    MembroRepository repository;
     /**
 	 * Carrega a página o formulario para cadastro de um novo membro
 	 */

@@ -1,9 +1,9 @@
 package br.com.sidlar.dailyquiz.domain;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.cglib.core.Local;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
