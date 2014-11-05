@@ -1,6 +1,7 @@
 package br.com.sidlar.dailyquiz.domain.respostaQuestionario;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Alternativa;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questao;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
 
 import javax.persistence.*;
 
@@ -12,8 +13,10 @@ public class RespostaDaQuestao {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @OneToOne
+    @JoinColumn(name = "idQuestao")
     private Questao questao;
     @OneToOne
+    @JoinColumn(name ="IdAlternativaCorreta")
     private Alternativa alternativaSelecionada;
 
     public RespostaDaQuestao() {

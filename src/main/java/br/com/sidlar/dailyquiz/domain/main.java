@@ -47,7 +47,6 @@ public class main {
 
 		respostaDoQuestionario.respondidoPor(membro);
 
-		membro.adicionaRespostaQuestionario(respostaDoQuestionario);
 
 		//Verifica se questao esta correta
 		System.out.println(questao.exibe());

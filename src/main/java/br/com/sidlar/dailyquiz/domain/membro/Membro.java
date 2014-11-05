@@ -14,7 +14,6 @@ import javax.persistence.*;
  * @author Fernando de Campos Pinheiro
  */
 @Entity
-@Table(name="membro")
 public class Membro {
 	@Id
 	@GeneratedValue
@@ -24,9 +23,6 @@ public class Membro {
 	private String senha;
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	private LocalDate dataNascimento;
-	@OneToMany
-	@JoinColumn(name = "membro_id")
-	private List<RespostaDoQuestionario> respostas = Lists.newArrayList();
 
 	public Membro() {
 
@@ -97,10 +93,6 @@ public class Membro {
 
 		return true;
 
-	}
-
-	public void adicionaRespostaQuestionario(RespostaDoQuestionario respostaDoQuestionario){
-		this.respostas.add(respostaDoQuestionario);
 	}
 
 

@@ -20,11 +20,13 @@ public class RespostaDoQuestionario {
     @Id
     private Integer id;
     @OneToOne
+    @JoinColumn(name = "idQuestionario")
     private Questionario questionario;
     @OneToMany
-    @JoinColumn(name ="respostaQuestionario_id")
+    @JoinColumn(name ="idRespostaQuestionario", referencedColumnName = "id")
     private List<RespostaDaQuestao> respostas = Lists.newArrayList();
     @OneToOne
+    @JoinColumn(name="idMembro")
     private Membro membro;
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate dataReposta;

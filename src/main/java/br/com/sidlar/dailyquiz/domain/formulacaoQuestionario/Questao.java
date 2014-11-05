@@ -11,7 +11,7 @@ public class Questao {
 	private Integer id;
 	private String pergunta;
 	@OneToMany
-	@JoinColumn(name = "questao_id",referencedColumnName = "id")
+	@JoinColumn(name = "idQuestao",referencedColumnName = "id")
 	private List<Alternativa> alternativas = Lists.newArrayList();
 	@OneToOne
 	private Alternativa alternativaCorreta;

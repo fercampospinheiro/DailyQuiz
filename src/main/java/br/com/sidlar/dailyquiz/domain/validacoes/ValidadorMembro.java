@@ -17,6 +17,9 @@ public class ValidadorMembro {
     private MembroRepository repository;
     private GeradorHash gerador = new HashSha1();
 
+    public ValidadorMembro() {
+    }
+
     public ValidadorMembro(MembroRepository repository) {
         this.repository = repository;
     }
