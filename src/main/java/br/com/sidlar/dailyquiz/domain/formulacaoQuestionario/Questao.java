@@ -3,15 +3,17 @@ package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
 import br.com.sidlar.dailyquiz.domain.excecoes.AlternativaRepetidaException;
 import com.google.common.collect.Lists;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.*;
 
 @Entity
 public class Questao {
-	@Id @GeneratedValue(strategy =  GenerationType.AUTO)
+	@Id @GeneratedValue
 	private Integer id;
+	private UUID uuid = UUID.randomUUID();
 	private String pergunta;
-	@OneToMany
-	@JoinColumn(name = "idQuestao",referencedColumnName = "id")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "idQuestao")
 	private List<Alternativa> alternativas = Lists.newArrayList();
 	@OneToOne
 	private Alternativa alternativaCorreta;
@@ -48,5 +50,19 @@ public class Questao {
 		return this.alternativaCorreta.equals(alternativa);
 	}
 
+	public UUID getUuid() {
+		return uuid;
+	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Questao questao = (Questao) o;
+
+		if (uuid != null ? !uuid.equals(questao.uuid) : questao.uuid != null) return false;
+
+		return true;
+	}
 }

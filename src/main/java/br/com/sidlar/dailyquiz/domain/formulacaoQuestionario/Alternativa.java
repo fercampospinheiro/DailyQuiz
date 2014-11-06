@@ -1,11 +1,13 @@
 package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 public class Alternativa {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id @GeneratedValue
 	private Integer id;
+	private UUID uuid = UUID.randomUUID();
 	private String descricao;
 
 	public Alternativa() {
@@ -25,12 +27,16 @@ public class Alternativa {
 
 		Alternativa that = (Alternativa) o;
 
-		if (descricao != null ? !descricao.equals(that.descricao) : that.descricao != null) return false;
+		if (uuid != null ? !uuid.equals(that.uuid) : that.uuid != null) return false;
 
 		return true;
 	}
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public UUID getUuid() {
+		return uuid;
 	}
 }

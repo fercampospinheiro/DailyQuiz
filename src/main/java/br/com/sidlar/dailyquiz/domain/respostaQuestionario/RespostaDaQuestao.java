@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 public class RespostaDaQuestao {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue
     private Integer id;
     @OneToOne
     @JoinColumn(name = "idQuestao")

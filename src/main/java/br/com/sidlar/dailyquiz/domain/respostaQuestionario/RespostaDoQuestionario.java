@@ -22,8 +22,8 @@ public class RespostaDoQuestionario {
     @OneToOne
     @JoinColumn(name = "idQuestionario")
     private Questionario questionario;
-    @OneToMany
-    @JoinColumn(name ="idRespostaQuestionario", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name ="idRespostaQuestionario")
     private List<RespostaDaQuestao> respostas = Lists.newArrayList();
     @OneToOne
     @JoinColumn(name="idMembro")
