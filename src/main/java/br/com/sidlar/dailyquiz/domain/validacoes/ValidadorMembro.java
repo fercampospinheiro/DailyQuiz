@@ -6,6 +6,7 @@ import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
 import br.com.sidlar.dailyquiz.infrastructure.GeradorHash;
 import br.com.sidlar.dailyquiz.infrastructure.HashSha1;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,8 +15,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ValidadorMembro {
 
-    private MembroRepository repository;
-    private GeradorHash gerador = new HashSha1();
+    @Autowired private MembroRepository repository;
+    @Autowired private GeradorHash gerador = new HashSha1();
 
     public ValidadorMembro() {
     }
@@ -25,8 +26,9 @@ public class ValidadorMembro {
     }
 
     public void verificaExistenciaDeEmail(String email){
-        if(repository.existeEmail(email))
-            throw new EmailJaCadastradoException("Email  "+ email + "  já existe!");
+        if(repository.existeEmail(email)) {
+            throw new EmailJaCadastradoException("Email  " + email + "  já existe!");
+        }
     }
 
     public void  validaSenha(String senha,Membro membro){

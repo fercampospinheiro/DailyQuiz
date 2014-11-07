@@ -81,7 +81,7 @@ public class MembroRepository {
         query.setParameter("email", email);
 
         try {
-            query.getSingleResult().getEmail();
+            query.getSingleResult();
             return true;
         }
         catch (NoResultException e) {

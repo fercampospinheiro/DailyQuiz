@@ -3,14 +3,13 @@ package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
 import br.com.sidlar.dailyquiz.domain.excecoes.AlternativaRepetidaException;
 import com.google.common.collect.Lists;
 import java.util.List;
-import java.util.UUID;
 import javax.persistence.*;
 
 @Entity
 public class Questao {
 	@Id @GeneratedValue
 	private Integer id;
-	private UUID uuid = UUID.randomUUID();
+	private Integer ordem;
 	private String pergunta;
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "idQuestao")
@@ -35,7 +34,7 @@ public class Questao {
 			alternativas.add(alternativa);
 		}
 		else{
-			throw  new AlternativaRepetidaException(String.format("A alternativa : '%' ! Informe outra",alternativa.exibe()));
+			throw  new AlternativaRepetidaException(String.format("Alternativa já cadastrada : '%' ! Informe outra",alternativa.exibe()));
 		}
 	}
 	public String exibe() {
@@ -50,8 +49,8 @@ public class Questao {
 		return this.alternativaCorreta.equals(alternativa);
 	}
 
-	public UUID getUuid() {
-		return uuid;
+	public void setOrdem(Integer ordem) {
+		this.ordem = ordem;
 	}
 
 	@Override
@@ -61,8 +60,10 @@ public class Questao {
 
 		Questao questao = (Questao) o;
 
-		if (uuid != null ? !uuid.equals(questao.uuid) : questao.uuid != null) return false;
+		if (ordem != null ? !ordem.equals(questao.ordem) : questao.ordem != null) return false;
+		if (pergunta != null ? !pergunta.equals(questao.pergunta) : questao.pergunta != null) return false;
 
 		return true;
 	}
+
 }

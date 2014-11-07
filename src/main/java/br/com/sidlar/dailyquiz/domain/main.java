@@ -1,57 +1,29 @@
 package br.com.sidlar.dailyquiz.domain;
 
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Alternativa;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questao;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
-import br.com.sidlar.dailyquiz.domain.membro.Membro;
-import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaDaQuestao;
-import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaDoQuestionario;
+import org.joda.time.DateTime;
+import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 public class main {
 
 	
 	public static void main(String[] args) {
 
-		//Crio Questionario
-		Questionario questionario = new Questionario("Perguntas da Bíblia");
+		DateTime disponivel = DateTime.now();
+		DateTime limite = new DateTime(2014,11,07,10,0);
+		Period periodo = new Period(disponivel,limite);
 
-			//Criar questao
-			Questao questao = new Questao("Quem foi João na Bíblia");
+		PeriodFormatter periodFormat = new PeriodFormatterBuilder()
+				.appendDays()
+				.appendSuffix(" dias ")
+				.appendHours()
+				.appendSuffix(" horas ")
+				.appendMinutes()
+				.appendSuffix(" minutos ")
+				.toFormatter();
 
-				//Primeira Alternativa
-				Alternativa alternativa = new Alternativa("O meu Vizinho");
-				questao.adicionaAlternativa(alternativa);
-				//Segunda Alternativa
-				Alternativa alternativa2 = new Alternativa("O Pai de Jesus");
-				questao.adicionaAlternativa(alternativa2);
-				//Terceira Alternativa
-				Alternativa alternativa3 = new Alternativa("Um apóstolo");
-				questao.defineAlternativaCorreta(alternativa3);
-
-		//Adicionar questões ao questionário
-		questionario.adicionaQuestao(questao);
-
-		//Tornar Membro
-		Membro membro = new Membro();
-
-		//Responder Questionario
-		RespostaDoQuestionario respostaDoQuestionario = new RespostaDoQuestionario(questionario);
-		//Responder questoes
-		RespostaDaQuestao respostaDaQuestao = new RespostaDaQuestao(questao);
-		//Qual alternativa respondida de uma questa
-		respostaDaQuestao.is(alternativa3);
-
-
-		//Adiciona resposta da Questao ao questionario respondido
-		respostaDoQuestionario.adicionaRespostaDaQuestao(respostaDaQuestao);
-
-		respostaDoQuestionario.respondidoPor(membro);
-
-
-		//Verifica se questao esta correta
-		System.out.println(questao.exibe());
-		System.out.println(respostaDaQuestao.exibe());
-		System.out.println( respostaDaQuestao.estaCorreta());
+		System.out.println(periodFormat.print(periodo));
 
 	}
 }

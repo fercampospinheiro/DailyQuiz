@@ -5,6 +5,9 @@ import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import com.google.common.collect.Lists;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -45,12 +48,36 @@ public class Questionario {
 		this.membroCriador = membro;
 	}
 
-	private void disponivelAhPartirDe(DateTime dataDisponivel){
-		this.dataDisponivel = dataDisponivel;
+	private void disponivelAhPartirDe(DateTime dataDisponivel) {
+		if (dataDisponivel.isAfter(dataLimite) && dataDisponivel == null || dataLimite == null && dataDisponivel == null){
+			this.dataDisponivel = dataDisponivel;
+		}
+		else {
+			throw new IllegalArgumentException("Data disponivel informada é maior que data limite ou já informada!");
+		}
 	}
 
-	private void acessivelAte(DateTime dataLimite){
-		this.dataLimite = dataLimite;
+	private void acessivelAte(DateTime dataLimite) {
+		if (dataLimite.isBefore( dataDisponivel) && dataLimite == null) {
+			this.dataLimite = dataLimite;
+		} else {
+			throw new IllegalArgumentException("Data Limite informada é menor que data disponive ou  já informada!");
+		}
+	}
+
+	private String expiraEm(){
+
+		PeriodFormatter periodFormat = new PeriodFormatterBuilder()
+				.appendDays()
+				.appendSuffix(" dias ")
+				.appendHours()
+				.appendSuffix(" horas ")
+				.appendMinutes()
+				.appendSuffix(" minutos ")
+				.toFormatter();
+		Period prazoExpiracao =  new Period(dataDisponivel,dataLimite);
+		return periodFormat.print(prazoExpiracao);
 	}
 
 }
+
