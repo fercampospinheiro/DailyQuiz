@@ -7,15 +7,35 @@
 </head>
 <body>
 
+    <div class="container" style="margin-top:30px">
+        <div class="col-md-offset-3 col-md-4">
+        <div class="panel panel-default" >
+            <div class="panel-heading">
+                <h3 class="panel-title">Login do Dailyquiz </h3>
+            </div>
 
-    <form method="post">
-        <h2>Login</h2>
-        <input type="text" name="email" placeholder="email" required autofocus>
-        <input type="password" name="senha" placeholder="senha" required>
-        <button type="submit">Entrar</button>
-    </form>
-    <br>
-    <a href = "/CadastraMembro">Cadastrar novo usuario</a>
+            <div class="panel-body">
+                <form method="post" class="form-group">
+                    <h4>Informe e-mail e senha</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="email" placeholder="email" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="password"  class="form-control" name="senha" placeholder="senha" required >
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Entrar</button>
+                    </div>
+                    <a href = "/CadastraMembro">Não possuo usuário</a>
+                </form>
+                <br>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+
 
 </body>
 </html>

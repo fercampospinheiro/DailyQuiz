@@ -15,11 +15,17 @@
     <title>DailyQuiz - <decorator:title/></title>
 
     <script src="<c:url value="/resources/libs/jquery/2_1_1/jquery-2.1.1.min.js" />"></script>
-
-    <link rel="stylesheet" href="<c:url value="/resources/libs/bootstrap/3_2_2/css/bootstrap.min.css"/>">
-    <script src="<c:url value="/resources/libs/bootstrap/3_2_2/js/bootstrap.min.js" />"></script>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/libs/bootstrap/3_3/css/bootstrap.min.css"/>">
+    <script src="<c:url value="/resources/libs/bootstrap/3_3/js/bootstrap.min.js" />"></script>
 
     <style>
+        #corpoPagina{
+            border-color: #222222;
+            border : 10px;
+        }
+
+
         body {
             min-height: 2000px;
             padding-top: 70px;

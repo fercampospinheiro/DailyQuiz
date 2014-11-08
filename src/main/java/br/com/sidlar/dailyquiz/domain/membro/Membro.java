@@ -36,7 +36,7 @@ public class Membro {
 		return  Years.yearsBetween(dataNascimento,LocalDate.now());
 	}
 
-	public boolean fazAniversarioHoje(){
+	public boolean isAniversarioHoje(){
 		int diaAtual = LocalDate.now().getDayOfMonth();
         int mesAtual = LocalDate.now().getMonthOfYear();
         int diaDoAniversario = this.dataNascimento.getDayOfMonth();
@@ -44,7 +44,7 @@ public class Membro {
 
         return (diaDoAniversario == diaAtual) && (mesDoAniversario == mesAtual);
     }
-	public Days obtemDiasParaProximoAniversario(){
+	public Days getDiasParaProximoAniversario(){
         LocalDate dataDeHoje = LocalDate.now();
         LocalDate dataDoProximoAniversario = dataNascimento.plusYears(getIdade().getYears()+1);
         return Days.daysBetween(dataDeHoje, dataDoProximoAniversario );

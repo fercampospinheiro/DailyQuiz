@@ -1,0 +1,19 @@
+#corpoPagina{
+    border-color: #222222;
+    border : 10px;
+}
+#ranking{
+    border-color: #222222;
+    border-width: thick;
+    border: 5px;
+}
+#questionarios{
+
+}
+#outrosDados{
+
+}
+div.col-md-4{
+    border: 5px;
+    border-color: #333333;
+}

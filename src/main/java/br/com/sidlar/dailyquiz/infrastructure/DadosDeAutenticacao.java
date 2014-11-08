@@ -2,6 +2,7 @@ package br.com.sidlar.dailyquiz.infrastructure;
 
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 /**
  * @author  Fernando de Campos Pinheiro
@@ -19,6 +20,5 @@ public class DadosDeAutenticacao {
 	public Membro getMembro() {
 		return membro;
 	}
-
 
 }

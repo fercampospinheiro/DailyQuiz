@@ -39,7 +39,7 @@ public class LoginController {
 
 		try {
 			autenticacaoService.autenticaEmailESenhaDoMembro(email, senha);
-			return "/Home/index";
+			return "redirect:/";
 		}
 		catch (EmailOuSenhaInexistenteException e){
 			return "/Login/login";
