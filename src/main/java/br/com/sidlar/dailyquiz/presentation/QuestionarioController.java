@@ -25,7 +25,7 @@ public class QuestionarioController {
     public String  listaQuestionarios(Model model){
       List<Questionario> questionarios = repository.buscaPorData(DateTime.now());
       model.addAttribute("questionarios",questionarios);
-      return "/Questionario/listaQuestionario";
+      return "/Questionario/questionario";
     }
 
 
