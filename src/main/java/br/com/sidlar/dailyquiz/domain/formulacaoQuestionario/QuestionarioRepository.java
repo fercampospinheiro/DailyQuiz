@@ -1,5 +1,6 @@
 package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
 
+import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author  Fernando de Campos Pinheiro
  */
 @Repository
-public class QuestionarioRespository {
+public class QuestionarioRepository {
 
     @PersistenceContext
     private EntityManager em;
@@ -26,6 +27,12 @@ public class QuestionarioRespository {
         query.setParameter("dataDisponivel",dataDisponivel);
         return query.getResultList();
     }
+
+    @Transactional
+    public List<Questionario> buscaTodos(){
+            String jpql = "select q from  Questionario as q ";
+            return Lists.newArrayList(em.createQuery(jpql, Questionario.class).getResultList());
+        }
 
 
 }

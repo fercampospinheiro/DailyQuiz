@@ -1,7 +1,7 @@
 package br.com.sidlar.dailyquiz.presentation;
 
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.QuestionarioRespository;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.QuestionarioRepository;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import java.util.List;
 public class QuestionarioController {
 
     @Autowired
-    private QuestionarioRespository repository;
+    private QuestionarioRepository repository;
 
     @RequestMapping(value = "/lista" , method = RequestMethod.GET)
     public String  listaQuestionarios(Model model){

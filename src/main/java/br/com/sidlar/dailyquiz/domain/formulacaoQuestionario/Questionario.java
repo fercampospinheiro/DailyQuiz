@@ -65,7 +65,7 @@ public class Questionario {
 		}
 	}
 
-	private String expiraEm(){
+	public String getExpiraEm(){
 
 		PeriodFormatter periodFormat = new PeriodFormatterBuilder()
 				.appendDays()
@@ -79,5 +79,8 @@ public class Questionario {
 		return periodFormat.print(prazoExpiracao);
 	}
 
+	public String getNome() {
+		return nome;
+	}
 }
 

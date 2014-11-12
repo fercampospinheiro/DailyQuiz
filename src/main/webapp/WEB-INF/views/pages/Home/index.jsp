@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="q" uri="http://dailyquiz.com" %>
+
 
 <html>
 <head>
@@ -83,16 +85,18 @@
                     </a>
                 </div>
                 <h4 class="list-group-item active">Disponiveis</h4>
+
+
                 <ul class="list-group">
+                    <c:forEach items="${questionarios}" var="questionario">
                     <a href="#" class="list-group-item">
-                        Questao sobre Solid
-                        <span class="col-md-offset-1 label label-danger">Expira em : 10 horas</span>
+                        ${questionario.nome}
+                        <span class="col-md-offset-1 label label-danger">${questionario.expiraEm}</span>
                     </a>
-                    <a  href="#" class="list-group-item">
-                        Teste de lógica
-                        <span class="col-md-offset-1 label label-danger">Expira em : 3 dias</span>
-                    </a>
+                    </c:forEach>
+
                 </ul>
+
 
                 </div>
             </div>
