@@ -24,10 +24,10 @@
                     ${dadosAutenticacao.membro.idade.years} anos de vida!
                 </p>
             </c:when>
-            <c:when test="${dadosAutenticacao.membro.diasParaProximoAniversario.days <= 5}">
+            <c:when test="${dadosAutenticacao.membro.obtemDiasParaProximoAniversario().days <= 5}">
                 <p>
                     ${dadosAutenticacao.membro.nome} faltam apenas
-                    ${dadosAutenticacao.membro.diasParaProximoAniversario.days} dias para o seu aniversário.
+                    ${dadosAutenticacao.membro.obtemDiasParaProximoAniversario().days} dias para o seu aniversário.
                 </p>
             </c:when>
         </c:choose>
@@ -89,9 +89,9 @@
 
                 <ul class="list-group">
                     <c:forEach items="${questionarios}" var="questionario">
-                    <a href="#" class="list-group-item">
+                    <a href="/Questionario/${questionario.id}" class="list-group-item">
                         ${questionario.nome}
-                        <span class="col-md-offset-1 label label-danger">${questionario.expiraEm}</span>
+                        <span class="col-md-offset-1 label label-danger">${questionario.expiraEm()}</span>
                     </a>
                     </c:forEach>
 

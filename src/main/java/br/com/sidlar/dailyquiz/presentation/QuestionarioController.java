@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,6 +28,16 @@ public class QuestionarioController {
       model.addAttribute("questionarios",questionarios);
       return "/Questionario/questionario";
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String carregaQuestionario(@PathVariable("id") Integer id, Model model) {
+        Questionario questionario = repository.buscaQuestionarioPorId(id);
+        model.addAttribute("questionario",questionario);
+        return "/Questionario/questionario";
+    }
+
+
+
 
 
 }

@@ -11,74 +11,42 @@
 
 <div class="row ">
   <div class="col-lg-12 list-group">
-    Dados do cliente
+    ${questionario.nome}
+    ${questionario.questoes.size()}
   </div>
 </div>
 
 
 <!-- Coluna das questões -->
+
 <div class="row">
 <div class="col-md-2">
   <h4 class="list-group-item active">Questões</h4>
     <div class="list-group">
-      <a href="#" onclick="show('questao1')" class="list-group-item ">1</a>
-      <a href="#" onclick="show('questao2')" class="list-group-item ">2</a>
-      <a href="#" onclick="show('questao3')" class="list-group-item">3</a>
+      <c:forEach items="${questionario.questoes}" var="questao" >
+        <a href="#" onclick="show('${questao.id}')" class="list-group-item ">${questao.ordem}</a>
+      </c:forEach>
     </div>
 </div>
+
 <!-- Fim da Coluna das Questões -->
 
 <!-- Questão com alternativa-->
 <div id="questoes">
-  <div class="col-md-8 questao" id="questao1">
+  <c:forEach items="${questionario.questoes}" var="questao" >
+  <div class="col-md-8 questao" id="${questao.id}">
     <div class="panel panel-default">
-      <div class="panel-heading">Quem decobriu o Brasil</div>
+      <div class="panel-heading">${questao.pergunta}</div>
       <div class="panel-body">
+        <c:forEach items="${questao.alternativas}" var="alternativa" >
         <div class="radio">
-          <label><input type="radio" name="questao1">Pedro Alvares Cabral</label>
+          <label><input type="radio" name="questao1">${alternativa.exibe()}</label>
         </div>
-        <div class="radio">
-          <label><input type="radio" name="questao1">José da Fonseca</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="questao1">Marcelo </label>
-        </div>
+        </c:forEach>
       </div>
       </div>
     </div>
-  <div class="col-md-8 questao" id="questao2">
-    <div class="panel panel-default">
-      <div class="panel-heading">Quanto anos tem o Brasil</div>
-      <div class="panel-body">
-        <div class="radio">
-          <label><input type="radio" name="questao2">500 anos</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="questao2">20 anos</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="questao2">350 anos</label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-8 questao" id="questao3">
-    <div class="panel panel-default">
-      <div class="panel-heading">Qual o antigo nome do Java?</div>
-        <div class="panel-body">
-          <div class="radio">
-            <label><input type="radio" name="questao3">Oak</label>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="questao3">Sei lá</label>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="questao4">Nao lembro</label>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  </c:forEach>
 </div>
 
 </div>

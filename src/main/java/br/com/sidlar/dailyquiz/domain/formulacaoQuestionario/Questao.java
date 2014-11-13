@@ -11,10 +11,11 @@ public class Questao {
 	private Integer id;
 	private Integer ordem;
 	private String pergunta;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	@JoinColumn(name = "idQuestao")
 	private List<Alternativa> alternativas = Lists.newArrayList();
 	@OneToOne
+	@JoinColumn(name = "idAlternativaCorreta")
 	private Alternativa alternativaCorreta;
 
 	public Questao() {
@@ -66,4 +67,23 @@ public class Questao {
 		return true;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public Integer getOrdem() {
+		return ordem;
+	}
+
+	public String getPergunta() {
+		return pergunta;
+	}
+
+	public List<Alternativa> getAlternativas() {
+		return alternativas;
+	}
+
+	public Alternativa getAlternativaCorreta() {
+		return alternativaCorreta;
+	}
 }

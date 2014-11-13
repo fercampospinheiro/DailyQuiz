@@ -34,5 +34,9 @@ public class QuestionarioRepository {
             return Lists.newArrayList(em.createQuery(jpql, Questionario.class).getResultList());
         }
 
+    public Questionario buscaQuestionarioPorId(Integer id){
+        return em.find(Questionario.class,id);
+    }
+
 
 }

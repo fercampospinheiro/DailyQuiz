@@ -25,7 +25,7 @@ public class TesteObtemDiasParaProximoAniversario {
         LocalDate proximoAniversario = new LocalDate(2015,01,14);
 
         //Exercise
-        Days diasRestantes = membro.getDiasParaProximoAniversario();
+        Days diasRestantes = membro.obtemDiasParaProximoAniversario();
         Days quantidadeDeDias = Days.daysBetween(LocalDate.now(), proximoAniversario );
         //verify
         System.out.println(diasRestantes.getDays());

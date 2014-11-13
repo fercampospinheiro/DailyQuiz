@@ -16,7 +16,7 @@ import java.util.List;
 public class Questionario {
 	@Id @GeneratedValue
 	private Integer id;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	@JoinColumn(name = "idQuestionario")
 	private List<Questao> questoes = Lists.newArrayList();
 	private String nome;
@@ -65,7 +65,7 @@ public class Questionario {
 		}
 	}
 
-	public String getExpiraEm(){
+	public String expiraEm(){
 
 		PeriodFormatter periodFormat = new PeriodFormatterBuilder()
 				.appendDays()
@@ -82,5 +82,14 @@ public class Questionario {
 	public String getNome() {
 		return nome;
 	}
+
+	public List<Questao> getQuestoes() {
+		return questoes;
+	}
+
+	public Integer getId() {
+		return id;
+	}
 }
+
 
