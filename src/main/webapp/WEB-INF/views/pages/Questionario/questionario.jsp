@@ -37,34 +37,31 @@
 <!-- Fim da Coluna das Questões -->
 
 <!-- Questão com alternativa-->
-  <c:forEach items="${formulario.formularioQuestoes}" varStatus="vs">
 
-    ${vs.index}
-  <div id="questoes">
-  <c:forEach items="${questionario.questoes}" var="questao" >
 
-  <div class="col-md-8 questao" id="questao${questao.id}">
-    <div class="panel panel-default">
+    <div id="questoes">
+      <c:forEach items="${questionario.questoes}" var="questao" >
+      <c:forEach items="${formulario.formularioQuestoes}" varStatus="vs">
 
-      <form:hidden path="formularioQuestoes[${vs.index}].idQuestao" value="${questao.id}"/>
+      <div class="col-md-8 questao" id="questao${questao.id}">
+        <div class="panel panel-default">
 
-      <div class="panel-heading">${questao.pergunta}</div>
-      <div class="panel-body">
-        <c:forEach items="${questao.alternativas}" var="alternativa" >
-        <div class="radio">
-          <label><form:radiobutton path="formularioQuestoes[${vs.index}].idAlternativa" value="${questao.id}"/>${alternativa.exibe()}
+          <form:hidden path="formularioQuestoes[${vs.index}].idQuestao" value="${questao.id}"/>
+
+          <div class="panel-heading">${questao.pergunta}</div>
+              <div class="panel-body">
+                <c:forEach items="${questao.alternativas}" var="alternativa" >
+                  <div class="radio">
+                    <label><form:radiobutton path="formularioQuestoes[${vs.index}].idAlternativa" value="${questao.id}"/>${alternativa.exibe()}
+                  </div>
+                </c:forEach>
+              </div>
+          </div>
         </div>
+
         </c:forEach>
-      </div>
-      </div>
+        </c:forEach>
     </div>
-
-  </c:forEach>
-
-
 </div>
-  </c:forEach>
-</div>
-  <form:button class="btn btn-default">Enviar</form:button>
-
-</form:form>
+   <form:button class="btn btn-default">Enviar</form:button>
+  </form:form>
