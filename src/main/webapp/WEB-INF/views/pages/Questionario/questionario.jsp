@@ -11,13 +11,11 @@
     }
 </script>
 
-<form:form commandName="formulario" action="/Questionario/salvar" >
-
-  <form:hidden path="idQuestionario" value="${questionario.id}"/>
+<form:form commandName="resposta" action="/Questionario/salvar" >
 
 <div class="row "> 
   <div class="col-lg-12 list-group">
-    ${questionario.nome}
+    ${resposta.questionario.nome}
   </div>
 </div>
 
@@ -28,7 +26,7 @@
 <div class="col-md-2">
   <h4 class="list-group-item active">Questões</h4>
     <div class="list-group">
-      <c:forEach items="${questionario.questoes}" var="questao" >
+      <c:forEach items="${resposta.questionario.questoes}" var="questao" >
         <a href="#" onclick="show('${questao.id}')" class="list-group-item ">${questao.ordem}</a>
       </c:forEach>
     </div>
@@ -40,28 +38,21 @@
 
 
     <div id="questoes">
-      <c:forEach items="${questionario.questoes}" var="questao" >
-      <c:forEach items="${formulario.formularioQuestoes}" varStatus="vs">
+      <c:forEach items="${resposta.respostaQuestoes}" var="respostaQuestao" varStatus="vs" >
 
-      <div class="col-md-8 questao" id="questao${questao.id}">
+      <div class="col-md-8 questao" id="questao${respostaQue.stao.questao.id}">
         <div class="panel panel-default">
 
-          <form:hidden path="formularioQuestoes[${vs.index}].idQuestao" value="${questao.id}"/>
-
-          <div class="panel-heading">${questao.pergunta}</div>
+          <div class="panel-heading">${respostaQuestao.questao.pergunta}</div>
               <div class="panel-body">
-                <c:forEach items="${questao.alternativas}" var="alternativa" >
-                  <div class="radio">
-                    <label><form:radiobutton path="formularioQuestoes[${vs.index}].idAlternativa" value="${questao.id}"/>${alternativa.exibe()}
-                  </div>
-                </c:forEach>
+                <form:radiobuttons path="respostaQuestoes[${vs.index}].alternativaSelecionada" items="${respostaQuestao.questao.alternativas}"  element="li" itemLabel="descricao" cssClass="li" />
               </div>
           </div>
         </div>
 
         </c:forEach>
-        </c:forEach>
     </div>
 </div>
-   <form:button class="btn btn-default">Enviar</form:button>
-  </form:form>
+    <form:button class="btn btn-default">Enviar</form:button>
+
+</form:form>

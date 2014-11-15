@@ -41,4 +41,11 @@ public class Alternativa {
 		return true;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
 }

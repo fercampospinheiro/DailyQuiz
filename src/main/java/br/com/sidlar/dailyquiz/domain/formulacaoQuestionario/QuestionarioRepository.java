@@ -1,8 +1,8 @@
 package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
 
+import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionario;
 import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,5 +38,9 @@ public class QuestionarioRepository {
         return em.find(Questionario.class,id);
     }
 
+    @Transactional
+    public void salva(RespostaQuestionario resposta){
+        em.persist(resposta);
+    }
 
 }

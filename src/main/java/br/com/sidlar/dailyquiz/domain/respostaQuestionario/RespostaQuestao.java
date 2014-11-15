@@ -9,19 +9,19 @@ import javax.persistence.*;
  * @author Fernando de Campos Pinheiro
  */
 @Entity
-public class RespostaDaQuestao {
+public class RespostaQuestao {
     @Id @GeneratedValue
     private Integer id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     @JoinColumn(name = "idQuestao")
     private Questao questao;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     @JoinColumn(name ="IdAlternativaCorreta")
     private Alternativa alternativaSelecionada;
 
-    public RespostaDaQuestao() {
+    public RespostaQuestao() {
     }
-    public RespostaDaQuestao(Questao questao) {
+    public RespostaQuestao(Questao questao) {
         this.questao = questao;
     }
 
@@ -35,6 +35,14 @@ public class RespostaDaQuestao {
 
     public String exibe(){
         return alternativaSelecionada.exibe();
+    }
+
+    public Questao getQuestao() {
+        return questao;
+    }
+
+    public void setAlternativaSelecionada(Alternativa alternativaSelecionada) {
+        this.alternativaSelecionada = alternativaSelecionada;
     }
 }
 

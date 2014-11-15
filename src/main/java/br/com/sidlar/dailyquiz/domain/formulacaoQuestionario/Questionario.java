@@ -16,7 +16,7 @@ import java.util.List;
 public class Questionario {
 	@Id @GeneratedValue
 	private Integer id;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	@JoinColumn(name = "idQuestionario")
 	private List<Questao> questoes = Lists.newArrayList();
 	private String nome;

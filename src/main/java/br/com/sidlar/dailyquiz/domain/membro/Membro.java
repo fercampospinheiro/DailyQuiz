@@ -1,12 +1,10 @@
 package br.com.sidlar.dailyquiz.domain.membro;
 
-import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaDoQuestionario;
-import com.google.common.collect.Lists;
 import org.hibernate.annotations.Type;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
-import java.util.List;
+
 import javax.persistence.*;
 
 /**
