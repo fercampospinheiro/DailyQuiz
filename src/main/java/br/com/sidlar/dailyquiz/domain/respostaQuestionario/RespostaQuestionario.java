@@ -28,6 +28,8 @@ public class RespostaQuestionario {
     private Membro membro;
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate dataReposta;
+    @Column(name = "qtdAcertos")
+    private Integer numeroAcertos;
 
     public RespostaQuestionario() {}
 
@@ -41,6 +43,15 @@ public class RespostaQuestionario {
     public RespostaQuestionario(Questionario questionario) {
         this.questionario = questionario;
         adicionaOpcoesRespostas();
+    }
+
+    public void calculaAcertos(){
+        for(RespostaQuestao resposta : respostaQuestoes  ){
+            if(resposta.estaCorreta()){
+                numeroAcertos =+ 1;
+            }
+
+        }
     }
 
     public void respondidoPor(Membro membro){
@@ -63,3 +74,4 @@ public class RespostaQuestionario {
         return respostaQuestoes;
     }
 }
+

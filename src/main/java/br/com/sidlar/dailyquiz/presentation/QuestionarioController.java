@@ -44,6 +44,7 @@ public class QuestionarioController {
 
     @RequestMapping(value = "/salvar", method = RequestMethod.POST)
     public String salvaQuestionario(@ModelAttribute("resposta")RespostaQuestionario resposta ) {
+        resposta.calculaAcertos();
         repository.salva(resposta);
         return "redirect:/";
     }

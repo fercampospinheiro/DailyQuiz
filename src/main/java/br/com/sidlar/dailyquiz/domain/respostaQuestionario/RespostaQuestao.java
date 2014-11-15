@@ -25,10 +25,6 @@ public class RespostaQuestao {
         this.questao = questao;
     }
 
-    public void is(Alternativa alternativa){
-        this.alternativaSelecionada= alternativa;
-    }
-
     public boolean estaCorreta(){
         return questao.ehIgualRespostaDaQuestao(alternativaSelecionada);
     }
@@ -43,6 +39,10 @@ public class RespostaQuestao {
 
     public void setAlternativaSelecionada(Alternativa alternativaSelecionada) {
         this.alternativaSelecionada = alternativaSelecionada;
+    }
+
+    public Alternativa getAlternativaSelecionada() {
+        return alternativaSelecionada;
     }
 }
 
