@@ -3,6 +3,7 @@ package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
 import br.com.sidlar.dailyquiz.domain.excecoes.QuestaoRepetidaException;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -11,19 +12,26 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Questionario {
 	@Id @GeneratedValue
 	private Integer id;
+
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	@JoinColumn(name = "idQuestionario")
-	private List<Questao> questoes = Lists.newArrayList();
+	@OrderColumn(name="ordem")
+	private Set<Questao> questoes = Sets.newHashSet();
+
 	private String nome;
+
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime dataDisponivel;
+
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime dataLimite;
+
 	@OneToOne
 	@JoinColumn(name = "idMembroCriador")
 	private Membro membroCriador;
@@ -85,7 +93,7 @@ public class Questionario {
 		return nome;
 	}
 
-	public List<Questao> getQuestoes() {
+	public Set<Questao> getQuestoes() {
 		return questoes;
 	}
 

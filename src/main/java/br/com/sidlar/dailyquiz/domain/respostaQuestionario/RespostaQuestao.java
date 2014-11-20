@@ -15,8 +15,8 @@ public class RespostaQuestao {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     @JoinColumn(name = "idQuestao")
     private Questao questao;
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    @JoinColumn(name ="IdAlternativaCorreta")
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name ="idAlternativa")
     private Alternativa alternativaSelecionada;
 
     public RespostaQuestao() {

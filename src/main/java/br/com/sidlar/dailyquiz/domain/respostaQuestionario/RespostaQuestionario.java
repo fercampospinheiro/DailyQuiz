@@ -4,11 +4,13 @@ import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questao;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Fernando de Campos Pinheiro
@@ -17,13 +19,13 @@ import java.util.List;
 public class RespostaQuestionario {
     @Id
     private Integer id;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "idQuestionario")
     private Questionario questionario;
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     @JoinColumn(name ="idRespostaQuestionario")
-    private List<RespostaQuestao> respostaQuestoes = Lists.newArrayList();
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<RespostaQuestao> respostaQuestoes = Sets.newHashSet();
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="idMembro")
     private Membro membro;
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
@@ -39,6 +41,7 @@ public class RespostaQuestionario {
           respostaQuestoes.add(respostaQuestao);
       }
     }
+    
 
     public RespostaQuestionario(Questionario questionario) {
         this.questionario = questionario;
@@ -58,11 +61,12 @@ public class RespostaQuestionario {
         this.membro =  membro;
     }
 
-    public void adicionaQuestionario(Questionario questionario){
-        questionario = questionario;
-    }
 
-    public Questionario getQuestionario() {
+    public void setQuestionario(Questionario questionario) {
+		this.questionario = questionario;
+	}
+
+	public Questionario getQuestionario() {
         return questionario;
     }
 
@@ -70,8 +74,12 @@ public class RespostaQuestionario {
         return membro;
     }
 
-    public List<RespostaQuestao> getRespostaQuestoes() {
+    public Set<RespostaQuestao> getRespostaQuestoes() {
         return respostaQuestoes;
+    }
+    
+    public void defineDataReposta(LocalDate dataReposta){
+    	this.dataReposta = dataReposta;
     }
 }
 

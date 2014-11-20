@@ -25,7 +25,7 @@ public class MembroRepository {
 	 * Busca por membros que possuam o e-mail informado
 	 * @param email do membro do site
 	 * @return Membro com email especificado
-	 * @throws EntidadeInexistenteException caso não exista membro
+	 * @throws br.com.sidlar.dailyquiz.domain.excecoes.EntidadeInexistenteException caso não exista membro
 	 */
     @Transactional
 	public @Nullable Membro buscaPorEmail(String email){
@@ -89,4 +89,9 @@ public class MembroRepository {
         }
     }
 
+    @Transactional
+    public Membro buscaPorId(Integer id){
+    	return entityManager.find(Membro.class, id);
+    }
+    
 }

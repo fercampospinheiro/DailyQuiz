@@ -80,7 +80,12 @@ public class Membro {
         return dataNascimento;
     }
 
-    @Override
+    
+    public Integer getId() {
+		return id;
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Membro)) return false;

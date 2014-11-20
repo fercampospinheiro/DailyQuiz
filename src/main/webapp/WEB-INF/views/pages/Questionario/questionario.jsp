@@ -6,53 +6,66 @@
 <script type="text/javascript">
 
     function show(div) {
-      $('.questao').hide();
-      $('#' + div).show();
+        $('.questao').hide();
+        $('.q' + div).show();
     }
 </script>
 
-<form:form commandName="resposta" action="/Questionario/salvar" >
-
-<div class="row "> 
-  <div class="col-lg-12 list-group">
-    ${resposta.questionario.nome}
-  </div>
-</div>
+<c:set var="dadosAutenticacao" value="${sessionScope.get('dadosDeAutenticacao')}"/>
 
 
-<!-- Coluna das questões -->
+<form:form modelAttribute="formulario" action="salvar" method="POST" >
 
-<div class="row">
-<div class="col-md-2">
-  <h4 class="list-group-item active">Questões</h4>
-    <div class="list-group">
-      <c:forEach items="${resposta.questionario.questoes}" var="questao" >
-        <a href="#" onclick="show('${questao.id}')" class="list-group-item ">${questao.ordem}</a>
-      </c:forEach>
+    <form:hidden path="idRespostaQuestionario" value="${formulario.questionario.id}"/>
+
+    <form:hidden path="idMembro" value="${dadosAutenticacao.membro.id}"/>
+
+    <div class="row ">
+        <div class="col-lg-12 list-group">
+                ${formulario.questionario.nome}
+        </div>
     </div>
-</div>
-
-<!-- Fim da Coluna das Questões -->
-
-<!-- Questão com alternativa-->
 
 
-    <div id="questoes">
-      <c:forEach items="${resposta.respostaQuestoes}" var="respostaQuestao" varStatus="vs" >
+    <!-- Coluna das questões -->
 
-      <div class="col-md-8 questao" id="questao${respostaQue.stao.questao.id}">
-        <div class="panel panel-default">
-
-          <div class="panel-heading">${respostaQuestao.questao.pergunta}</div>
-              <div class="panel-body">
-                <form:radiobuttons path="respostaQuestoes[${vs.index}].alternativaSelecionada" items="${respostaQuestao.questao.alternativas}"  element="li" itemLabel="descricao" cssClass="li" />
-              </div>
-          </div>
+    <div class="row">
+        <div class="col-md-2">
+            <h4 class="list-group-item active">Questões</h4>
+            <div class="list-group">
+                <c:forEach items="${formulario.questionario.questoes}" var="questao" >
+                    <a href="#" onclick="show('${questao.id}')" class="list-group-item ">${questao.ordem}</a>
+                </c:forEach>
+            </div>
         </div>
 
-        </c:forEach>
+        <!-- Fim da Coluna das Questões -->
+
+        <!-- Questão com alternativa-->
+
+
+
+        <div id="questoes">
+
+            <c:forEach items="${formulario.questionario.questoes}" var="resposta" varStatus="vs" >
+
+                <form:hidden path="questoes[${vs.index}].idRepostaQuestao" value="${resposta.id}" />
+
+                <div class="col-md-8 questao q${resposta.id}">
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading"><span class="badge">${resposta.ordem}</span>&nbsp${resposta.pergunta}</div>
+                        <ol type="a">
+                            <div class="panel-body">
+                                <form:radiobuttons path="questoes[${vs.index}].idAlternativa" items="${resposta.alternativas}"  itemValue="id" element="li" itemLabel="descricao" itemcssClass="li" />
+                            </div>
+                    </div>
+
+                </div>
+
+            </c:forEach>
+        </div>
     </div>
-</div>
     <form:button class="btn btn-default">Enviar</form:button>
 
 </form:form>

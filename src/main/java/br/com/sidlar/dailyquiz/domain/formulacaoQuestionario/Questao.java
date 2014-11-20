@@ -2,7 +2,10 @@ package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
 
 import br.com.sidlar.dailyquiz.domain.excecoes.AlternativaRepetidaException;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -11,11 +14,14 @@ public class Questao {
 	private Integer id;
 	private Integer ordem;
 	private String pergunta;
+
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	@JoinColumn(name = "idQuestao")
-	private List<Alternativa> alternativas = Lists.newArrayList();
+	private Set<Alternativa> alternativas = Sets.newHashSet();
+
 	@OneToOne
 	@JoinColumn(name = "idAlternativaCorreta")
+	@OrderColumn(name="ordem")
 	private Alternativa alternativaCorreta;
 
 	public Questao() {
@@ -79,7 +85,7 @@ public class Questao {
 		return pergunta;
 	}
 
-	public List<Alternativa> getAlternativas() {
+	public Set<Alternativa> getAlternativas() {
 		return alternativas;
 	}
 
