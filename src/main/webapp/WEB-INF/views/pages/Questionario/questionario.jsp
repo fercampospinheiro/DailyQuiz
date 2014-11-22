@@ -34,7 +34,7 @@
             <h4 class="list-group-item active">Questões</h4>
             <div class="list-group">
                 <c:forEach items="${formulario.questionario.questoes}" var="questao" >
-                    <a href="#" onclick="show('${questao.id}')" class="list-group-item ">${questao.ordem}</a>
+                    <a href="#" onclick="show('${questao.id}')" class="list-group-item ">${questao.ordem + 1}</a>
                 </c:forEach>
             </div>
         </div>
@@ -49,16 +49,17 @@
 
             <c:forEach items="${formulario.questionario.questoes}" var="resposta" varStatus="vs" >
 
-                <form:hidden path="questoes[${vs.index}].idRepostaQuestao" value="${resposta.id}" />
+                <form:hidden path="formularioQuestoes[${vs.index}].idRepostaQuestao" value="${resposta.id}" />
 
                 <div class="col-md-8 questao q${resposta.id}">
                     <div class="panel panel-default">
 
-                        <div class="panel-heading"><span class="badge">${resposta.ordem}</span>&nbsp${resposta.pergunta}</div>
+                        <div class="panel-heading"><span class="badge">${resposta.ordem + 1}</span>&nbsp${resposta.pergunta}</div>
                         <ol type="a">
                             <div class="panel-body">
-                                <form:radiobuttons path="questoes[${vs.index}].idAlternativa" items="${resposta.alternativas}"  itemValue="id" element="li" itemLabel="descricao" itemcssClass="li" />
+                                <form:radiobuttons path="formularioQuestoes[${vs.index}].idAlternativa" items="${resposta.alternativas}"  itemValue="id" element="li" itemLabel="descricao" itemcssClass="li" />
                             </div>
+                        </ol>
                     </div>
 
                 </div>

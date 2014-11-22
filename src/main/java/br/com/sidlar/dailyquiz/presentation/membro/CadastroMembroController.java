@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.presentation;
+package br.com.sidlar.dailyquiz.presentation.membro;
 
 import br.com.sidlar.dailyquiz.domain.excecoes.EmailJaCadastradoException;
 import br.com.sidlar.dailyquiz.domain.formularios.FormularioMembro;

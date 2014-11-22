@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
+package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.alternativa;
 
 import javax.persistence.*;
 

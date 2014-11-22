@@ -1,7 +1,6 @@
 package br.com.sidlar.dailyquiz.domain.respostaQuestionario;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Alternativa;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questao;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.alternativa.Alternativa;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao.Questao;
 
 import javax.persistence.*;
 
@@ -12,10 +11,12 @@ import javax.persistence.*;
 public class RespostaQuestao {
     @Id @GeneratedValue
     private Integer id;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idQuestao")
     private Questao questao;
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+
+    @OneToOne
     @JoinColumn(name ="idAlternativa")
     private Alternativa alternativaSelecionada;
 
@@ -37,12 +38,16 @@ public class RespostaQuestao {
         return questao;
     }
 
-    public void setAlternativaSelecionada(Alternativa alternativaSelecionada) {
+    public void comAlternativaSelecionada(Alternativa alternativaSelecionada) {
         this.alternativaSelecionada = alternativaSelecionada;
     }
 
     public Alternativa getAlternativaSelecionada() {
         return alternativaSelecionada;
+    }
+
+    public void referenteA(Questao questao) {
+        this.questao = questao;
     }
 }
 

@@ -1,5 +1,6 @@
-package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
+package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario;
 
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionario;
 import com.google.common.collect.Lists;
 import org.joda.time.DateTime;

@@ -1,9 +1,9 @@
-package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario;
+package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario;
 
 import br.com.sidlar.dailyquiz.domain.excecoes.QuestaoRepetidaException;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao.Questao;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -12,17 +12,16 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Questionario {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	@JoinColumn(name = "idQuestionario")
 	@OrderColumn(name="ordem")
-	private Set<Questao> questoes = Sets.newHashSet();
+	private List<Questao> questoes = Lists.newArrayList();
 
 	private String nome;
 
@@ -93,7 +92,7 @@ public class Questionario {
 		return nome;
 	}
 
-	public Set<Questao> getQuestoes() {
+	public List<Questao> getQuestoes() {
 		return questoes;
 	}
 

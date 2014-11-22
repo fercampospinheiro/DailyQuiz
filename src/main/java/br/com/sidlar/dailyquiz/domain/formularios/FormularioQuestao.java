@@ -1,6 +1,6 @@
 package br.com.sidlar.dailyquiz.domain.formularios;
 
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questao;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao.Questao;
 
 public class FormularioQuestao {
 	private Integer idRepostaQuestao;

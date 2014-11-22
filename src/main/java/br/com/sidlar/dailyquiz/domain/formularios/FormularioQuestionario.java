@@ -1,18 +1,16 @@
 package br.com.sidlar.dailyquiz.domain.formularios;
 
 import java.util.List;
-import java.util.Set;
 
 import com.google.common.collect.Lists;
 
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questao;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
-import com.google.common.collect.Sets;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao.Questao;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
 
 public class FormularioQuestionario {
 	private Integer idRespostaQuestionario;
 	private Questionario questionario;
-	private Set<FormularioQuestao> questoes = Sets.newHashSet();
+	private List<FormularioQuestao> formularioQuestoes = Lists.newArrayList();
 	private Integer idMembro;
 	
 	public FormularioQuestionario() {}
@@ -26,8 +24,8 @@ public class FormularioQuestionario {
 		return questionario;
 	}
 	
-	public Set<FormularioQuestao> getQuestoes() {
-		return questoes;
+	public List<FormularioQuestao> getFormularioQuestoes() {
+		return formularioQuestoes;
 	}
 	
 	
@@ -40,9 +38,9 @@ public class FormularioQuestionario {
 	}
 
 	private void adicionaQuestoes(){
-		Set<Questao> questoes = this.questionario.getQuestoes();
+		List<Questao> questoes = this.questionario.getQuestoes();
 		for (Questao questao : questoes) {
-			this.questoes.add(new FormularioQuestao(questao));
+			this.formularioQuestoes.add(new FormularioQuestao(questao));
 		}
 	}
 

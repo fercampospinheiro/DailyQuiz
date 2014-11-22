@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.presentation;
+package br.com.sidlar.dailyquiz.presentation.questionario;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.QuestionarioRepository;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.QuestionarioRepository;
 import br.com.sidlar.dailyquiz.domain.formularios.FormularioQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioFactory;

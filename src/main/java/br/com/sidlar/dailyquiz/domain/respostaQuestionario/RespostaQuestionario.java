@@ -1,16 +1,13 @@
 package br.com.sidlar.dailyquiz.domain.respostaQuestionario;
 
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questao;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Fernando de Campos Pinheiro
@@ -18,35 +15,29 @@ import java.util.Set;
 @Entity
 public class RespostaQuestionario {
     @Id
+    @GeneratedValue
     private Integer id;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToOne
     @JoinColumn(name = "idQuestionario")
     private Questionario questionario;
+
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    @JoinColumn(name ="idRespostaQuestionario")
-    private Set<RespostaQuestao> respostaQuestoes = Sets.newHashSet();
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name ="idRespostaQuestionario",referencedColumnName = "id")
+    private List<RespostaQuestao> respostaQuestoes = Lists.newArrayList();
+
+    @OneToOne
     @JoinColumn(name="idMembro")
     private Membro membro;
+
+    @Column(name = "data")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate dataReposta;
+
     @Column(name = "qtdAcertos")
     private Integer numeroAcertos;
 
     public RespostaQuestionario() {}
-
-    private void adicionaOpcoesRespostas(){
-      for(Questao questao : questionario.getQuestoes()){
-          RespostaQuestao respostaQuestao = new RespostaQuestao(questao);
-          respostaQuestoes.add(respostaQuestao);
-      }
-    }
-    
-
-    public RespostaQuestionario(Questionario questionario) {
-        this.questionario = questionario;
-        adicionaOpcoesRespostas();
-    }
 
     public void calculaAcertos(){
         for(RespostaQuestao resposta : respostaQuestoes  ){
@@ -55,6 +46,10 @@ public class RespostaQuestionario {
             }
 
         }
+    }
+
+    public void referenteAo(Questionario questionario){
+        this.questionario = questionario;
     }
 
     public void respondidoPor(Membro membro){
@@ -74,12 +69,17 @@ public class RespostaQuestionario {
         return membro;
     }
 
-    public Set<RespostaQuestao> getRespostaQuestoes() {
+    public List<RespostaQuestao> getRespostaQuestoes() {
         return respostaQuestoes;
     }
     
-    public void defineDataReposta(LocalDate dataReposta){
+    public void feitoNaData(LocalDate dataReposta){
     	this.dataReposta = dataReposta;
     }
+
+    public void adicionaRespostas(List<RespostaQuestao> respostas){
+        this.respostaQuestoes = respostas;
+    }
+
 }
 

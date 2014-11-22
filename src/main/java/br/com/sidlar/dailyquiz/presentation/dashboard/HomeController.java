@@ -1,8 +1,7 @@
-package br.com.sidlar.dailyquiz.presentation;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.Questionario;
-import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.QuestionarioRepository;
+package br.com.sidlar.dailyquiz.presentation.dashboard;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
+import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.QuestionarioRepository;
 import br.com.sidlar.dailyquiz.infrastructure.DadosDeAutenticacao;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 
 /**

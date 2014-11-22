@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.presentation;
+package br.com.sidlar.dailyquiz.presentation.login;
 
 import br.com.sidlar.dailyquiz.domain.excecoes.EmailOuSenhaInexistenteException;
 import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
