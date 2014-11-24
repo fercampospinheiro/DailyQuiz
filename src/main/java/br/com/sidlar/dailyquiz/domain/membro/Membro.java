@@ -73,7 +73,7 @@ public class Membro {
 	}
 
 	public boolean possuiSenhaInformada(String senha){
-		return	senha.equals(senha);
+		return	this.senha.equals(senha);
 	}
 
     public LocalDate getDataNascimento() {

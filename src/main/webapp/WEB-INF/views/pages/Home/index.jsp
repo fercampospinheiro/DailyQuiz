@@ -13,8 +13,6 @@
     <div id="areaLogin" class="row" >
         <c:set var="dadosAutenticacao" value="${sessionScope.get('dadosDeAutenticacao')}"/>
 
-        <h3>Olá, [${dadosAutenticacao.membro.nome}]!</h3><br>
-
         <c:choose>
             <c:when test="${dadosAutenticacao.membro.aniversarioHoje eq true}">
                 <p>
@@ -47,27 +45,23 @@
             </div>
             <br>
 
-            <div class="panel panel-default">
-                <div class="page-header">
-                    <h3 class="col-md-offset-2">Ranking Geral</h3>
-                </div>
-                <div class="panel-body">
+
+            <h4 class="list-group-item " style="background-color: cadetblue ">Ranking Geral</h4>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <span class="badge">1</span>
-                            Antonio
+                            <span class="badge pull-left">1</span>
+                            &nbsp Antonio
                         </li>
                         <li class="list-group-item">
-                            <span class="badge">2</span>
-                            Marcos
+                            <span class="badge pull-left">2</span>
+                            &nbsp Marcos
                         </li>
                         <li class="list-group-item">
-                            <span class="badge">3</span>
-                            Jose
+                            <span class="badge pull-left">3</span>
+                            &nbsp Jose
                         </li>
                     </ul>
-                </div>
-            </div>
+
         </div>
         <!--Area das opçoes dos questionários-->
         <div id="questionarios" class="col-md-5">
@@ -97,11 +91,6 @@
 
 
         </div>
-    </div>
-    <!--Outros dados : descrição do membro, dados estatísticos -->
-    <div id="outrosDados" class="col-md-2 panel">
-        Aqui outros dados
-
     </div>
 </div>
 <!--Fim do corpo da página -->

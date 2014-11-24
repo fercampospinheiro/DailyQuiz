@@ -2,6 +2,7 @@ package br.com.sidlar.dailyquiz.presentation.questionario;
 
 import java.util.List;
 
+import br.com.sidlar.dailyquiz.infrastructure.DadosDeAutenticacao;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioFactory;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioService;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author Fernando de Campos Pinheiro
  */
@@ -26,12 +29,10 @@ import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioS
 @RequestMapping("/Questionario")
 public class QuestionarioController {
 
-    @Autowired
-    private QuestionarioRepository repository;
-    @Autowired
-    private RespostaQuestionarioService service;
-    @Autowired
-    private RespostaQuestionarioFactory factory;
+    @Autowired private QuestionarioRepository repository;
+    @Autowired private RespostaQuestionarioService service;
+    @Autowired private RespostaQuestionarioFactory factory;
+    @Autowired private HttpSession session;
     
     
     @RequestMapping(value = "/lista" , method = RequestMethod.GET)
@@ -44,10 +45,16 @@ public class QuestionarioController {
     @Transactional
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String carregaQuestionario(@PathVariable("id") Integer id, Model model) {
+        DadosDeAutenticacao dadosDeAutenticação;
+        dadosDeAutenticação = (DadosDeAutenticacao) session.getAttribute("dadosDeAutenticacao");
+
         Questionario questionario = repository.buscaQuestionarioPorId(id);
         FormularioQuestionario formulario = new FormularioQuestionario(questionario); 
         model.addAttribute("formulario", formulario);
-        return "/Questionario/questionario";
+
+        if (dadosDeAutenticação != null) return "/Questionario/questionario";
+        else return "redirect:/Login";
+
     }
 
     @RequestMapping(value = "/salvar", method = RequestMethod.POST)

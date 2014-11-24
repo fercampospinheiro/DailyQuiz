@@ -23,7 +23,7 @@ public class RespostaQuestionario {
     private Questionario questionario;
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    @JoinColumn(name ="idRespostaQuestionario",referencedColumnName = "id")
+    @JoinColumn(name ="idRespostaQuestionario")
     private List<RespostaQuestao> respostaQuestoes = Lists.newArrayList();
 
     @OneToOne

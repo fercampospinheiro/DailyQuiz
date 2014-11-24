@@ -4,6 +4,7 @@ import br.com.sidlar.dailyquiz.domain.excecoes.EmailOuSenhaInexistenteException;
 import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,13 +36,19 @@ public class LoginController {
 	 * @return String : view Home  ou Login
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String efetuaLogin(@RequestParam("email")String email,@RequestParam("senha")String senha, HttpServletRequest req){
+	public String efetuaLogin(
+			@RequestParam("email")String email,
+			@RequestParam("senha")String senha,
+			HttpServletRequest req,
+			Model model
+		){
 
 		try {
 			autenticacaoService.autenticaEmailESenhaDoMembro(email, senha);
 			return "redirect:/";
 		}
 		catch (EmailOuSenhaInexistenteException e){
+			model.addAttribute("erro",e.getMessage());
 			return "/Login/login";
 		}
 

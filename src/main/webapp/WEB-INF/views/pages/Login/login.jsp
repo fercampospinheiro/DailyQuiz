@@ -26,7 +26,19 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-default">Entrar</button>
                     </div>
-                    <a href = "/CadastraMembro">Não possuo usuário</a>
+                    <div class="form-group">
+                        <a href = "/CadastraMembro">Não possuo usuário</a>
+                    </div>
+
+                    <c:if test="${not empty erro}">
+                        <div class="alert alert-danger" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Erro:</span>
+                            ${erro}
+                        </div>
+                    </c:if>
+
+
                 </form>
                 <br>
 

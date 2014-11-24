@@ -34,9 +34,5 @@ public class HomeController {
         if (dadosDeAutenticação != null) return "/Home/index";
         else return "redirect:/Login";
     }
-    @RequestMapping(value = "q",method = RequestMethod.GET)
-    public String carregaQuestionario(){
-        return "/Questionario/questionario";
-    }
 
 }

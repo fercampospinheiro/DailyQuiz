@@ -8,4 +8,8 @@
     <decorator name="login" page="LoginTemplate.jsp">
         <pattern>/login*</pattern>
     </decorator>
+
+    <decorator name="cadastro" page="CadastraTemplate.jsp">
+        <pattern>/cadastraMembro*</pattern>
+    </decorator>
 </decorators>

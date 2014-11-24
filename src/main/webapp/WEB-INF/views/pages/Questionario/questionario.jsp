@@ -20,15 +20,11 @@
 
     <form:hidden path="idMembro" value="${dadosAutenticacao.membro.id}"/>
 
-    <div class="row ">
-        <div class="col-lg-12 list-group">
-                ${formulario.questionario.nome}
-        </div>
-    </div>
-
-
+    <div class="panel panel-success col-md-10">
+     <div class="row">
+        <span class="label label-default col-md-12"><h4 class="pull-left" style="color: snow; font-weight:700 ">${formulario.questionario.nome}</h4> </span>
+     </div>
     <!-- Coluna das questões -->
-
     <div class="row">
         <div class="col-md-2">
             <h4 class="list-group-item active">Questões</h4>
@@ -44,29 +40,36 @@
         <!-- Questão com alternativa-->
 
 
-
-        <div id="questoes">
+        <br>
+        <div id="questoes" class="col-md-10">
 
             <c:forEach items="${formulario.questionario.questoes}" var="resposta" varStatus="vs" >
 
                 <form:hidden path="formularioQuestoes[${vs.index}].idRepostaQuestao" value="${resposta.id}" />
 
-                <div class="col-md-8 questao q${resposta.id}">
-                    <div class="panel panel-default">
-
+                <div class="panel panel-default questao q${resposta.id}">
                         <div class="panel-heading"><span class="badge">${resposta.ordem + 1}</span>&nbsp${resposta.pergunta}</div>
                         <ol type="a">
-                            <div class="panel-body">
-                                <form:radiobuttons path="formularioQuestoes[${vs.index}].idAlternativa" items="${resposta.alternativas}"  itemValue="id" element="li" itemLabel="descricao" itemcssClass="li" />
-                            </div>
+                            <form:radiobuttons path="formularioQuestoes[${vs.index}].idAlternativa" items="${resposta.alternativas}"  itemValue="id" element="li" itemLabel="descricao" itemcssClass="li" />
                         </ol>
-                    </div>
-
                 </div>
 
             </c:forEach>
+            <ul class="pager">
+                <li class="previous disabled"><a href="#">← Anterior</a></li>
+                <li class="next"><a href="#">Próxima →</a></li>
+            </ul>
+            <br>
+
         </div>
     </div>
-    <form:button class="btn btn-default">Enviar</form:button>
+
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <a href="/" class="btn btn-primary">Voltar</a>&nbsp
+            <form:button class="btn btn-default">Finalizar</form:button>
+        </div>
+    </div>
+    </div>
 
 </form:form>

@@ -39,7 +39,7 @@ public class MembroRepository {
 			return query.getSingleResult();
 		}
 		catch (NoResultException e) {
-			throw new EntidadeInexistenteException("Entidade não encontrada no banco com o e-mail : "+ email,e);
+			throw new EntidadeInexistenteException("E-mail não cadastrado : "+ email,e);
 		}
 	}
 
