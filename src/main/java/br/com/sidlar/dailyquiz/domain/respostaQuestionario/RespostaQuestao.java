@@ -7,6 +7,7 @@ import javax.persistence.*;
 /**
  * @author Fernando de Campos Pinheiro
  */
+@SuppressWarnings("JpaAttributeTypeInspection")
 @Entity
 public class RespostaQuestao {
     @Id @GeneratedValue

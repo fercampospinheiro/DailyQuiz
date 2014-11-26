@@ -13,26 +13,27 @@ import java.util.Map;
 @Component
 public class StandardCompetitionRanking implements ClassificacaoRanking {
 
-    private List<Posicao> posicoes = Lists.newArrayList();
 
     @Override
-    public List<Posicao> classifica(List<ItemRanking> itensRanking) {
+    public List<ItemRanking> classifica(List<ItemRanking> itensRanking) {
 
         int pontuacaoInicial = 0;
         int ordem = 1;
 
         for (ItemRanking item : itensRanking) {
-            if (item.getPontuacao() > pontuacaoInicial) {
+            if (item.getPontuacao() > pontuacaoInicial ) {
                 pontuacaoInicial = item.getPontuacao();
-                Posicao posicao = new Posicao(ordem, item);
-                posicoes.add(posicao);
+                item.setOrdem(ordem);
                 ordem = +1;
             } else if (item.getPontuacao() == pontuacaoInicial) {
-                Posicao posicao = new Posicao(ordem, item);
-                ordem = +2;
+                item.setOrdem(ordem);
+                ordem = (itensRanking.size() - ordem);
+            }else{
+                item.setOrdem(ordem);
+                ordem = ordem +1;
             }
         }
-        return posicoes;
+        return itensRanking;
     }
 
 }

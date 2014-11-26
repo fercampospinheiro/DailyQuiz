@@ -15,7 +15,7 @@ public class RankinService {
     @Autowired
     private ClassificacaoRanking classificacao ;
 
-    public  List<Posicao> obtemPosicoes(){
+    public  List<ItemRanking> obtemItens(){
         List<ItemRanking> itensRanking  = repository.buscaItensRanking();
         return classificacao.classifica(itensRanking);
     }
