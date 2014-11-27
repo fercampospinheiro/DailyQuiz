@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.eq;
@@ -40,19 +42,8 @@ public class StandardCompetitionRankingTest {
         ItemRanking  item3 = new ItemRanking(3,20,membro);
         ItemRanking  item4 = new ItemRanking(4,18,membro);
 
-        List<ItemRanking> itensNaOrdemEsperada = Lists.newArrayList();
-        itemRankings.add(item1);
-        itemRankings.add(item2);
-        itemRankings.add(item3);
-        itemRankings.add(item4);
-
-        itensOrdenados.forEach(item -> System.out.println(item.getOrdem() + " p: " + item.getPontuacao()));
-
-        itensNaOrdemEsperada.forEach(item -> System.out.println(item.getOrdem()));
-
         //veryfy
-
-        assertEquals(itensNaOrdemEsperada,itensOrdenados);
+        assertThat(itensOrdenados,hasItems(item1, item2, item3, item4));
     }
 
 }

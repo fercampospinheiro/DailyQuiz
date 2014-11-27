@@ -68,17 +68,15 @@
             <h4>Questionários</h4>
 
             <h4 class="list-group-item active">Respondidos</h4>
+            <c:forEach items="${respostas}" var="resposta">
             <div class="list-group">
-                <a href="#" class="list-group-item">
-                    Prova da Fuvest
-                </a>
-                <a href="#" class="list-group-item">
-                    Prova da UFABC
+                <a href="RespostaQuestionario/${resposta.id}" class="list-group-item">
+                    ${resposta.questionario.nome}
                 </a>
             </div>
+            </c:forEach>
+
             <h4 class="list-group-item active">Disponiveis</h4>
-
-
             <ul class="list-group">
                 <c:forEach items="${questionarios}" var="questionario">
                     <a href="Questionario/${questionario.id}" class="list-group-item">

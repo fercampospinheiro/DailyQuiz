@@ -15,15 +15,15 @@ import java.util.List;
 @Entity
 public class RespostaQuestionario {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @OneToOne
     @JoinColumn(name = "idQuestionario")
     private Questionario questionario;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    @JoinColumn(name ="idRespostaQuestionario")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "idRespostaQuestionario")
     private List<RespostaQuestao> respostaQuestoes = Lists.newArrayList();
 
     @OneToOne
@@ -81,5 +81,8 @@ public class RespostaQuestionario {
         this.respostaQuestoes = respostas;
     }
 
+    public Integer getId() {
+        return id;
+    }
 }
 

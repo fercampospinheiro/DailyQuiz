@@ -27,12 +27,17 @@ public class RespostaQuestionarioRepository {
 		
 		String jpql = "select r "
 					+ "from RespostaQuestionario as r "
-					+ "where r.idMembro:id "
+					+ "where r.membro.id =:id "
 					+ "order by r.dataReposta ";
 		TypedQuery<RespostaQuestionario> query = em.createQuery(jpql,RespostaQuestionario.class); 
 		query.setMaxResults(5);
-		query.setParameter("id", membro.getId());
+		query.setParameter("id",membro.getId());
 		return query.getResultList();
+	}
+
+	@Transactional
+	public RespostaQuestionario buscaPorId(Integer id){
+		return em.find(RespostaQuestionario.class,id);
 	}
 	
 }
