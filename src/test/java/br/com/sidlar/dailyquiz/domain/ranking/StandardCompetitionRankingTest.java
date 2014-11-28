@@ -1,6 +1,7 @@
 package br.com.sidlar.dailyquiz.domain.ranking;
 
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import javafx.scene.media.MediaMarkerEvent;
 import org.hamcrest.Matcher;
@@ -19,31 +20,28 @@ import static org.mockito.Mockito.mock;
 public class StandardCompetitionRankingTest {
     @Test
     public void esperaListaDeItensRankingClassificadoNoStandardCompetitionRanking(){
-       //fixture
+       // fixture
         Membro  membro = mock(Membro.class);
 
-        ItemRanking  item1PrimeiraPosicao = new ItemRanking(0,30,membro);
-        ItemRanking  item2PrimeiraPosicao = new ItemRanking(0,30,membro);
-        ItemRanking  item3TerceiraPosicao = new ItemRanking(0,20,membro);
-        ItemRanking  item4QuartaPosicao = new ItemRanking(0,18,membro);
+        List<ItemRanking> itemRankings =
+                ImmutableList.of(
+                        new ItemRanking(30,membro),
+                        new ItemRanking(30,membro),
+                        new ItemRanking(20,membro),
+                        new ItemRanking(18,membro)
+                );
 
-        List<ItemRanking> itemRankings = Lists.newArrayList();
-        itemRankings.add(item1PrimeiraPosicao);
-        itemRankings.add(item2PrimeiraPosicao);
-        itemRankings.add(item3TerceiraPosicao);
-        itemRankings.add(item4QuartaPosicao);
+        StandardCompetitionRanking classificador = new StandardCompetitionRanking();
 
-        //exercise Sut
-        ClassificacaoRanking  classificador= new StandardCompetitionRanking();
+        // exercise SUT
         List<ItemRanking> itensOrdenados = classificador.classifica(itemRankings);
 
-        ItemRanking  item1 = new ItemRanking(1,30,membro);
-        ItemRanking  item2 = new ItemRanking(1,30,membro);
-        ItemRanking  item3 = new ItemRanking(3,20,membro);
-        ItemRanking  item4 = new ItemRanking(4,18,membro);
+        // verify outcome
 
-        //veryfy
-        assertThat(itensOrdenados,hasItems(item1, item2, item3, item4));
+        assertThat(itensOrdenados.get(0).getOrdem(), is(1));
+        assertThat(itensOrdenados.get(1).getOrdem(), is(1));
+        assertThat(itensOrdenados.get(2).getOrdem(), is(3));
+        assertThat(itensOrdenados.get(3).getOrdem(), is(4));
     }
 
 }
