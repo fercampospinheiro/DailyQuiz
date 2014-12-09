@@ -46,7 +46,7 @@
               <c:forEach items="${questao.questao.alternativas}" var="alternativa">
                 <c:choose >
                   <c:when test="${questao.questao.alternativaCorreta.equals(alternativa)} ">
-                    <div class="radio">
+                    <div class="radio" >
                       <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} ok</label>
                     </div>
                   </c:when>
@@ -55,6 +55,11 @@
                       <label><input type="radio" name="optradio" disabled>${alternativa.exibe()} respondeu esta</label>
                     </div>
                   </c:when>
+                  <c:otherwise>
+                    <div class="radio">
+                      <label><input type="radio" name="optradio" disabled>${alternativa.exibe()} </label>
+                    </div>
+                  </c:otherwise>
                 </c:choose>
               </c:forEach>
 

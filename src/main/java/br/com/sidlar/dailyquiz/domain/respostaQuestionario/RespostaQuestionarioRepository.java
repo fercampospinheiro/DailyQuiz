@@ -37,7 +37,10 @@ public class RespostaQuestionarioRepository {
 
 	@Transactional
 	public RespostaQuestionario buscaPorId(Integer id){
-		return em.find(RespostaQuestionario.class,id);
+		String jpql = "select distinct r from RespostaQuestionario as r where r.id= :id";
+		TypedQuery<RespostaQuestionario> query	=  em.createQuery(jpql,RespostaQuestionario.class);
+		query.setParameter("id",id);
+		return query.getResultList().get(0);
 	}
 	
 }
