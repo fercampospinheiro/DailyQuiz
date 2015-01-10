@@ -1,16 +1,13 @@
 package br.com.sidlar.dailyquiz.domain.ranking;
 
-import br.com.sidlar.dailyquiz.domain.ranking.ItemRanking;
-import com.google.common.collect.Lists;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * @autor Fernando de Campos Pinheiro
+ * @author  Fernando de Campos Pinheiro
  */
 @Repository
 public class RankingRepository {
@@ -19,7 +16,7 @@ public class RankingRepository {
 
     public List<ItemRanking> buscaItensRanking(){
 
-        String jpql =   "select sum(r.numeroAcertos) , m " +
+        String jpql =   "select new br.com.sidlar.dailyquiz.domain.ranking.ItemRanking(r.id,m) " +
                         "from RespostaQuestionario as r " +
                         "join Membro as m " +
                         "where r.membro.id = m.id " +
@@ -27,5 +24,6 @@ public class RankingRepository {
         TypedQuery<ItemRanking> query = em.createQuery(jpql,ItemRanking.class);
         return query.getResultList();
     }
+
 
 }

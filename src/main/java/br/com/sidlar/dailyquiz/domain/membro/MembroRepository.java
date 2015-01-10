@@ -27,7 +27,6 @@ public class MembroRepository {
 	 * @return Membro com email especificado
 	 * @throws br.com.sidlar.dailyquiz.domain.excecoes.EntidadeInexistenteException caso não exista membro
 	 */
-    @Transactional
 	public @Nullable Membro buscaPorEmail(String email){
 
 		String jpql = "select m from Membro as m where m.email = :email ";
@@ -64,7 +63,6 @@ public class MembroRepository {
 		}
 	}
 
-    @Transactional
 	private boolean contem(Membro membro){
 		return entityManager.contains(membro);
 	}
@@ -72,7 +70,7 @@ public class MembroRepository {
     /**
      * Verifica se existe o e-mail informado entre os membros da aplicação
      */
-    @Transactional
+
     public boolean  existeEmail(String email){
 
         String jpql = "select m from Membro as m where m.email = :email ";
@@ -89,7 +87,7 @@ public class MembroRepository {
         }
     }
 
-    @Transactional
+
     public Membro buscaPorId(Integer id){
     	return entityManager.find(Membro.class, id);
     }

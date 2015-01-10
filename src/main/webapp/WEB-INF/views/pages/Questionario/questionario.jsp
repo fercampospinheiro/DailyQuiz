@@ -43,14 +43,14 @@
         <br>
         <div id="questoes" class="col-md-10">
 
-            <c:forEach items="${formulario.questionario.questoes}" var="resposta" varStatus="vs" >
+            <c:forEach items="${formulario.questionario.questoes}" var="questao" varStatus="vs" >
 
-                <form:hidden path="formularioQuestoes[${vs.index}].idRepostaQuestao" value="${resposta.id}" />
+                <form:hidden path="formularioQuestoes[${vs.index}].idRepostaQuestao" value="${questao.id}" />
 
-                <div class="panel panel-default questao q${resposta.id}">
-                        <div class="panel-heading"><span class="badge">${resposta.ordem + 1}</span>&nbsp${resposta.pergunta}</div>
+                <div class="panel panel-default questao q${questao.id}">
+                        <div class="panel-heading"><span class="badge">${questao.ordem + 1}</span>&nbsp${questao.pergunta}</div>
                         <ol type="a">
-                            <form:radiobuttons path="formularioQuestoes[${vs.index}].idAlternativa" items="${resposta.alternativas}"  itemValue="id" element="li" itemLabel="descricao" itemcssClass="li" />
+                            <form:radiobuttons path="" items="${questao.alternativas}"  itemValue="id" element="li" itemLabel="descricao"/>
                         </ol>
                 </div>
 

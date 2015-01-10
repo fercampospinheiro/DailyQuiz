@@ -18,9 +18,8 @@ public class Questionario {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "idQuestionario")
-	@OrderColumn(name="ordem")
 	private List<Questao> questoes = Lists.newArrayList();
 
 	private String nome;

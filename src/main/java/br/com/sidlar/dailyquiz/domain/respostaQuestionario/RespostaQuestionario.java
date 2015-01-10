@@ -22,7 +22,7 @@ public class RespostaQuestionario {
     @JoinColumn(name = "idQuestionario")
     private Questionario questionario;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "idRespostaQuestionario")
     private List<RespostaQuestao> respostaQuestoes = Lists.newArrayList();
 
@@ -34,18 +34,17 @@ public class RespostaQuestionario {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate dataReposta;
 
-    @Column(name = "qtdAcertos")
-    private Integer numeroAcertos;
-
     public RespostaQuestionario() {}
 
-    public void calculaAcertos(){
+    public int calculaAcertos(){
+        int numeroAcertos = 0 ;
         for(RespostaQuestao resposta : respostaQuestoes  ){
             if(resposta.estaCorreta()){
                 numeroAcertos =+ 1;
             }
 
         }
+        return numeroAcertos;
     }
 
     public void referenteAo(Questionario questionario){

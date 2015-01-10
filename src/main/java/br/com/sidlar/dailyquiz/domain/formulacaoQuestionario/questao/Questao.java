@@ -14,7 +14,7 @@ public class Questao {
 	private Integer ordem;
 	private String pergunta;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "idQuestao")
 	@OrderColumn(name = "ordem")
 	private List<Alternativa> alternativas = Lists.newArrayList();
@@ -28,10 +28,6 @@ public class Questao {
 	}
 
 	public Questao(String pergunta) {
-		this.pergunta = pergunta;
-	}
-
-	public void formulaPergunta(String pergunta){
 		this.pergunta = pergunta;
 	}
 	

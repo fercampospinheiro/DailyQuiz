@@ -33,7 +33,6 @@ public class RespostaQuestionarioFactory {
 		List<RespostaQuestao> respostas = obtemRespostas(formulariosDasQuestoes);
 		RespostaQuestionario respostaQuestionario = obtemRespostaDoQuestionario(formulario);
 		respostaQuestionario.adicionaRespostas(respostas);
-		respostaQuestionario.calculaAcertos();
 		return respostaQuestionario;
 	}
 

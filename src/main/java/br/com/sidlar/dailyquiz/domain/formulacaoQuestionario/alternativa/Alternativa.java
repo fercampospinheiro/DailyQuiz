@@ -2,7 +2,6 @@ package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.alternativa;
 
 import javax.persistence.*;
 
-
 @Entity
 public class Alternativa {
 	@Id @GeneratedValue

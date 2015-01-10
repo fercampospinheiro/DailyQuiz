@@ -7,13 +7,12 @@ import javax.persistence.*;
 /**
  * @author Fernando de Campos Pinheiro
  */
-@SuppressWarnings("JpaAttributeTypeInspection")
 @Entity
 public class RespostaQuestao {
     @Id @GeneratedValue
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "idQuestao")
     private Questao questao;
 

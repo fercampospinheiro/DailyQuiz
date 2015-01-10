@@ -21,13 +21,13 @@ public class RespostaQuestionarioRepository {
 	public void salva(RespostaQuestionario resposta ){
 		em.persist(resposta);
 	}
-	
-	@Transactional
+
 	public List<RespostaQuestionario> buscaPorMembro(Membro membro){
 		
 		String jpql = "select r "
 					+ "from RespostaQuestionario as r "
-					+ "where r.membro.id =:id "
+                    + "join fetch r.respostaQuestoes"
+					+ " where r.membro.id =:id "
 					+ "order by r.dataReposta ";
 		TypedQuery<RespostaQuestionario> query = em.createQuery(jpql,RespostaQuestionario.class); 
 		query.setMaxResults(5);
@@ -35,9 +35,11 @@ public class RespostaQuestionarioRepository {
 		return query.getResultList();
 	}
 
-	@Transactional
 	public RespostaQuestionario buscaPorId(Integer id){
-		String jpql = "select distinct r from RespostaQuestionario as r where r.id= :id";
+		String jpql =   "select distinct r " +
+                        "from RespostaQuestionario as r " +
+                        "join fetch r.respostaQuestoes" +
+                        " where r.id= :id";
 		TypedQuery<RespostaQuestionario> query	=  em.createQuery(jpql,RespostaQuestionario.class);
 		query.setParameter("id",id);
 		return query.getResultList().get(0);
