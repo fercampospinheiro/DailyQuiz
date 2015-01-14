@@ -36,13 +36,17 @@ public class RespostaQuestionarioRepository {
 	}
 
 	public RespostaQuestionario buscaPorId(Integer id){
-		String jpql =   "select distinct r " +
-                        "from RespostaQuestionario as r " +
-                        "join fetch r.respostaQuestoes" +
+		String jpql =   "select r " +
+                        " from RespostaQuestionario as r " +
+                        " join fetch r.respostaQuestoes " +
+                        " join fetch r.questionario q " +
+                        " join fetch q.questoes a " +
+                        " join fetch a.alternativas" +
+                        " join fetch r.membro " +
                         " where r.id= :id";
 		TypedQuery<RespostaQuestionario> query	=  em.createQuery(jpql,RespostaQuestionario.class);
 		query.setParameter("id",id);
-		return query.getResultList().get(0);
+		return query.getSingleResult();
 	}
 	
 }

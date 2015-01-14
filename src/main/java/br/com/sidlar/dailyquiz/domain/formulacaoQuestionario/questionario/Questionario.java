@@ -20,6 +20,7 @@ public class Questionario {
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "idQuestionario")
+    @OrderColumn(name = "ordem")
 	private List<Questao> questoes = Lists.newArrayList();
 
 	private String nome;

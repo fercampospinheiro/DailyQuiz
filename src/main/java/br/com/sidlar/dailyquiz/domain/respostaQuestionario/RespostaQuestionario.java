@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class RespostaQuestionario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Integer id;
 
     @OneToOne
@@ -23,7 +23,8 @@ public class RespostaQuestionario {
     private Questionario questionario;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idRespostaQuestionario")
+    @JoinColumn(name = "idRespostaQuestionario",nullable = false)
+    @OrderColumn(name = "ordem")
     private List<RespostaQuestao> respostaQuestoes = Lists.newArrayList();
 
     @OneToOne

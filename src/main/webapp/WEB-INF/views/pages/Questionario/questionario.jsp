@@ -50,7 +50,7 @@
                 <div class="panel panel-default questao q${questao.id}">
                         <div class="panel-heading"><span class="badge">${questao.ordem + 1}</span>&nbsp${questao.pergunta}</div>
                         <ol type="a">
-                            <form:radiobuttons path="" items="${questao.alternativas}"  itemValue="id" element="li" itemLabel="descricao"/>
+                            <form:radiobuttons path="formularioQuestoes[${vs.index}].idAlternativa" items="${questao.alternativas}"  itemValue="id" element="li" itemLabel="descricao"/>
                         </ol>
                 </div>
 

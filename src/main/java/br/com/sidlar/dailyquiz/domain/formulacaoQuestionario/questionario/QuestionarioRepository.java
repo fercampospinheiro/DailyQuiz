@@ -38,8 +38,7 @@ public class QuestionarioRepository {
                         " Questionario as q " +
                         " join fetch q.questoes a " +
                         " join fetch a.alternativas " +
-                        " where q.id = :id " +
-                        " group by q.questoes, a.alternativas";
+                        " where q.id = :id ";
         TypedQuery <Questionario> query = em.createQuery(jpql,Questionario.class);
         query.setParameter("id",id);
         return query.getSingleResult();
