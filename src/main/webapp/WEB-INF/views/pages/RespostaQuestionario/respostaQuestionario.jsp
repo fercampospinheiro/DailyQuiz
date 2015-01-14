@@ -38,21 +38,21 @@
       <br>
       <div id="questoes" class="col-md-10">
 
-        <c:forEach items="${resposta.respostaQuestoes}" var="questao" varStatus="vs" >
+        <c:forEach items="${resposta.respostaQuestoes}" var="respostaQuestao" varStatus="vs" >
 
-          <div class="panel panel-default questao q${questao.questao.id}">
-            <div class="panel-heading"><span class="badge">${questao.questao.ordem + 1}</span>&nbsp${questao.questao.pergunta}</div>
+          <div class="panel panel-default questao q${respostaQuestao.questao.id}">
+            <div class="panel-heading"><span class="badge">${respostaQuestao.questao.ordem + 1}</span>&nbsp${respostaQuestao.questao.pergunta}</div>
             <ol type="a">
-              <c:forEach items="${questao.questao.alternativas}" var="alternativa">
+              <c:forEach items="${respostaQuestao.questao.alternativas}" var="alternativa">
                 <c:choose >
-                  <c:when test="${questao.questao.alternativaCorreta.equals(alternativa)} ">
+                  <c:when test="${respostaQuestao.questao.alternativaCorreta.equals(alternativa)} ">
                     <div class="radio" >
                       <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} ok</label>
                     </div>
                   </c:when>
-                  <c:when test="${questao.alternativaSelecionada.equals(alternativa)}">
+                  <c:when test="${respostaQuestao.estaCorreta()}">
                     <div class="radio">
-                      <label><input type="radio" name="optradio" disabled>${alternativa.exibe()} respondeu esta</label>
+                      <label><input type="radio" name="optradio" disabled>${alternativa.exibe()} acertou</label>
                     </div>
                   </c:when>
                   <c:otherwise>
