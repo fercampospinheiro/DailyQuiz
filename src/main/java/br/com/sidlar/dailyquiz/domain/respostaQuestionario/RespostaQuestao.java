@@ -26,9 +26,6 @@ public class RespostaQuestao {
         this.questao = questao;
     }
 
-    public boolean estaCorreta(){
-        return questao.ehIgualRespostaDaQuestao(alternativaSelecionada);
-    }
 
     public String exibe(){
         return alternativaSelecionada.exibe();

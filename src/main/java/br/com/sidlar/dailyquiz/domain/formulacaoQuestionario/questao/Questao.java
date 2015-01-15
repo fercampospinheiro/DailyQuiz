@@ -48,7 +48,7 @@ public class Questao {
 		this.alternativaCorreta = alternativa;
 	}
 
-	public boolean ehIgualRespostaDaQuestao(Alternativa alternativa){
+	public boolean possuiComoRespostaCorreta(Alternativa alternativa){
 		return this.alternativaCorreta.equals(alternativa);
 	}
 

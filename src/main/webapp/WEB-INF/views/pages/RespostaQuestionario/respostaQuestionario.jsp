@@ -50,7 +50,7 @@
                       <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} ok</label>
                     </div>
                   </c:when>
-                  <c:when test="${respostaQuestao.estaCorreta()}">
+                  <c:when test="${respostaQuestao.questao.possuiComoRespostaCorreta(alternativa)}">
                     <div class="radio">
                       <label><input type="radio" name="optradio" disabled>${alternativa.exibe()} acertou</label>
                     </div>
