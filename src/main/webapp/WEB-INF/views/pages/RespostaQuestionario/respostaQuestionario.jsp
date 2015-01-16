@@ -45,16 +45,22 @@
             <ol type="a">
               <c:forEach items="${respostaQuestao.questao.alternativas}" var="alternativa">
                 <c:choose >
-                  <c:when test="${respostaQuestao.questao.alternativaCorreta.equals(alternativa)} ">
-                    <div class="radio" >
-                      <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} ok</label>
-                    </div>
-                  </c:when>
-                  <c:when test="${respostaQuestao.questao.possuiComoRespostaCorreta(alternativa)}">
+
+                  <c:when test="${respostaQuestao.possuiComoRespostaCorreta(respostaQuestao.alternativaSelecionada) and alternativa.equals(respostaQuestao.alternativaSelecionada)}">
                     <div class="radio">
-                      <label><input type="radio" name="optradio" disabled>${alternativa.exibe()} acertou</label>
+                      <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} acertou a alternativa</label>
                     </div>
                   </c:when>
+                    <c:when test="${respostaQuestao.possuiComoRespostaCorreta(alternativa)} ">
+                        <div class="radio" >
+                            <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} Alternativa certa</label>
+                        </div>
+                    </c:when>
+                    <c:when test="${respostaQuestao.possuiComoRespostaSelecionada(alternativa)} ">
+                        <div class="radio" >
+                            <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} Alternativa Respondida</label>
+                        </div>
+                    </c:when>
                   <c:otherwise>
                     <div class="radio">
                       <label><input type="radio" name="optradio" disabled>${alternativa.exibe()} </label>

@@ -37,16 +37,7 @@ public class RespostaQuestionario {
 
     public RespostaQuestionario() {}
 
-    public int calculaAcertos(){
-        int numeroAcertos = 0 ;
-        for(RespostaQuestao resposta : respostaQuestoes  ){
-            if(resposta.estaCorreta()){
-                numeroAcertos =+ 1;
-            }
 
-        }
-        return numeroAcertos;
-    }
 
     public void referenteAo(Questionario questionario){
         this.questionario = questionario;

@@ -43,6 +43,16 @@ public class RespostaQuestao {
         return alternativaSelecionada;
     }
 
+    public boolean possuiComoRespostaCorreta(Alternativa alternativa){
+        return this.questao.getAlternativaCorreta().equals(alternativa);
+    }
+
+
+    public boolean possuiComoRespostaSelecionada(Alternativa alternativa){
+        return this.alternativaSelecionada.equals(alternativa);
+    }
+
+
     public void referenteA(Questao questao) {
         this.questao = questao;
     }

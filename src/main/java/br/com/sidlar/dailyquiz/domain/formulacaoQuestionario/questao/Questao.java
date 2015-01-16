@@ -48,9 +48,6 @@ public class Questao {
 		this.alternativaCorreta = alternativa;
 	}
 
-	public boolean possuiComoRespostaCorreta(Alternativa alternativa){
-		return this.alternativaCorreta.equals(alternativa);
-	}
 
 	public void setOrdem(Integer ordem) {
 		this.ordem = ordem;
@@ -86,6 +83,6 @@ public class Questao {
 	}
 
 	public Alternativa getAlternativaCorreta() {
-		return alternativaCorreta;
+		return this.alternativaCorreta;
 	}
 }
