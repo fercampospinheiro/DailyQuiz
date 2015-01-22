@@ -75,5 +75,9 @@ public class RespostaQuestionario {
     public Integer getId() {
         return id;
     }
+
+    public LocalDate getDataReposta() {
+        return dataReposta;
+    }
 }
 

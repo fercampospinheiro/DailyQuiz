@@ -1,19 +1,7 @@
-#corpoPagina{
-    border-color: #222222;
-    border : 10px;
-}
-#ranking{
-    border-color: #222222;
-    border-width: thick;
-    border: 5px;
-}
-#questionarios{
-
-}
-#outrosDados{
-
-}
-div.col-md-4{
-    border: 5px;
-    border-color: #333333;
+.acertoAlternativa :before{
+    content: "\2022";
+    color: #f3f3f3;
+    font-size: 30px;
+    text-align: center;
+    line-height: 18px;
 }

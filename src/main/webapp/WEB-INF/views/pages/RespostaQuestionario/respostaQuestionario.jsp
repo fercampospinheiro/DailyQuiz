@@ -16,10 +16,14 @@
 
 
   <div class="panel panel-success col-md-10">
-    <div class="row">
-      <span class="label label-default col-md-12"><h4 class="pull-left" style="color: snow; font-weight:700 ">${formulario.questionario.nome}</h4> </span>
+
+      <div class="row">
+      <span class="label label-default col-md-12">
+          <h4 class="pull-left" style="color: snow; font-weight:700 ">${formulario.questionario.nome}</h4>
+      </span>
     </div>
-    <!-- Coluna das questões -->
+
+      <!-- Coluna das questões -->
     <div class="row">
       <div class="col-md-2">
         <h4 class="list-group-item active">Questões</h4>
@@ -41,31 +45,56 @@
         <c:forEach items="${resposta.respostaQuestoes}" var="respostaQuestao" varStatus="vs" >
 
           <div class="panel panel-default questao q${respostaQuestao.questao.id}">
-            <div class="panel-heading"><span class="badge">${respostaQuestao.questao.ordem + 1}</span>&nbsp${respostaQuestao.questao.pergunta}</div>
-            <ol type="a">
+
+              <div class="panel-heading">
+                <span class="badge">${respostaQuestao.questao.ordem + 1}</span>
+                &nbsp${respostaQuestao.questao.pergunta}
+            </div>
+
+          <ol type="a">
               <c:forEach items="${respostaQuestao.questao.alternativas}" var="alternativa">
                 <c:choose >
 
-                  <c:when test="${respostaQuestao.possuiComoRespostaCorreta(respostaQuestao.alternativaSelecionada) and alternativa.equals(respostaQuestao.alternativaSelecionada)}">
+                  <c:when test="${respostaQuestao.possuiComoRespostaCorreta(respostaQuestao.alternativaSelecionada) and
+                                    alternativa.equals(respostaQuestao.alternativaSelecionada)}">
                     <div class="radio">
-                      <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} acertou a alternativa</label>
+                      <label>
+                        <input type="radio" name="optradio${alternativa.id}" checked disabled class="acertoAlternativa">
+                        ${alternativa.exibe()}
+                        <img src="<c:url value='/resources/image/icons/acerto.jpg'/>"/>
+                      </label>
                     </div>
                   </c:when>
-                    <c:when test="${respostaQuestao.possuiComoRespostaCorreta(alternativa)} ">
-                        <div class="radio" >
-                            <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} Alternativa certa</label>
+
+                    <c:when test="${respostaQuestao.possuiComoRespostaCorreta(alternativa)}">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" class="radio-button" name="optradio${alternativa.id}"disabled>
+                                ${alternativa.exibe()}
+                                <img src="<c:url value='/resources/image/icons/correta.jpg'/>"/>
+                            </label>
                         </div>
                     </c:when>
-                    <c:when test="${respostaQuestao.possuiComoRespostaSelecionada(alternativa)} ">
+
+                    <c:when test="${alternativa.equals(respostaQuestao.alternativaSelecionada)}">
                         <div class="radio" >
-                            <label><input type="radio" name="optradio" checked disabled>${alternativa.exibe()} Alternativa Respondida</label>
+                            <label>
+                                <input type="radio" name="optradio${alternativa.id}" checked disabled >
+                                ${alternativa.exibe()}
+                                <img src="<c:url value='/resources/image/icons/errada.jpg'/>"/>
+                            </label>
                         </div>
                     </c:when>
-                  <c:otherwise>
-                    <div class="radio">
-                      <label><input type="radio" name="optradio" disabled>${alternativa.exibe()} </label>
-                    </div>
+
+                    <c:otherwise>
+                        <div class="radio">
+                          <label>
+                              <input type="radio" name="optradio${alternativa.id}" disabled>
+                              ${ alternativa.exibe()}
+                          </label>
+                        </div>
                   </c:otherwise>
+
                 </c:choose>
               </c:forEach>
 

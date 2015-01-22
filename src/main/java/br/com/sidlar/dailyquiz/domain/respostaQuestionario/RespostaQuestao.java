@@ -52,6 +52,9 @@ public class RespostaQuestao {
         return this.alternativaSelecionada.equals(alternativa);
     }
 
+    public Alternativa getAlternativaCorreta(){
+        return this.questao.getAlternativaCorreta();
+    }
 
     public void referenteA(Questao questao) {
         this.questao = questao;

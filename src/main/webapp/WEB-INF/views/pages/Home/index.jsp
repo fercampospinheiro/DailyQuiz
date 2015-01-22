@@ -67,14 +67,16 @@
         <div id="questionarios" class="col-md-5">
             <h4>Questionários</h4>
 
-            <h4 class="list-group-item active">Respondidos</h4>
-            <c:forEach items="${respostas}" var="resposta">
-            <div class="list-group">
-                <a href="RespostaQuestionario/${resposta.id}" class="list-group-item">
-                    ${resposta.questionario.nome}
-                </a>
-            </div>
-            </c:forEach>
+            <h4 class="list-group-item active">Respondidos</h4
+            <ul class="list-group">
+                <c:forEach items="${respostas}" var="resposta">
+                    <a href="RespostaQuestionario/${resposta.id}" class="list-group-item">
+                        ${resposta.questionario.nome}
+                            <span class="col-md-offset-1 label label-info">${resposta.dataReposta}</span>
+                    </a>
+                </c:forEach>
+            </ul>
+
 
             <h4 class="list-group-item active">Disponiveis</h4>
             <ul class="list-group">

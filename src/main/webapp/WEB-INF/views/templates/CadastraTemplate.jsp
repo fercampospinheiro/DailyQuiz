@@ -15,7 +15,7 @@
   <title><decorator:title/></title>
 
   <link rel="stylesheet" href="<c:url value="/resources/libs/bootstrap/3_3/css/bootstrap.min.css"/>">
-
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
   <script src="<c:url value="/resources/libs/jquery/2_1_1/jquery-2.1.1.min.js" />"></script>
   <script src="<c:url value="/resources/libs/bootstrap/3_3/js/bootstrap.min.js" />"></script>
 
