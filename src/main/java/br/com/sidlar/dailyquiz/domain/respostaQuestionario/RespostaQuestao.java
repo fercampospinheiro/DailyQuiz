@@ -47,9 +47,8 @@ public class RespostaQuestao {
         return this.questao.getAlternativaCorreta().equals(alternativa);
     }
 
-
-    public boolean possuiComoRespostaSelecionada(Alternativa alternativa){
-        return this.alternativaSelecionada.equals(alternativa);
+    public boolean estaCorreta(){
+        return this.alternativaSelecionada.equals(questao.getAlternativaCorreta());
     }
 
     public Alternativa getAlternativaCorreta(){

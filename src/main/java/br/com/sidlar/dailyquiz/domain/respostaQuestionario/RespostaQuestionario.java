@@ -37,8 +37,6 @@ public class RespostaQuestionario {
 
     public RespostaQuestionario() {}
 
-
-
     public void referenteAo(Questionario questionario){
         this.questionario = questionario;
     }
@@ -47,6 +45,13 @@ public class RespostaQuestionario {
         this.membro =  membro;
     }
 
+    public int numeroDeAcertos(){
+        int qtdAcertos = 0;
+        for(RespostaQuestao respostaQuestao : respostaQuestoes){
+            if(respostaQuestao.estaCorreta()) qtdAcertos ++;
+        }
+        return qtdAcertos;
+    }
 
     public void setQuestionario(Questionario questionario) {
 		this.questionario = questionario;

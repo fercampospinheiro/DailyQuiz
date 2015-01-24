@@ -1,26 +1,27 @@
 package br.com.sidlar.dailyquiz.domain.ranking;
 
-import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author  Fernando de Campos Pnheiro
  */
-public class Ranking {
+public class Ranking{
+    @Autowired private ClassificacaoRanking classificador;
 
-    private List<ItemRanking> itensRanking = Lists.newArrayList();
+    private List<Posicao> posicoes = Lists.newArrayList();
 
-    public void defineItensRaking(List<ItemRanking> itensRanking){
-        this.itensRanking = itensRanking;
+    public void setPosicoes(List<Posicao> posicoes){
+        this.posicoes = posicoes;
     }
 
-    public List<ItemRanking> getItensRanking() {
-        return itensRanking;
+    public void ordenaPosicoes(){
+        this.classificador.classifica(posicoes);
     }
+
+
 }
 
 

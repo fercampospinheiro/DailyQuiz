@@ -71,7 +71,7 @@
             <ul class="list-group">
                 <c:forEach items="${respostas}" var="resposta">
                     <a href="RespostaQuestionario/${resposta.id}" class="list-group-item">
-                        ${resposta.questionario.nome}
+                        ${resposta.questionario.nome} ${resposta.numeroDeAcertos()}
                             <span class="col-md-offset-1 label label-info">${resposta.dataReposta}</span>
                     </a>
                 </c:forEach>
