@@ -10,9 +10,21 @@ import java.util.Comparator;
 public class Posicao implements Comparable<Posicao>{
 
     private int ordem;
+
+    public void setMembro(Membro membro) {
+        this.membro = membro;
+    }
+
     private int pontuacao;
     private Membro membro;
 
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+    public Posicao(){
+
+    }
 
     public Posicao(int pontuacao, Membro membro) {
         this.pontuacao = pontuacao;

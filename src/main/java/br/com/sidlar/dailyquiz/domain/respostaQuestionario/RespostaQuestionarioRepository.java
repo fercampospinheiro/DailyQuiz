@@ -48,5 +48,13 @@ public class RespostaQuestionarioRepository {
 		query.setParameter("id",id);
 		return query.getSingleResult();
 	}
-	
+
+    public List<RespostaQuestionario> buscaTodos(){
+        String jpql=    "select r from " +
+                        " RespostaQuestionario r " +
+                        "join fetch r.respostaQuestoes rq " +
+                        "join fetch rq.questao";
+        TypedQuery<RespostaQuestionario> query	=  em.createQuery(jpql,RespostaQuestionario.class);
+        return query.getResultList();
+    }
 }
