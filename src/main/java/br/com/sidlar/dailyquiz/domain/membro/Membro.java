@@ -26,6 +26,11 @@ public class Membro {
 
 	}
 
+    public Membro(String email, String nome) {
+        this.email = email;
+        this.nome = nome;
+    }
+
     public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
@@ -98,5 +103,10 @@ public class Membro {
 
 	}
 
-
+    @Override
+    public String toString() {
+        return "Membro{" +
+                "email='" + email + '\'' +
+                '}';
+    }
 }

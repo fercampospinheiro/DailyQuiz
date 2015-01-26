@@ -1,9 +1,11 @@
 package br.com.sidlar.dailyquiz.domain.ranking;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * @author  Fernando de Campos Pnheiro
@@ -11,13 +13,14 @@ import java.util.List;
 public class Ranking{
     @Autowired private ClassificacaoRanking classificador;
 
-    private List<Posicao> posicoes = Lists.newArrayList();
-
-    public void setPosicoes(List<Posicao> posicoes){
+    public Ranking(List<Posicao> posicoes) {
         this.posicoes = posicoes;
+        ordenaPosicoes();
     }
 
-    public void ordenaPosicoes(){
+    private List<Posicao> posicoes = Lists.newArrayList();
+
+    private void ordenaPosicoes(){
         this.classificador.classifica(posicoes);
     }
 

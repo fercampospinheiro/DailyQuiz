@@ -70,4 +70,13 @@ public class Posicao implements Comparable<Posicao>{
         else if(this.getPontuacao() == o.getPontuacao()){return 0;}
         else return 1;
     }
+
+    @Override
+    public String toString() {
+        return "Posicao{" +
+                "ordem=" + ordem +
+                ", pontuacao=" + pontuacao +
+                ", membro=" + membro +
+                '}';
+    }
 }
