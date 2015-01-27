@@ -54,7 +54,7 @@ public class StandardCompetitionRankingTest {
 
         //setup fixture
 
-        List<Posicao> posicoesComPontucaoIgual =
+        List<Posicao> posicoesComPontuacaoIgual =
                 Lists.newArrayList(
                 new Posicao(20,criaMembro("Fernando")),
                new Posicao(20,criaMembro("Antonio")),
@@ -64,7 +64,7 @@ public class StandardCompetitionRankingTest {
 
         //execute SUT
 
-        List<Posicao> posicoesComMesmaOrdem = classificador.classifica(posicoesComPontucaoIgual);
+        List<Posicao> posicoesComMesmaOrdem = classificador.classifica(posicoesComPontuacaoIgual);
 
         //verify
 
@@ -92,18 +92,18 @@ public class StandardCompetitionRankingTest {
 
                 );
         //execute SUT
-        List<Posicao> posicoesComOrdemDaSequenciaAposIguais = classificador.classifica(posicoesIguaisESequenciaNaoIguais);
+        List<Posicao> posicoesAposIguaisComOrdemDaSequencia = classificador.classifica(posicoesIguaisESequenciaNaoIguais);
 
 
-        posicoesComOrdemDaSequenciaAposIguais.forEach(o -> System.out.println(o.getOrdem()));
+        posicoesAposIguaisComOrdemDaSequencia.forEach(o -> System.out.println(o.getOrdem()));
 
         //verify
-        assertThat(posicoesComOrdemDaSequenciaAposIguais.get(0).getOrdem(), is(1));
-        assertThat(posicoesComOrdemDaSequenciaAposIguais.get(1).getOrdem(),is(1));
-        assertThat(posicoesComOrdemDaSequenciaAposIguais.get(2).getOrdem(),is(3));
-        assertThat(posicoesComOrdemDaSequenciaAposIguais.get(3).getOrdem(),is(4));
-        assertThat(posicoesComOrdemDaSequenciaAposIguais.get(4).getOrdem(),is(4));
-        assertThat(posicoesComOrdemDaSequenciaAposIguais.get(5).getOrdem(),is(6));
+        assertThat(posicoesAposIguaisComOrdemDaSequencia.get(0).getOrdem(),is(1));
+        assertThat(posicoesAposIguaisComOrdemDaSequencia.get(1).getOrdem(),is(1));
+        assertThat(posicoesAposIguaisComOrdemDaSequencia.get(2).getOrdem(),is(3));
+        assertThat(posicoesAposIguaisComOrdemDaSequencia.get(3).getOrdem(),is(4));
+        assertThat(posicoesAposIguaisComOrdemDaSequencia.get(4).getOrdem(),is(4));
+        assertThat(posicoesAposIguaisComOrdemDaSequencia.get(5).getOrdem(),is(6));
 
     }
 

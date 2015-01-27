@@ -11,51 +11,54 @@ import java.util.List;
 @Component
 public class StandardCompetitionRanking implements ClassificacaoRanking {
 
+
+    private List<Posicao> posicoes;
+
+
     @Override
     public List<Posicao> classifica(List<Posicao> posicoes) {
         Collections.sort(posicoes);
-        return  ordenaPorStandardCompetition(posicoes);
+        return ordenaPorStandardCompetition2(posicoes);
     }
 
-    private List<Posicao> ordenaPorStandardCompetition(List<Posicao> posicoes){
-        int indiceAtual = 0 ;
+
+    private List<Posicao> ordenaPorStandardCompetition2(List<Posicao> posicoes) {
+
         int ordemAtual = 1;
-        int qtdOrdensIguais = 0;
-        int numeroPosicoes = posicoes.size() -1;
+        int numeroOrdensRepetidas = 0;
+        int pontuacaoAtual = 0;
+        int proximaPontuacao = 0;
+        int proximoIndice = 0;
+        int ultimoIndice = posicoes.size();
 
-        for(Posicao posicao : posicoes) {
+        for (Posicao posicao : posicoes) {
 
-            if(indiceAtual < numeroPosicoes) {
+            pontuacaoAtual = posicao.getPontuacao();
+            proximoIndice = posicoes.indexOf(posicao) + 1;
 
-                int proximoIndice = indiceAtual + 1;
-                int indiceAnterior = indiceAtual - 1;
+            if(proximoIndice < ultimoIndice) {
 
-                int pontuacaoAnterior = 0;
-                if(indiceAtual > 0) pontuacaoAnterior = posicoes.get(indiceAnterior).getPontuacao();
+                proximaPontuacao = posicoes.get(proximoIndice).getPontuacao();
 
-                int pontuacaoAtual = posicao.getPontuacao();
-                int proximaPontuacao = posicoes.get(indiceAtual + 1).getPontuacao();
-
-                if(proximaPontuacao < pontuacaoAtual){
-                    int ordemProximoIndice = ordemAtual + qtdOrdensIguais + 1;
-
+                if (pontuacaoAtual != proximaPontuacao) {
+                    ordemAtual+= numeroOrdensRepetidas;
                     posicao.defineOrdem(ordemAtual);
-                    posicoes.get(proximoIndice).defineOrdem(ordemProximoIndice);
-
-                    qtdOrdensIguais = 0;
+                    numeroOrdensRepetidas = 0;
                     ordemAtual++;
-                    indiceAtual++;
-                }
-                else if (pontuacaoAnterior == pontuacaoAtual || pontuacaoAtual == proximaPontuacao) {
+                } else{
                     posicao.defineOrdem(ordemAtual);
-                    qtdOrdensIguais++;
-                    indiceAtual++;
+                    numeroOrdensRepetidas++;
                 }
 
             }
+            else if (proximoIndice == ultimoIndice){
+                ordemAtual+= numeroOrdensRepetidas;
+                posicao.defineOrdem(ordemAtual);
+            }
         }
-
         return posicoes;
     }
+
+
 
 }
