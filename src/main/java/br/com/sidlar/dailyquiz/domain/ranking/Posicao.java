@@ -15,7 +15,7 @@ public class Posicao implements Comparable<Posicao>{
         this.membro = membro;
     }
 
-    private int pontuacao;
+    private long pontuacao;
     private Membro membro;
 
     public void setPontuacao(int pontuacao) {
@@ -26,12 +26,12 @@ public class Posicao implements Comparable<Posicao>{
 
     }
 
-    public Posicao(int pontuacao, Membro membro) {
+    public Posicao(long pontuacao, Membro membro) {
         this.pontuacao = pontuacao;
         this.membro = membro;
     }
 
-    public int getPontuacao() {
+    public long getPontuacao() {
         return pontuacao;
     }
 
@@ -61,7 +61,9 @@ public class Posicao implements Comparable<Posicao>{
 
     @Override
     public int hashCode() {
-        return pontuacao;
+        int result = ordem;
+        result = 31 * result + (int) (pontuacao ^ (pontuacao >>> 32));
+        return result;
     }
 
     @Override

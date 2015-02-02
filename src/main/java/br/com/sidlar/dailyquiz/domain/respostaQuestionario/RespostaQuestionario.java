@@ -35,6 +35,18 @@ public class RespostaQuestionario {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate dataReposta;
 
+    private long pontuacao = 0;
+
+    public long getPontuacao() {
+        return this.pontuacao;
+    }
+
+    private void calculaPontuacao(){
+        for(RespostaQuestao respostaQuestao : this.respostaQuestoes){
+            if(respostaQuestao.estaCorreta()) this.pontuacao++;
+        }
+    }
+
     public RespostaQuestionario() {}
 
     public void referenteAo(Questionario questionario){
@@ -43,14 +55,6 @@ public class RespostaQuestionario {
 
     public void respondidoPor(Membro membro){
         this.membro =  membro;
-    }
-
-    public int numeroDeAcertos(){
-        int qtdAcertos = 0;
-        for(RespostaQuestao respostaQuestao : respostaQuestoes){
-            if(respostaQuestao.estaCorreta()) qtdAcertos ++;
-        }
-        return qtdAcertos;
     }
 
     public void setQuestionario(Questionario questionario) {
@@ -66,7 +70,7 @@ public class RespostaQuestionario {
     }
 
     public List<RespostaQuestao> getRespostaQuestoes() {
-        return respostaQuestoes;
+        return this.respostaQuestoes;
     }
     
     public void feitoNaData(LocalDate dataReposta){
@@ -75,6 +79,7 @@ public class RespostaQuestionario {
 
     public void adicionaRespostas(List<RespostaQuestao> respostas){
         this.respostaQuestoes = respostas;
+        calculaPontuacao();
     }
 
     public Integer getId() {

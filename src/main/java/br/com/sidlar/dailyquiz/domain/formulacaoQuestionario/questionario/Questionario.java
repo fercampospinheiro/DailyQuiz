@@ -35,8 +35,7 @@ public class Questionario {
 	@JoinColumn(name = "idMembroCriador")
 	private Membro membroCriador;
 
-
-	public Questionario() {
+    public Questionario() {
 	}
 
 	public Questionario(String nome) {

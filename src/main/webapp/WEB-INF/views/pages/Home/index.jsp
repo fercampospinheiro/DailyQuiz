@@ -46,21 +46,17 @@
             <br>
 
 
+
             <h4 class="list-group-item " style="background-color: cadetblue ">Ranking Geral</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <span class="badge pull-left">1</span>
-                            &nbsp Antonio
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge pull-left">2</span>
-                            &nbsp Marcos
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge pull-left">3</span>
-                            &nbsp Jose
-                        </li>
-                    </ul>
+
+            <c:forEach items="${ranking.posicoes}" var="posicao">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge pull-left">${posicao.pontuacao}</span>
+                        &nbsp ${posicao.membro.nome}
+                    </li>
+                </ul>
+            </c:forEach>
 
         </div>
         <!--Area das opçoes dos questionários-->
@@ -71,7 +67,7 @@
             <ul class="list-group">
                 <c:forEach items="${respostas}" var="resposta">
                     <a href="RespostaQuestionario/${resposta.id}" class="list-group-item">
-                        ${resposta.questionario.nome} ${resposta.numeroDeAcertos()}
+                        ${resposta.questionario.nome} ${resposta.pontuacao}
                             <span class="col-md-offset-1 label label-info">${resposta.dataReposta}</span>
                     </a>
                 </c:forEach>

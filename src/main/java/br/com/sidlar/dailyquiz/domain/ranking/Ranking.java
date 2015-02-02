@@ -24,7 +24,9 @@ public class Ranking{
         this.classificador.classifica(posicoes);
     }
 
-
+    public List<Posicao> getPosicoes() {
+        return posicoes;
+    }
 }
 
 
