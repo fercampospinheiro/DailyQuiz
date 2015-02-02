@@ -22,8 +22,8 @@ public class StandardCompetitionRanking implements ClassificacaoRanking {
 
         int ordemAtual = 1;
         int numeroOrdensRepetidas = 0;
-        long pontuacaoAtual = 0;
-        long proximaPontuacao = 0;
+        int pontuacaoAtual = 0;
+        int proximaPontuacao = 0;
         int proximoIndice = 0;
         int ultimoIndice = posicoes.size();
 

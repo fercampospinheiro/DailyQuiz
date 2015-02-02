@@ -2,8 +2,6 @@ package br.com.sidlar.dailyquiz.domain.ranking;
 
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 
-import java.util.Comparator;
-
 /**
  * @author Fernando de Campos Pinheiro
  */
@@ -15,7 +13,7 @@ public class Posicao implements Comparable<Posicao>{
         this.membro = membro;
     }
 
-    private long pontuacao;
+    private int pontuacao;
     private Membro membro;
 
     public void setPontuacao(int pontuacao) {
@@ -26,12 +24,12 @@ public class Posicao implements Comparable<Posicao>{
 
     }
 
-    public Posicao(long pontuacao, Membro membro) {
+    public Posicao(int pontuacao, Membro membro) {
         this.pontuacao = pontuacao;
         this.membro = membro;
     }
 
-    public long getPontuacao() {
+    public int getPontuacao() {
         return pontuacao;
     }
 
