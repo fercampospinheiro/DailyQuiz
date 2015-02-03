@@ -1,7 +1,9 @@
 package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.alternativa;
 
 import javax.persistence.*;
-
+/**
+ * @author Fernando de Campos Pinheiro
+ * */
 @Entity
 public class Alternativa {
 	@Id @GeneratedValue
