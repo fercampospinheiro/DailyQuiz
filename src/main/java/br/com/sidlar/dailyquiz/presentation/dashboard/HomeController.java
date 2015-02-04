@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author  Fernando de Campos Pinheiro
@@ -36,13 +37,11 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String goHome(Model model) {
 
-        DadosDeAutenticacao dadosDeAutenticação;
-        dadosDeAutenticação = (DadosDeAutenticacao) session.getAttribute("dadosDeAutenticacao");
-        if (dadosDeAutenticação != null){
+        if (estaAutenticado()){
             List<Questionario> questionarios =   repository.buscaTodos();
             model.addAttribute("questionarios",questionarios);
 
-            Membro  membro = dadosDeAutenticação.getMembro();
+            Membro  membro = membroAutenticado();
             List<RespostaQuestionario> repostas = respostaRepository.buscaPorMembro(membro);
             model.addAttribute("respostas",repostas);
 
@@ -55,5 +54,24 @@ public class HomeController {
         }
         else{ return "redirect:/Login";}
     }
+
+
+    private boolean estaAutenticado() {
+        return getDadosDeAutenticacao().isPresent();
+    }
+
+    private Membro membroAutenticado() {
+        return getDadosDeAutenticacao().get().getMembro();
+    }
+
+    private Optional<DadosDeAutenticacao> getDadosDeAutenticacao() {
+        Object dadosAutenticacao = session.getAttribute("dadosDeAutenticacao");
+        if (dadosAutenticacao == null) {
+            return Optional.empty();
+        }
+        return Optional.of((DadosDeAutenticacao) dadosAutenticacao);
+    }
+
+
 
 }
