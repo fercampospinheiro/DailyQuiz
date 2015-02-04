@@ -11,22 +11,19 @@ import java.util.TreeSet;
  * @author  Fernando de Campos Pnheiro
  */
 public class Ranking{
-    @Autowired private ClassificacaoRanking classificador;
-
-    public Ranking(List<Posicao> posicoes) {
-        this.posicoes = posicoes;
-        ordenaPosicoes();
+    private List<Posicao> posicoes;
+    public Ranking() {
     }
 
-    private List<Posicao> posicoes = Lists.newArrayList();
-
-    private void ordenaPosicoes(){
-        this.classificador.classifica(posicoes);
+    public void ordenaAtraves(ClassificacaoRanking classificador){
+        this.posicoes = classificador.classifica();
     }
 
     public List<Posicao> getPosicoes() {
-        return posicoes;
+        return this.posicoes;
     }
+
+
 }
 
 

@@ -17,11 +17,11 @@ public class RankingRepository {
 
     public List<Posicao> obtemDezPrimeirasPosicoes(){
 
-        String jpql =   " select  new br.com.sidlar.dailyquiz.domain.ranking.Posicao(cast(sum(r.pontuacao) as int),r.membro) " +
-                        " from RespostaQuestionario as r " +
+        String jpql =   " select new br.com.sidlar.dailyquiz.domain.ranking.Posicao(cast(sum(r.pontuacao) as int),r.membro) " +
+                        " from RespostaQuestionario r " +
                         " group by r.membro ";
         TypedQuery<Posicao> query = em.createQuery(jpql,Posicao.class);
-        query.setFirstResult(10);
+        query.setMaxResults(10);
 
         List<Posicao>  posicoes = query.getResultList();
         return posicoes;
