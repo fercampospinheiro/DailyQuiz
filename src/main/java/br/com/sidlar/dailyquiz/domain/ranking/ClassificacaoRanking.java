@@ -6,5 +6,5 @@ import java.util.List;
  * @autor Fernando de Campos Pinheiro
  */
 public interface ClassificacaoRanking {
-    List<Posicao> classifica(List<Posicao> posicoes);
+    List<Posicao> classifica();
 }

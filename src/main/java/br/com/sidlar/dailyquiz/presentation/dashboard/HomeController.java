@@ -5,6 +5,7 @@ import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import br.com.sidlar.dailyquiz.domain.ranking.Posicao;
 import br.com.sidlar.dailyquiz.domain.ranking.Ranking;
 import br.com.sidlar.dailyquiz.domain.ranking.RankingRepository;
+import br.com.sidlar.dailyquiz.domain.ranking.StandardCompetitionRanking;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioRepository;
 import br.com.sidlar.dailyquiz.infrastructure.DadosDeAutenticacao;
@@ -46,7 +47,9 @@ public class HomeController {
             model.addAttribute("respostas",repostas);
 
             List<Posicao> posicoes = rankingRepository.obtemDezPrimeirasPosicoes();
-            model.addAttribute("ranking", new Ranking(posicoes));
+            Ranking ranking = new Ranking();
+            ranking.ordenaAtraves(new StandardCompetitionRanking(posicoes));
+            model.addAttribute("ranking", ranking);
 
              return "/Home/index";
         }

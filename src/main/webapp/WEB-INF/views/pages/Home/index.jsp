@@ -63,7 +63,7 @@
         <div id="questionarios" class="col-md-5">
             <h4>Questionários</h4>
 
-            <h4 class="list-group-item active">Respondidos</h4
+            <h4 class="list-group-item active">Respondidos</h4>
             <ul class="list-group">
                 <c:forEach items="${respostas}" var="resposta">
                     <a href="RespostaQuestionario/${resposta.id}" class="list-group-item">

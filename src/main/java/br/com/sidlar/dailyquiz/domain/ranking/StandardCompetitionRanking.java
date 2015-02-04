@@ -11,19 +11,26 @@ import java.util.List;
 @Component
 public class StandardCompetitionRanking implements ClassificacaoRanking {
 
+
+    private List<Posicao> posicoes;
+
+    public StandardCompetitionRanking(List<Posicao> posicoes) {
+        this.posicoes = posicoes;
+    }
+
     @Override
-    public List<Posicao> classifica(List<Posicao> posicoes) {
-        Collections.sort(posicoes);
-        return ordenaPorStandardCompetition2(posicoes);
+    public List<Posicao> classifica() {
+        Collections.sort(this.posicoes);
+        return ordena(this.posicoes);
     }
 
 
-    private List<Posicao> ordenaPorStandardCompetition2(List<Posicao> posicoes) {
+    private List<Posicao> ordena(List<Posicao> posicoes) {
 
         int ordemAtual = 1;
         int numeroOrdensRepetidas = 0;
-        long pontuacaoAtual = 0;
-        long proximaPontuacao = 0;
+        int pontuacaoAtual = 0;
+        int proximaPontuacao = 0;
         int proximoIndice = 0;
         int ultimoIndice = posicoes.size();
 
