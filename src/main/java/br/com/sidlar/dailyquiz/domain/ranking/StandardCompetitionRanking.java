@@ -32,7 +32,7 @@ public class StandardCompetitionRanking implements ClassificacaoRanking {
     private List<Posicao> ordena(List<Posicao> posicoes) {
 
         int ordemAtual = 1;
-        int numeroOrdensRepetidas = 0;
+        int qtdOrdensRepetidas = 0;
         int pontuacaoAtual = 0;
         int proximaPontuacao = 0;
         int proximoIndice = 0;
@@ -48,18 +48,18 @@ public class StandardCompetitionRanking implements ClassificacaoRanking {
                 proximaPontuacao = posicoes.get(proximoIndice).getPontuacao();
 
                 if (pontuacaoAtual != proximaPontuacao) {
-                    ordemAtual+= numeroOrdensRepetidas;
+                    ordemAtual+= qtdOrdensRepetidas;
                     posicao.defineOrdem(ordemAtual);
-                    numeroOrdensRepetidas = 0;
+                    qtdOrdensRepetidas = 0;
                     ordemAtual++;
                 } else{
                     posicao.defineOrdem(ordemAtual);
-                    numeroOrdensRepetidas++;
+                    qtdOrdensRepetidas++;
                 }
 
             }
             else if (proximoIndice == ultimoIndice){
-                ordemAtual+= numeroOrdensRepetidas;
+                ordemAtual+= qtdOrdensRepetidas;
                 posicao.defineOrdem(ordemAtual);
             }
         }
