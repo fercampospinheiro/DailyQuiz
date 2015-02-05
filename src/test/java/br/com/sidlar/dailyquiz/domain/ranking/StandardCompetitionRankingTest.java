@@ -36,7 +36,8 @@ public class StandardCompetitionRankingTest {
                 );
 
         // execute SUT
-        List<Posicao> posicoesComOrdemEsperada = classificador.classifica(posicoesDesordenadas);
+        classificador.setPosicoes(posicoesDesordenadas);
+        List<Posicao> posicoesComOrdemEsperada = classificador.classifica();
 
         // verify outcome
         assertThat(posicoesComOrdemEsperada, contains(
@@ -63,12 +64,10 @@ public class StandardCompetitionRankingTest {
         );
 
         //execute SUT
-
-        List<Posicao> posicoesComOrdemEsperada = classificador.classifica(posicoesComPontuacaoIgual);
+        classificador.setPosicoes(posicoesComPontuacaoIgual);
+        List<Posicao> posicoesComOrdemEsperada = classificador.classifica();
 
         //verify
-
-        posicoesComOrdemEsperada.forEach(p -> System.out.println(p.getOrdem()));
 
         assertThat(posicoesComOrdemEsperada.get(0).getOrdem(),is(1));
         assertThat(posicoesComOrdemEsperada.get(1).getOrdem(),is(1));
@@ -95,11 +94,10 @@ public class StandardCompetitionRankingTest {
 
         //execute SUT
 
-        List<Posicao> posicoesComOrdemEsperada = classificador.classifica(posicoesComPontuacaoIgual);
+        classificador.setPosicoes(posicoesComPontuacaoIgual);
+        List<Posicao> posicoesComOrdemEsperada = classificador.classifica();
 
         //verify
-
-        posicoesComOrdemEsperada.forEach(p -> System.out.println(p.getOrdem()));
 
         assertThat(posicoesComOrdemEsperada.get(0).getOrdem(),is(1));
         assertThat(posicoesComOrdemEsperada.get(1).getOrdem(),is(1));
@@ -123,10 +121,8 @@ public class StandardCompetitionRankingTest {
 
                 );
         //execute SUT
-        List<Posicao> posicoesComOrdemEsperada = classificador.classifica(posicoesIguaisESequenciaNaoIguais);
-
-
-        posicoesComOrdemEsperada.forEach(o -> System.out.println(o.getOrdem()));
+        classificador.setPosicoes(posicoesIguaisESequenciaNaoIguais);
+        List<Posicao> posicoesComOrdemEsperada = classificador.classifica();
 
         //verify
         assertThat(posicoesComOrdemEsperada.get(0).getOrdem(),is(1));
@@ -150,10 +146,8 @@ public class StandardCompetitionRankingTest {
 
                 );
         //execute SUT
-        List<Posicao> posicoesComOrdemEsperada = classificador.classifica(posicoesIguaisESequenciaNaoIguais);
-
-
-        posicoesComOrdemEsperada.forEach(o -> System.out.println(o.getOrdem()));
+        classificador.setPosicoes(posicoesIguaisESequenciaNaoIguais);
+        List<Posicao> posicoesComOrdemEsperada = classificador.classifica();
 
         //verify
         assertThat(posicoesComOrdemEsperada.get(0).getOrdem(),is(1));
@@ -177,10 +171,8 @@ public class StandardCompetitionRankingTest {
 
                 );
         //execute SUT
-        List<Posicao> posicoesComOrdemEsperada = classificador.classifica(posicoesIguaisESequenciaNaoIguais);
-
-
-        posicoesComOrdemEsperada.forEach(o -> System.out.println(o.getOrdem()));
+        classificador.setPosicoes(posicoesIguaisESequenciaNaoIguais);
+        List<Posicao> posicoesComOrdemEsperada = classificador.classifica();
 
         //verify
         assertThat(posicoesComOrdemEsperada.get(0).getOrdem(),is(1));
@@ -204,10 +196,8 @@ public class StandardCompetitionRankingTest {
 
                 );
         //execute SUT
-        List<Posicao> posicoesComOrdemEsperada = classificador.classifica(posicoesIguaisESequenciaNaoIguais);
-
-
-        posicoesComOrdemEsperada.forEach(o -> System.out.println(o.getOrdem()));
+        classificador.setPosicoes(posicoesIguaisESequenciaNaoIguais);
+        List<Posicao> posicoesComOrdemEsperada = classificador.classifica();
 
         //verify
         assertThat(posicoesComOrdemEsperada.get(0).getOrdem(),is(1));

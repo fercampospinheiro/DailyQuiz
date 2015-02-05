@@ -49,14 +49,26 @@
 
             <h4 class="list-group-item " style="background-color: cadetblue ">Ranking Geral</h4>
 
-            <c:forEach items="${ranking.posicoes}" var="posicao">
+
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <span class="badge pull-left">${posicao.pontuacao}</span>
-                        &nbsp ${posicao.membro.nome}
-                    </li>
+                    <c:forEach items="${ranking.posicoes}" var="posicao">
+                        <li class="list-group-item">
+                            <span class="badge pull-left">${posicao.ordem}</span>
+                            &nbsp ${posicao.membro.nome}
+                            <span class="label label-default pull-right">${posicao.pontuacao}
+                             <c:choose>
+                                <c:when test="${posicao.pontuacao > 1}">
+                                    <span class="col-lg-offset-1">pontos</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="col-lg-offset-1">ponto</span>
+                                </c:otherwise>
+                             </c:choose>
+                            </span>
+                        </li>
+                    </c:forEach>
                 </ul>
-            </c:forEach>
+
 
         </div>
         <!--Area das opçoes dos questionários-->

@@ -14,6 +14,10 @@ public class StandardCompetitionRanking implements ClassificacaoRanking {
 
     private List<Posicao> posicoes;
 
+    public StandardCompetitionRanking(){
+
+    }
+
     public StandardCompetitionRanking(List<Posicao> posicoes) {
         this.posicoes = posicoes;
     }
@@ -62,6 +66,8 @@ public class StandardCompetitionRanking implements ClassificacaoRanking {
         return posicoes;
     }
 
-
+    public void setPosicoes(List<Posicao> posicoes) {
+        this.posicoes = posicoes;
+    }
 
 }

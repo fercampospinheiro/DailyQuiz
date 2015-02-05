@@ -2,10 +2,7 @@ package br.com.sidlar.dailyquiz.presentation.dashboard;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.QuestionarioRepository;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
-import br.com.sidlar.dailyquiz.domain.ranking.Posicao;
-import br.com.sidlar.dailyquiz.domain.ranking.Ranking;
-import br.com.sidlar.dailyquiz.domain.ranking.RankingRepository;
-import br.com.sidlar.dailyquiz.domain.ranking.StandardCompetitionRanking;
+import br.com.sidlar.dailyquiz.domain.ranking.*;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioRepository;
 import br.com.sidlar.dailyquiz.infrastructure.DadosDeAutenticacao;
@@ -32,7 +29,7 @@ public class HomeController {
     @Autowired private HttpSession session;
     @Autowired private QuestionarioRepository repository;
     @Autowired private RespostaQuestionarioRepository respostaRepository;
-    @Autowired private RankingRepository rankingRepository;
+    @Autowired private RankingService rankingService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String goHome(Model model) {
@@ -45,9 +42,7 @@ public class HomeController {
             List<RespostaQuestionario> repostas = respostaRepository.buscaPorMembro(membro);
             model.addAttribute("respostas",repostas);
 
-            List<Posicao> posicoes = rankingRepository.obtemDezPrimeirasPosicoes();
-            Ranking ranking = new Ranking();
-            ranking.ordenaAtraves(new StandardCompetitionRanking(posicoes));
+            Ranking  ranking = rankingService.obtemRanking();
             model.addAttribute("ranking", ranking);
 
              return "/Home/index";
