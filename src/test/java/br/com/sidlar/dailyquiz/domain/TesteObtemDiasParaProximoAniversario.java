@@ -18,19 +18,4 @@ public class TesteObtemDiasParaProximoAniversario {
    }
 
 
-    @Test
-    public void diasParaProximoAniversario_deveSerQuantidadeDeDiasEntreHojeEhProximaDatadeAniversario(){
-        //Fixture
-        membro.setDataNascimento(new LocalDate(1985,01,14));
-        LocalDate proximoAniversario = new LocalDate(2015,01,14);
-
-        //Exercise
-        Days diasRestantes = membro.obtemDiasParaProximoAniversario();
-        Days quantidadeDeDias = Days.daysBetween(LocalDate.now(), proximoAniversario );
-        //verify
-        System.out.println(diasRestantes.getDays());
-
-        assertThat(diasRestantes,is(quantidadeDeDias));
-    }
-
 }
