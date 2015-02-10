@@ -51,12 +51,12 @@ public class Questionario {
 
 	}
 
-	private void  criadoPor(Membro membro){
+	public void  criadoPor(Membro membro){
 		this.membroCriador = membro;
 	}
 
-	private void disponivelAhPartirDe(DateTime dataDisponivel) {
-		if (dataDisponivel.isAfter(dataLimite) && dataDisponivel == null || dataLimite == null && dataDisponivel == null){
+	public void disponivelAhPartirDe(DateTime dataDisponivel) {
+		if (dataDisponivel.isAfter(dataLimite)){
 			this.dataDisponivel = dataDisponivel;
 		}
 		else {
@@ -64,26 +64,17 @@ public class Questionario {
 		}
 	}
 
-	private void acessivelAte(DateTime dataLimite) {
-		if (dataLimite.isBefore( dataDisponivel) && dataLimite == null) {
+	public void acessivelAte(DateTime dataLimite) {
+		if (dataLimite.isBefore( dataDisponivel)) {
 			this.dataLimite = dataLimite;
 		} else {
-			throw new IllegalArgumentException("Data Limite informada é menor que data disponive ou  já informada!");
+			throw new IllegalArgumentException("Data Limite informada é menor que data disponivel ou  já informada!");
 		}
 	}
 
-	public String expiraEm(){
-
-		PeriodFormatter periodFormat = new PeriodFormatterBuilder()
-				.appendDays()
-				.appendSuffix(" dias ")
-				.appendHours()
-				.appendSuffix(" horas ")
-				.appendMinutes()
-				.appendSuffix(" minutos ")
-				.toFormatter();
+	public Period expiraEm(){
 		Period prazoExpiracao =  new Period(dataDisponivel,dataLimite);
-		return periodFormat.print(prazoExpiracao);
+		return prazoExpiracao;
 	}
 
 

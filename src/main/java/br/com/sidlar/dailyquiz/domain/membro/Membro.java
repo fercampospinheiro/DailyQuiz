@@ -1,11 +1,9 @@
 package br.com.sidlar.dailyquiz.domain.membro;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.Days;
-import org.joda.time.LocalDate;
-import org.joda.time.Years;
-
+import org.joda.time.*;
 import javax.persistence.*;
+import static org.joda.time.Days.*;
 
 /**
  * Membro da aplicação
@@ -21,6 +19,8 @@ public class Membro {
 	private String senha;
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	private LocalDate dataNascimento;
+
+
 
 	public Membro() {
 
@@ -46,11 +46,6 @@ public class Membro {
         int mesDoAniversario = this.dataNascimento.getMonthOfYear();
 
         return (diaDoAniversario == diaAtual) && (mesDoAniversario == mesAtual);
-    }
-	public Days obtemDiasParaProximoAniversario(){
-        LocalDate dataDeHoje = LocalDate.now();
-        LocalDate dataDoProximoAniversario = dataNascimento.plusYears(getIdade().getYears()+1);
-        return Days.daysBetween(dataDeHoje, dataDoProximoAniversario );
     }
 
 	public String getNome() {
@@ -109,4 +104,29 @@ public class Membro {
                 "email='" + email + '\'' +
                 '}';
     }
+
+	public void nasceuEm(LocalDate data) {
+		dataNascimento = data;
+	}
+
+	public boolean fazAniversarioHoje(LocalDate dataAtual) {
+		if(dataAtual.getYear() == dataNascimento.getYear()) return false;
+		MonthDay diaEMesAtual =  new MonthDay(dataAtual);
+		MonthDay diaEMesDoNascimento = new MonthDay(dataNascimento);
+		return diaEMesAtual.equals(diaEMesDoNascimento);
+	}
+
+	public Days faraAniversarioEm(LocalDate proximoAniversario) {
+
+		int diaDoNascimento = dataNascimento.getDayOfMonth();
+		int mesDoNascimento = dataNascimento.getMonthOfYear();
+		int anoUltimoAniversario = LocalDate.now().getYear();
+
+		if(proximoAniversario.getYear() == anoUltimoAniversario )
+			anoUltimoAniversario--;
+
+		LocalDate  aniversarioAnterior = new LocalDate(diaDoNascimento,mesDoNascimento,anoUltimoAniversario);
+
+		return Days.daysBetween(aniversarioAnterior, proximoAniversario);
+	}
 }
