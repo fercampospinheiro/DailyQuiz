@@ -1,5 +1,7 @@
 package br.com.sidlar.dailyquiz.domain.membro;
 
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatterBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.joda.time.*;
@@ -17,49 +19,46 @@ public class TesteMembro {
 
 
     @Test
-    public void diaEhMesAtualEhOMesmoDoNascimento_FazAniversarioHoje() throws Exception {
+    public void diaEMesAtualEhOMesmoDoNascimento_deveFazerAniversarioHoje() throws Exception {
 
         //fixture
+        defineHojeComo(14, 1, 2015);
+        membro.setDataNascimento(new LocalDate(1985, 1, 14));
 
-        membro.nasceuEm(new LocalDate(1985,01,14));
-        membro.setDataAtual(new LocalDate(2015,01,14));
         //exercise
-
         boolean resultado = membro.fazAniversarioHoje();
-        //verify
 
-        assertThat(resultado,is(true));
+        //verify
+        assertThat(resultado, is(true));
 
     }
+
     @Test
     public void diaAtualEhMesmoDoNascimento_MasMesAtualDiferente_NaoFazAniversarioHoje() throws Exception {
 
         //fixture
+        defineHojeComo(14, 2, 2015);
+        membro.setDataNascimento(new LocalDate(1985, 1, 14));
 
-        membro.nasceuEm(new LocalDate(1985,01,14));
-        membro.setDataAtual(new LocalDate(2015,02,14));
         //exercise
-
         boolean resultado = membro.fazAniversarioHoje();
-        //verify
 
-        assertThat(resultado,is(false));
+        //verify
+        assertThat(resultado, is(false));
 
     }
-
 
     @Test
     public void diaEhMesAtualNaoEhMesmoDoNascimento_NaoFazAniversarioHoje() throws Exception {
 
         //fixture
+        defineHojeComo(15, 2, 2015);
+        membro.setDataNascimento(new LocalDate(1985, 1, 14));
 
-        membro.nasceuEm(new LocalDate(1985,01,14));
-        membro.setDataAtual(new LocalDate(2015,02,15));
         //exercise
-
         boolean resultado = membro.fazAniversarioHoje();
-        //verify
 
+        //verify
         assertThat(resultado,is(false));
 
     }
@@ -69,26 +68,28 @@ public class TesteMembro {
     public void nasceuNoAnoAtual_NaoFazAniversarioHoje() throws Exception {
 
         //fixture
-        membro.nasceuEm(new LocalDate(1995));
-        membro.setDataAtual(new LocalDate(1995));
+        defineHojeComo(1, 1, 1995);
+        membro.setDataNascimento(new LocalDate(1995, 1, 1));
 
         //exercise
-
         boolean resultado = membro.fazAniversarioHoje();
-        //verify
 
+        //verify
         assertThat(resultado,is(false));
 
     }
+
 
     @Test
     public void membro_DeveFazerAniversario_Em13Dias_ComDiaAtualInferior() throws Exception {
 
         //fixture
-        membro.nasceuEm(new LocalDate(1985,01,14));
-        membro.setDataAtual(new LocalDate(2015,01,01));
+        defineHojeComo(1, 1, 2015);
+        membro.setDataNascimento(new LocalDate(1985, 1, 14));
+
         //exercise
         Days dias = membro.obtemDiasParaAniversario();
+
         //verify
         assertThat(dias.getDays(),is(13));
 
@@ -98,10 +99,12 @@ public class TesteMembro {
     public void membro_DeveFazerAniversario_Em44Dias_ComMesAtualInferior() throws Exception {
 
         //fixture
-        membro.nasceuEm(new LocalDate(1985,02,14));
-        membro.setDataAtual(new LocalDate(2015,01,01));
+        defineHojeComo(1, 1, 2015);
+        membro.setDataNascimento(new LocalDate(1985, 2, 14));
+
         //exercise
         Days dias = membro.obtemDiasParaAniversario();
+
         //verify
         assertThat(dias.getDays(),is(44));
 
@@ -111,13 +114,19 @@ public class TesteMembro {
     public void membro_DeveFazerAniversario_Em14Dias_ComMesEDiaAtualPosteriores() throws Exception {
 
         //fixture
-        membro.nasceuEm(new LocalDate(1985,01,14));
-        membro.setDataAtual(new LocalDate(2015,12,31));
-        //exercise
+        defineHojeComo(31, 12, 2015);
+        membro.setDataNascimento(new LocalDate(1985,1,14));
 
+        //exercise
         Days dias = membro.obtemDiasParaAniversario();
+
         //verify
         assertThat(dias.getDays(),is(14));
 
     }
+
+    private void defineHojeComo(int dia, int mes, int ano) {
+        DateTimeUtils.setCurrentMillisFixed(new DateTime(ano, mes, dia, 0, 0, 0).getMillis());
+    }
+
 }

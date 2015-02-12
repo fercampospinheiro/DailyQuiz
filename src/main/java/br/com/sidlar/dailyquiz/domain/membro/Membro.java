@@ -18,8 +18,6 @@ public class Membro {
 	private String senha;
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	private LocalDate dataNascimento;
-	@Transient
-	private LocalDate dataAtual = LocalDate.now();
 
 	public Membro() {}
 
@@ -85,12 +83,9 @@ public class Membro {
                 '}';
     }
 
-	public void nasceuEm(LocalDate data) {
-		dataNascimento = data;
-	}
-
 	public boolean fazAniversarioHoje() {
-		if(dataAtual.getYear() == dataNascimento.getYear()) return false;
+        LocalDate dataAtual = LocalDate.now();
+        if(dataAtual.getYear() == dataNascimento.getYear()) return false;
 		MonthDay diaEMesAtual =  new MonthDay(dataAtual);
 		MonthDay diaEMesDoNascimento = new MonthDay(dataNascimento);
 		return diaEMesAtual.equals(diaEMesDoNascimento);
@@ -98,10 +93,11 @@ public class Membro {
 
 	public Days obtemDiasParaAniversario() {
 		LocalDate  proximoAniversario = obtemProximoAniversario();
-		return Days.daysBetween(dataAtual, proximoAniversario);
+		return Days.daysBetween(new LocalDate(), proximoAniversario);
 	}
 
 	private LocalDate obtemProximoAniversario(){
+        LocalDate dataAtual = LocalDate.now();
 
 		MonthDay diaMesAtual = new MonthDay(dataAtual.getMonthOfYear(),dataAtual.getDayOfMonth());
 		MonthDay diaMesAniversario = new MonthDay(dataNascimento.getMonthOfYear(),dataNascimento.getDayOfMonth());
@@ -115,7 +111,4 @@ public class Membro {
 		return new LocalDate(anoAniversario,diaMesAniversario.getMonthOfYear(),diaMesAniversario.getDayOfMonth());
 	}
 
-	public void setDataAtual(LocalDate dataAtual) {
-		this.dataAtual = dataAtual;
-	}
 }
