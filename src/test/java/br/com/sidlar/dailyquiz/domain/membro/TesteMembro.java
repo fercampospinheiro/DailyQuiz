@@ -1,6 +1,5 @@
 package br.com.sidlar.dailyquiz.domain.membro;
 
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.joda.time.*;
@@ -18,46 +17,64 @@ public class TesteMembro {
 
 
     @Test
-    public void membroNasceuNoDiaEstipulado_DeveFazerAniversario() throws Exception {
+    public void diaEhMesAtualEhOMesmoDoNascimento_FazAniversarioHoje() throws Exception {
 
         //fixture
-        membro.nasceuEm(new LocalDate(1985,01,14));
 
-        LocalDate diaEstipulado = new LocalDate(2015,01,14);
+        membro.nasceuEm(new LocalDate(1985,01,14));
+        membro.setDataAtual(new LocalDate(2015,01,14));
         //exercise
 
-        boolean resultado = membro.fazAniversarioHoje(diaEstipulado);
+        boolean resultado = membro.fazAniversarioHoje();
         //verify
 
         assertThat(resultado,is(true));
 
     }
-
     @Test
-    public void membroNasceuNoDiaEstipulado_ComMesDiferente_NaoDeveFazerAniversario() throws Exception {
+    public void diaAtualEhMesmoDoNascimento_MasMesAtualDiferente_NaoFazAniversarioHoje() throws Exception {
 
         //fixture
-        membro.nasceuEm(new LocalDate(000,01,02));
 
-        LocalDate diaEstipulado = new LocalDate(000,01,04);
+        membro.nasceuEm(new LocalDate(1985,01,14));
+        membro.setDataAtual(new LocalDate(2015,02,14));
         //exercise
 
-        boolean resultado = membro.fazAniversarioHoje(diaEstipulado);
+        boolean resultado = membro.fazAniversarioHoje();
         //verify
 
         assertThat(resultado,is(false));
 
     }
+
+
     @Test
-    public void membroNasceuNoMesmoAnoEstipulado_NaoDeveFazerAniversario() throws Exception {
+    public void diaEhMesAtualNaoEhMesmoDoNascimento_NaoFazAniversarioHoje() throws Exception {
+
+        //fixture
+
+        membro.nasceuEm(new LocalDate(1985,01,14));
+        membro.setDataAtual(new LocalDate(2015,02,15));
+        //exercise
+
+        boolean resultado = membro.fazAniversarioHoje();
+        //verify
+
+        assertThat(resultado,is(false));
+
+    }
+
+
+    @Test
+    public void nasceuNoAnoAtual_NaoFazAniversarioHoje() throws Exception {
 
         //fixture
         membro.nasceuEm(new LocalDate(1995));
+        membro.setDataAtual(new LocalDate(1995));
 
-        LocalDate anoEstipulado = new LocalDate(1995);
         //exercise
 
-        boolean resultado = membro.fazAniversarioHoje(anoEstipulado);
+        boolean resultado = membro.fazAniversarioHoje();
         //verify
 
         assertThat(resultado,is(false));
@@ -65,17 +82,42 @@ public class TesteMembro {
     }
 
     @Test
-    public void membro_DeveFazerAniversario_Em365Dias() throws Exception {
+    public void membro_DeveFazerAniversario_Em13Dias_ComDiaAtualInferior() throws Exception {
 
         //fixture
         membro.nasceuEm(new LocalDate(1985,01,14));
-
+        membro.setDataAtual(new LocalDate(2015,01,01));
         //exercise
-        LocalDate proximoAniversario = new LocalDate(2016,01,14);
-
-        Days dias = membro.faraAniversarioEm(proximoAniversario);
+        Days dias = membro.obtemDiasParaAniversario();
         //verify
-        assertThat(dias.getDays(),is(365));
+        assertThat(dias.getDays(),is(13));
+
+    }
+
+    @Test
+    public void membro_DeveFazerAniversario_Em44Dias_ComMesAtualInferior() throws Exception {
+
+        //fixture
+        membro.nasceuEm(new LocalDate(1985,02,14));
+        membro.setDataAtual(new LocalDate(2015,01,01));
+        //exercise
+        Days dias = membro.obtemDiasParaAniversario();
+        //verify
+        assertThat(dias.getDays(),is(44));
+
+    }
+
+    @Test
+    public void membro_DeveFazerAniversario_Em14Dias_ComMesEDiaAtualPosteriores() throws Exception {
+
+        //fixture
+        membro.nasceuEm(new LocalDate(1985,01,14));
+        membro.setDataAtual(new LocalDate(2015,12,31));
+        //exercise
+
+        Days dias = membro.obtemDiasParaAniversario();
+        //verify
+        assertThat(dias.getDays(),is(14));
 
     }
 }

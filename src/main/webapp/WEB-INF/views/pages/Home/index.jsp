@@ -14,16 +14,16 @@
         <c:set var="dadosAutenticacao" value="${sessionScope.get('dadosDeAutenticacao')}"/>
 
         <c:choose>
-            <c:when test="${dadosAutenticacao.membro.aniversarioHoje eq true}">
+            <c:when test="${dadosAutenticacao.membro.fazAniversarioHoje() eq true}">
                 <p>
                         ${dadosAutenticacao.membro.nome} parabéns pelos seus
                         ${dadosAutenticacao.membro.idade.years} anos de vida!
                 </p>
             </c:when>
-            <c:when test="${dadosAutenticacao.membro.obtemDiasParaProximoAniversario().days <= 5}">
+            <c:when test="${dadosAutenticacao.membro.obtemDiasParaAniversario().days <= 5}">
                 <p>
                         ${dadosAutenticacao.membro.nome} faltam apenas
-                        ${dadosAutenticacao.membro.obtemDiasParaProximoAniversario().days} dias para o seu aniversário.
+                        ${dadosAutenticacao.membro.obtemDiasParaAniversario().days} dias para o seu aniversário.
                 </p>
             </c:when>
         </c:choose>

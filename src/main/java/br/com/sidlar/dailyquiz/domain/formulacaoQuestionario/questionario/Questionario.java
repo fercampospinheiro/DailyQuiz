@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
+import org.joda.time.convert.PeriodConverter;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
@@ -72,11 +73,30 @@ public class Questionario {
 		}
 	}
 
-	public Period expiraEm(){
+	public String expiraEm(){
 		Period prazoExpiracao =  new Period(dataDisponivel,dataLimite);
-		return prazoExpiracao;
+
+		if(possuiDias(prazoExpiracao)) {
+			return obtemDias(prazoExpiracao);
+		}
+		else if (possuiHorasEhMinutos(prazoExpiracao)) {
+			return prazoExpiracao.getHours() + " horas e " + prazoExpiracao.getMinutes() + " minutos";
+		} else {
+			return prazoExpiracao.getHours() + " horas e " + prazoExpiracao.getMinutes() + " minut";
+		}
+
+		}
+
+	private boolean possuiDias(Period periodo){
+		return periodo.getDays() > 0;
+	}
+	private String obtemDias(Period periodo){
+		return periodo.getDays() + " dias";
 	}
 
+	private boolean possuiHorasEhMinutos(Period periodo){
+		return periodo.getHours() >= 1 && periodo.getMinutes() >=1;
+	}
 
 	public String getNome() {
 		return nome;
