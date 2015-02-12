@@ -12,12 +12,12 @@ import static org.junit.Assert.assertThat;
 public class StandardCompetitionRankingTest {
 
     private Membro membro ;
-    private  StandardCompetitionRanking classificador;
+    private StandardCompetitionRanking2 classificador;
 
     @Before
     public void inicializa(){
         membro = new Membro();
-        classificador = new StandardCompetitionRanking();
+        classificador = new StandardCompetitionRanking2();
     }
 
 

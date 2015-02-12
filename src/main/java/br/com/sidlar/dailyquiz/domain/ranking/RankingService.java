@@ -16,7 +16,7 @@ public class RankingService {
     public Ranking obtemRanking(){
         List<Posicao> posicoes = repository.obtemDezPrimeirasPosicoes();
         Ranking ranking = new Ranking();
-        ranking.ordenaAtraves(new StandardCompetitionRanking(posicoes));
+        ranking.ordenaAtraves(new StandardCompetitionRanking2(posicoes));
         return  ranking;
     }
 }
