@@ -7,10 +7,8 @@ import com.google.common.collect.Lists;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
-import org.joda.time.convert.PeriodConverter;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -34,7 +32,9 @@ public class Questionario {
 
 	@OneToOne
 	@JoinColumn(name = "idMembroCriador")
+
 	private Membro membroCriador;
+
 
     public Questionario() {
 	}
@@ -56,46 +56,48 @@ public class Questionario {
 		this.membroCriador = membro;
 	}
 
-	public void disponivelAhPartirDe(DateTime dataDisponivel) {
-		if (dataDisponivel.isAfter(dataLimite)){
-			this.dataDisponivel = dataDisponivel;
+	public void acessivelAte(DateTime dataLimite) {
+			this.dataLimite = dataLimite;
+	}
+
+	public String expiraEm() {
+
+		if(!estaDisponivel()){
+			return "prazo expirado";
+		}
+
+		DateTime dataAtual = new DateTime().now();
+		Period period = new Period( dataAtual, dataLimite);
+		PeriodFormatter formatoDaData;
+
+		if (period.getDays() > 0) {
+			formatoDaData = new PeriodFormatterBuilder()
+					.appendDays().appendSuffix(" dia ", " dias ").toFormatter();
+
+		}
+		else if (period.getHours()>1){
+			formatoDaData = new PeriodFormatterBuilder()
+					.appendHours().appendSuffix(" hora "," horas ").toFormatter();
+		}
+		else if(period.getHours()==1){
+			formatoDaData = new PeriodFormatterBuilder()
+					.appendHours().appendSuffix(" hora ", " horas ")
+					.appendSuffix(" e ")
+					.appendMinutes()
+					.appendSuffix(" minuto ", " minutos ")
+					.toFormatter();
 		}
 		else {
-			throw new IllegalArgumentException("Data disponivel informada é maior que data limite ou já informada!");
+			formatoDaData = new PeriodFormatterBuilder()
+					.appendMinutes().appendSuffix(" minuto "," minutos ").toFormatter();
 		}
+
+		return period.toString(formatoDaData);
 	}
 
-	public void acessivelAte(DateTime dataLimite) {
-		if (dataLimite.isBefore( dataDisponivel)) {
-			this.dataLimite = dataLimite;
-		} else {
-			throw new IllegalArgumentException("Data Limite informada é menor que data disponivel ou  já informada!");
-		}
-	}
-
-	public String expiraEm(){
-		Period prazoExpiracao =  new Period(dataDisponivel,dataLimite);
-
-		if(possuiDias(prazoExpiracao)) {
-			return obtemDias(prazoExpiracao);
-		}
-		else if (possuiHorasEhMinutos(prazoExpiracao)) {
-			return prazoExpiracao.getHours() + " horas e " + prazoExpiracao.getMinutes() + " minutos";
-		} else {
-			return prazoExpiracao.getHours() + " horas e " + prazoExpiracao.getMinutes() + " minut";
-		}
-
-		}
-
-	private boolean possuiDias(Period periodo){
-		return periodo.getDays() > 0;
-	}
-	private String obtemDias(Period periodo){
-		return periodo.getDays() + " dias";
-	}
-
-	private boolean possuiHorasEhMinutos(Period periodo){
-		return periodo.getHours() >= 1 && periodo.getMinutes() >=1;
+	public boolean estaDisponivel(){
+		DateTime dataAtual = DateTime.now();
+		return dataAtual.isBefore(dataLimite);
 	}
 
 	public String getNome() {

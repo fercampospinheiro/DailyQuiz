@@ -64,5 +64,12 @@ public class QuestionarioController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/novo")
+    public String carregaNovo(Model model){
+        Questionario questionario =  new Questionario();
+        model.addAttribute("questionario",questionario);
+        return "/Questionario/novoQuestionario";
+    }
+
 
 }

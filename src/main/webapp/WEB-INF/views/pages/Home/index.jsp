@@ -5,7 +5,7 @@
 <html>
 <head>
 </head>
-<body>
+<body onload="format()">
 
 <div class="container">
     <!--Area de login do membro -->
@@ -41,7 +41,7 @@
                 <br>
                 <p class="list-group-item-text">Fácil, simples para você criar seu questionário</p>
                 <br>
-                <button class="btn btn-success btn-lg small">Criar Agora</button>
+                <a href = "/Questionario/novo"class="btn btn-success btn-lg small">Criar Agora</a>
             </div>
             <br>
 
@@ -89,10 +89,26 @@
             <h4 class="list-group-item active">Disponiveis</h4>
             <ul class="list-group">
                 <c:forEach items="${questionarios}" var="questionario">
-                    <a href="Questionario/${questionario.id}" class="list-group-item">
-                            ${questionario.nome}
-                        <span class="col-md-offset-1 label label-danger">${questionario.expiraEm()}</span>
-                    </a>
+
+                    <c:choose>
+                        <c:when test="${questionario.estaDisponivel() eq true}">
+                            <a href="Questionario/${questionario.id}" class="list-group-item">
+                                    ${questionario.nome}
+                                <span class="col-md-offset-1 label label-success">
+                                        ${questionario.expiraEm()}
+                                </span>
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="" class="list-group-item">
+                                    ${questionario.nome}
+                                <span class="col-md-offset-1 label label-danger">
+                                        ${questionario.expiraEm()}
+                                </span>
+                            </a>
+                        </c:otherwise>
+
+                    </c:choose>
                 </c:forEach>
 
             </ul>

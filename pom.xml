@@ -32,7 +32,7 @@
 
         <!--  Dates  -->
         <joda-time-jsptags.version>1.1.1</joda-time-jsptags.version>
-        <joda-time.version>2.3</joda-time.version>
+        <joda-time.version>2.7</joda-time.version>
         <jadira-usertype-core.version>3.2.0.GA</jadira-usertype-core.version>
 
     </properties>
@@ -341,7 +341,11 @@
             <artifactId>sitemesh</artifactId>
             <version>2.3</version>
         </dependency>
-
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.3</version>
+        </dependency>
 
 
     </dependencies>

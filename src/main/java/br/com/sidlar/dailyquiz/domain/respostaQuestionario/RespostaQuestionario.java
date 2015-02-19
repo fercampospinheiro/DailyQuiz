@@ -5,6 +5,8 @@ import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questi
 import com.google.common.collect.Lists;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -86,8 +88,9 @@ public class RespostaQuestionario {
         return id;
     }
 
-    public LocalDate getDataReposta() {
-        return dataReposta;
+    public String getDataReposta() {
+        DateTimeFormatter formataDaDate =  DateTimeFormat.forPattern("dd/MM/yyyy");
+        return dataReposta.toString(formataDaDate);
     }
 }
 
