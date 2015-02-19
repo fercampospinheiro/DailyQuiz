@@ -60,13 +60,13 @@ public class Questionario {
 			this.dataLimite = dataLimite;
 	}
 
-	public String expiraEm() {
+	public String obtemPeriodoRestanteFormatado() {
 
 		if(!estaDisponivel()){
 			return "prazo expirado";
 		}
 
-		DateTime dataAtual = new DateTime().now();
+		DateTime dataAtual = DateTime.now();
 		Period period = new Period( dataAtual, dataLimite);
 		PeriodFormatter formatoDaData;
 

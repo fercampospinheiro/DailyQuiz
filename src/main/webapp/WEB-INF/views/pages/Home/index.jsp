@@ -95,7 +95,7 @@
                             <a href="Questionario/${questionario.id}" class="list-group-item">
                                     ${questionario.nome}
                                 <span class="col-md-offset-1 label label-success">
-                                        ${questionario.expiraEm()}
+                                        ${questionario.obtemPeriodoRestanteFormatado()}
                                 </span>
                             </a>
                         </c:when>
@@ -103,7 +103,7 @@
                             <a href="" class="list-group-item">
                                     ${questionario.nome}
                                 <span class="col-md-offset-1 label label-danger">
-                                        ${questionario.expiraEm()}
+                                        ${questionario.obtemPeriodoRestanteFormatado()}
                                 </span>
                             </a>
                         </c:otherwise>
