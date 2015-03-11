@@ -28,22 +28,38 @@
 
 <h2>teste</h2>
 
-<form:form modelAttribute="questionario" action="novo">
-    Titulo do Questionario:<form:input path="nome"/>
+<form >
+    <div class= 'form-group'>
+        <label>
+            Titulo do Questionario:
+        </label>
+        <input path="nome" class = 'form-control'/>
+    </div>
+    <div class= 'form-goup'>
+        <label>
+            Pergunta :
+        </label>
+        <input path="questoes[0].pergunta" class= 'form-control'/>
+    </div>
+    <div class = 'form-group'>
+        <div class = "novaAlternativa">
+            <label >
+                ordem:
+            </label>
+            <input path="questoes[0].alternativas[0].ordem" class= 'form-control'/>
 
-        <div id ="perguntaAtual">
-            Pergunta :<form:input path="questoes[0].pergunta" cssClass="input"/>
-                <div class = "novaAlternativa">
-                    ordem:<form:input path="questoes[0].alternativas[0].ordem" cssClass="input"/>
-                    descricao:<form:input path="questoes[0].alternativas[0].descricao" cssClass="input"/>
-                </div>
-            <a href="javascript:duplicarCampos('perguntaAtual');">+</a>
-            <a href="javascript:removerCampos('novaPergunta');">-</a>
+            <label>
+                descricao:
+            </label>
+            <input path="questoes[0].alternativas[0].descricao" class='form-control'/>
         </div>
+
         <div id ="novaPergunta">
 
         </div>
+    </div>
 
-    <button>Adicionar</button>
-</form:form>
+
+    <a href ='#' class = 'btn' id='ok'>Adicionar</a>
+</form>
 
