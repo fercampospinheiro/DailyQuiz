@@ -4,62 +4,58 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script>
 
-    function duplicarCampos(campo){
-        var clone = document.getElementById(campo).cloneNode(true);
-        var destino = document.getElementById(campo);
-        destino.appendChild (clone);
+    $("#ok").click(
 
-        var camposClonados = clone.getElementsByClassName('input');
+            function (){
+                var novaAlternativa,atributo,descricaoAtributo;
+                atributo = "path";
+                descricaoAtributo = "questoes[0].alternativas[0].descricao";
 
-        for(i=0; i<camposClonados.length;i++){
-            camposClonados[i].value = '';
-        }
-
-
-
-    }
-
-    function removerCampos(campo){
-        var node1 = document.getElementById(campo);
-        node1.removeChild(node1.childNodes[0]);
-    }
+                novaAlternativa =  $(".alternativa").clone();
+                novaAlternativa.attr(atributo,descricaoAtributo);
+                novaAlternativa.appendTo(".alternativas");
+            }
+    )
 
 </script>
 
 <h2>teste</h2>
 
-<form >
-    <div class= 'form-group'>
-        <label>
-            Titulo do Questionario:
-        </label>
-        <input path="nome" class = 'form-control'/>
-    </div>
-    <div class= 'form-goup'>
-        <label>
-            Pergunta :
-        </label>
-        <input path="questoes[0].pergunta" class= 'form-control'/>
-    </div>
-    <div class = 'form-group'>
-        <div class = "novaAlternativa">
-            <label >
-                ordem:
-            </label>
-            <input path="questoes[0].alternativas[0].ordem" class= 'form-control'/>
-
+<div class='col-xs-4'>
+    <form >
+        <div class= 'form-group'>
             <label>
-                descricao:
+                Titulo do Questionario:
             </label>
-            <input path="questoes[0].alternativas[0].descricao" class='form-control'/>
+            <input path="nome" class = 'form-control'/>
+        </div>
+        <div class= 'form-goup'>
+            <label>
+                Pergunta :
+            </label>
+            <input path="questoes[0].pergunta" class= 'form-control'/>
+        </div>
+        <div class = 'form-group alternativas'>
+            <div class = "alternativa">
+                <label >
+                    ordem:
+                </label>
+                <input path="questoes[0].alternativas[0].ordem" class= 'form-control'/>
+
+                <label>
+                    descricao:
+                </label>
+                <input path="questoes[0].alternativas[0].descricao" class='form-control'/>
+            </div>
+            <div class ="novaAlternativa">
+
+            </div>
+            <br>
+            <a href ='#' class = 'btn btn-default' id='ok'>nova alternativa</a>
+            </br>
+
         </div>
 
-        <div id ="novaPergunta">
-
-        </div>
-    </div>
-
-
-    <a href ='#' class = 'btn' id='ok'>Adicionar</a>
-</form>
+    </form>
+</div>
 
