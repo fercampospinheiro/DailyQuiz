@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/libs/bootstrap/3_3/css/bootstrap.min.css"/>">
     <script src="<c:url value="/resources/libs/bootstrap/3_3/js/bootstrap.min.js" />"></script>
-    <script src="<c:url value="/resources/libs/moment/moment-with-locales.min.js" />"></script>
+    <script src="<c:url value="/resources/js/novoQuestionario.js" />"></script>
     <style>
         #corpoPagina{
             border-color: #222222;

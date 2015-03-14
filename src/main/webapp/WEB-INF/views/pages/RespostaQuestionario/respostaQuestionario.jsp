@@ -113,7 +113,7 @@
 
     <div class="panel-footer clearfix">
       <div class="pull-right">
-        <a href="/" class="btn btn-primary">Voltar</a>&nbsp
+        <a href="../" class="btn btn-primary">Voltar</a>&nbsp
       </div>
     </div>
   </div>

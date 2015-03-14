@@ -2,22 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script>
 
-    $("#ok").click(
-
-            function (){
-                var novaAlternativa,atributo,descricaoAtributo;
-                atributo = "path";
-                descricaoAtributo = "questoes[0].alternativas[0].descricao";
-
-                novaAlternativa =  $(".alternativa").clone();
-                novaAlternativa.attr(atributo,descricaoAtributo);
-                novaAlternativa.appendTo(".alternativas");
-            }
-    )
-
-</script>
 
 <h2>teste</h2>
 
@@ -58,4 +43,5 @@
 
     </form>
 </div>
+
 

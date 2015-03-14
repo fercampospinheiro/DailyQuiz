@@ -17,14 +17,14 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
+                <li class="active"><a href="../">Home</a></li>
             </ul>
         </div>
 
         </div>
         <div class="col-md-offset-5 col-md-3 panel-default">
             <div class="panel-body">
-                <form method="post" action="/Logout">
+                <form method="post" action="../Logout">
                     Olá, ${dadosAutenticacao.membro.nome}!
                     <button class="btn-xs">sair</button>
                 </form>
