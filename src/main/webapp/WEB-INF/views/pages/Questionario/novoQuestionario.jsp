@@ -20,23 +20,14 @@
             </label>
             <input path="questoes[0].pergunta" class= 'form-control'/>
         </div>
-        <div class = 'form-group alternativas'>
-            <div class = "alternativa">
-                <label >
-                    ordem:
-                </label>
-                <input path="questoes[0].alternativas[0].ordem" class= 'form-control'/>
+        <div class = 'form-group'>
 
-                <label>
-                    descricao:
-                </label>
-                <input path="questoes[0].alternativas[0].descricao" class='form-control'/>
-            </div>
-            <div class ="novaAlternativa">
+            <div class='alternativas'>
 
             </div>
+
             <br>
-            <a href ='#' class = 'btn btn-default' id='ok'>nova alternativa</a>
+            <a href ='#' class = 'btn btn-default btn-xs' id='adicionaAlternativa'>+</a>
             </br>
 
         </div>
