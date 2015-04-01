@@ -17,7 +17,7 @@ $(
             '<div class = "alternativa"+"i">'+
 
                 '<label >'+
-                  i +  ' ordem:'+'<a href ="javascript:removeAlternativa('+i+');" class = "btn btn-default btn-xs">x</a>'+
+                  i +  'ordem:'+'<a href ="javascript:removeAlternativa('+i+');" class = "btn btn-default btn-xs">x</a>'+
                 '</label>'+
                 '<input path="questoes[0].alternativas['+i+'].ordem" class= "form-control"/>'+
 
