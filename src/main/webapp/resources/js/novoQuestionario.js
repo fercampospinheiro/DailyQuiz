@@ -8,25 +8,18 @@ $(
 
       function geraEstrutura(){
         i = i +1
-        $('.alternativas').append(novaAlternativa())
+        novaAlternativa();
       }
 
       function novaAlternativa(){
 
-        return $(
-            '<div class = "alternativa"+"i">'+
+       var htmlAlternativa = $(".alternativas").html();
+    	 var divALternativa = "<div>";
+    	 var labelOrdem = "<label>" ;
 
-                '<label >'+
-                  i +  ' ordem:'+'<a href ="javascript:removeAlternativa('+i+');" class = "btn btn-default btn-xs">x</a>'+
-                '</label>'+
-                '<input path="questoes[0].alternativas['+i+'].ordem" class= "form-control"/>'+
+    	 htmlAlternativa.html(divALternativa).Attr("class","alternativa");
+    	 htmlAlternativa.children(".alternativa").html(labelOrdem + labelOrdem);
 
-                '<label>'+
-                    'descricao:'+
-                '</label>'+
-                '<input path="questoes[0].alternativas['+i+'].descricao" class="form-control"/>'+
-            '</div>'
-            );
       }
 
       geraEstrutura();
@@ -40,5 +33,6 @@ $(
       function removeAlternativa(numero){
 
           $('.alternativa'+numero).hide();
+
 
             }
