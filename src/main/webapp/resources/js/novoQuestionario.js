@@ -1,5 +1,5 @@
 
-var i = 0;
+var numeroAlternativa = 0;
 
 $(
 
@@ -7,26 +7,43 @@ $(
 
 
       function geraEstrutura(){
-        i = i +1
-        $('.alternativas').append(novaAlternativa())
+        novaAlternativa(obtemNumeroALternativa());
       }
 
-      function novaAlternativa(){
+      function obtemNumeroALternativa(){
+        numeroAlternativa = numeroAlternativa + 1;
+        return numeroAlternativa;
+      }
 
-        return $(
-            '<div class = "alternativa"+"i">'+
 
-                '<label >'+
-                  i +  'ordem:'+'<a href ="javascript:removeAlternativa('+i+');" class = "btn btn-default btn-xs">x</a>'+
-                '</label>'+
-                '<input path="questoes[0].alternativas['+i+'].ordem" class= "form-control"/>'+
 
-                '<label>'+
-                    'descricao:'+
-                '</label>'+
-                '<input path="questoes[0].alternativas['+i+'].descricao" class="form-control"/>'+
-            '</div>'
-            );
+      function novaAlternativa(numero){
+
+       var novaAlternativa = "alternativa" + numero;
+       var classNovaALternativa = ".alternativa" + numero
+
+       var div = $("<div>");
+       var label = $("<label>") ;
+       var input = $("<input>");
+
+       div.attr({
+         class: novaAlternativa
+       });
+       input.attr({
+         type:"text",
+         name: novaAlternativa
+       });
+       
+
+       $(".alternativas").append(div);
+
+       //campo ordem
+       $(classNovaALternativa).append(label).text("ordem");
+       $(classNovaALternativa).append(input)
+       //campo descricao
+       $(classNovaALternativa).append(label).text("descricao");
+       $(classNovaALternativa).append(input)
+
       }
 
       geraEstrutura();
@@ -40,5 +57,6 @@ $(
       function removeAlternativa(numero){
 
           $('.alternativa'+numero).hide();
+
 
             }
