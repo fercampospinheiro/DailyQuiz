@@ -1,7 +1,7 @@
 
 var numeroAlternativa = 0;
 
-$(
+$(function(){
 
     $("#adicionaAlternativa").click(function(){
 
@@ -19,30 +19,25 @@ $(
 
       function novaAlternativa(numero){
 
-       var novaAlternativa = "alternativa" + numero;
        var classNovaALternativa = ".alternativa" + numero
 
-       var div = $("<div>");
-       var label = $("<label>") ;
-       var input = $("<input>");
+       var divAlternativa = $("<div>");
+       var labelOrdem = $("<label>ordem</label>") ;
+       var inputOrdem = $("<input type:'text'>descrição</input>");
 
-       div.attr({
-         class: novaAlternativa
-       });
-       input.attr({
-         type:"text",
-         name: novaAlternativa
-       });
+       divAlternativa.addClass("alternativa"+numero);
+
+       input.prop("name","alternativa"+numero);
        
 
-       $(".alternativas").append(div);
+       $(".alternativas").append(divAlternativa);
 
        //campo ordem
-       $(classNovaALternativa).append(label).text("ordem");
-       $(classNovaALternativa).append(input)
+       divAlternativa.append(label).text("ordem");
+       divAlternativa.append(input);
        //campo descricao
-       $(classNovaALternativa).append(label).text("descricao");
-       $(classNovaALternativa).append(input)
+       divAlternativa.append(label).text("descricao");
+       divAlternativa.append(input);
 
       }
 

@@ -5,8 +5,9 @@
 
 
 <script type="text/javascript">
-    var i = 0;
 
+
+    var i = 0;
 
 
 
@@ -16,8 +17,6 @@
 
 
         $("#adicionaAlternativa").click(function(){
-
-
                     function geraEstrutura(){
                         i++;
                         $('.alternativas').append(novaAlternativa())
@@ -28,7 +27,7 @@
                         $("<div>").html("ashfjkasgjksjk");
                         $("<ul>").html("ashfjkasgjksjk");
 
-
+//                    <div> <li></li> <li></li> </div>
                         return $(
                                         '<div class = "alternativa' + i + '">'+
 
@@ -48,19 +47,28 @@
                     geraEstrutura();
 
                 }
+        );
 
-        )
+       var remove =  function removeAlternativa(numero){
+
+            $('.alternativa'+numero).hide();
+
+        }
+
 
     });
 
-    function removeAlternativa(numero){
 
-        $('.alternativa'+numero).hide();
-
-    }
 
 </script>
-
+<script id="entry-template" type="text/x-handlebars-template">
+    <div class="entry{{title}}">
+        <h1></h1>
+        <div class="body">
+            {{body}}
+        </div>
+    </div>
+</script>
 </head>
 
 <body>
