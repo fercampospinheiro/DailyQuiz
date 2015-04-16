@@ -43,15 +43,13 @@ $(function(){
 
       geraEstrutura();
 
-      }
+      });
 
-        )
-
-  )
+  });
 
       function removeAlternativa(numero){
 
           $('.alternativa'+numero).hide();
 
 
-            }
+            };
