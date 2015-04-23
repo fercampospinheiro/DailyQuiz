@@ -17,12 +17,26 @@
 
 		
 		.painel-questao{ 
-			border:1px solid blue;
-        	border-radius: 10px;
+			border:1px solid darkgray;
+            box-shadow: 5px 1px 3px #696969;
+
 		}
 
         .questao{
         	margin : 1% 1%;
+        }
+
+        .alternativas{
+            border-left: 1px lightgrey solid ;
+            border-right: 1px lightgrey solid;
+            border-bottom: 1px lightgrey solid ;
+            border-radius: 0px 0px 8px 8px;
+            padding: 0.5% 1%;
+
+
+        }
+        .nova-questao{
+            width: 100%;
         }
         .nova-alternativa{
         	margin : 1% 1%;
@@ -83,11 +97,14 @@
 		    <div class="questao">
 		
 		      <h3>Elabore a primeira pergunta</h3>
-		
-				<div class="pergunta input-group">
+                <div class="nova-questao form-group">
+                    <a href ="#" class="botao btn btn-default btn-xs pull-right">nova Pergunta</a>
+                </div>
+
+                <div class="pergunta input-group">
 					<div class="ordem input-group-addon">1</div>
-				  	<label class="sr-only" for="pergunta">pergunta : </label>
-				  	<input id="pergunta"  class="form-control" type="text" name="" placeholder="informe a pergunta"/>	     
+				  	<label class="sr-only" for="input-pergunta">pergunta : </label>
+				  	<input id="input-pergunta"  class="form-control" type="text" name="" placeholder="informe a pergunta"/>
 					<a href="#" class="excluir-pergunta input-group-addon">
 				  		<span class="glyphicon glyphicon-trash" ></span>
 				  	</a>	     
@@ -97,8 +114,8 @@
 		        	<h3>Elabore a primeira alternativa</h3>
 		        	<div class="alternativa input-group">
 		          		<div class="ordem input-group-addon">A</div>
-		          		<label class="sr-only" for="alternativa" >Alternativa :</label>
-		          		<input  id="alternativa" class = "form-control" type = "text" name="" placeholder="informe a alternativa"/>
+		          		<label class="sr-only" for="input-alternativa" >Alternativa :</label>
+		          		<input  id="input-alternativa" class = "form-control" type = "text" name="" placeholder="informe a alternativa"/>
 		            	<a href="#" class="excluir-pergunta input-group-addon">
 		        			<span class="glyphicon glyphicon-trash" ></span>		
 		        		</a>
@@ -110,7 +127,7 @@
 				
 			</div>
 		
-		    <div class="nova-questao btn btn-default btn-xs">nova Pergunta</div>
+
 		</div>
 	</div>
 
