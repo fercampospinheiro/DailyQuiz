@@ -6,74 +6,6 @@
 <head>
 <script src="<c:url value="/resources/libs/handleBars/handlebars-v3.0.1.js" />"></script>
 
-
-<%--<script type="text/javascript">--%>
-
-
-    <%--var i = 0;--%>
-
-
-
-    <%--$(function(){--%>
-
-
-
-
-        <%--$("#adicionaAlternativa").click(function(){--%>
-                    <%--function geraEstrutura(){--%>
-                        <%--i++;--%>
-                        <%--$('.alternativas').append(novaAlternativa())--%>
-                    <%--}--%>
-
-                    <%--function novaAlternativa(){--%>
-
-                        <%--$("<div>").html("ashfjkasgjksjk");--%>
-                        <%--$("<ul>").html("ashfjkasgjksjk");--%>
-
-<%--//                    <div> <li></li> <li></li> </div>--%>
-                        <%--return $(--%>
-                                        <%--'<div class = "alternativa' + i + '">'+--%>
-
-                                        <%--'<label >'+--%>
-                                        <%--i +  'ordem:'+'<a class="remove-alternativo" href ="#" onclick="removeAlternativa(' + i + ');" class = "btn btn-default btn-xs">x</a>'+--%>
-                                        <%--'</label>'+--%>
-                                        <%--'<input path="questoes[0].alternativas['+i+'].ordem" class= "form-control"/>'+--%>
-
-                                        <%--'<label>'+--%>
-                                        <%--'descricao:'+--%>
-                                        <%--'</label>'+--%>
-                                        <%--'<input path="questoes[0].alternativas['+i+'].descricao" class="form-control"/>'+--%>
-                                        <%--'</div>'--%>
-                        <%--);--%>
-                    <%--}--%>
-
-                    <%--geraEstrutura();--%>
-
-                <%--}--%>
-        <%--);--%>
-
-       <%--var remove =  function removeAlternativa(numero){--%>
-
-            <%--$('.alternativa'+numero).hide();--%>
-
-        <%--}--%>
-
-
-    <%--});--%>
-
-
-
-<%--</script>--%>
-<%--<script id="entry-template" type="text/x-handlebars-template">--%>
-    <%--<div class="entry{{title}}">--%>
-        <%--<h1></h1>--%>
-        <%--<div class="body">--%>
-            <%--{{body}}--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</script>--%>
-
-
     <style>
         .ha {
             border: 2px dotted blue;
@@ -82,6 +14,20 @@
         .lista {
             border: 1px solid;
         }
+
+		
+		.painel-questao{ 
+			border:1px solid blue;
+        	border-radius: 10px;
+		}
+
+        .questao{
+        	margin : 1% 1%;
+        }
+        .nova-alternativa{
+        	margin : 1% 1%;
+        }
+
     </style>
 
     <script>
@@ -128,37 +74,46 @@
     </div>
 </script>
 
-<h2>Novo Questionário</h2>
+ <form>
+    
+    
+    <div class="questionario col-md-12 ">
+    
+	    <div class="painel-questao">
+		    <div class="questao">
+		
+		      <h3>Elabore a primeira pergunta</h3>
+		
+				<div class="pergunta input-group">
+					<div class="ordem input-group-addon">1</div>
+				  	<label class="sr-only" for="pergunta">pergunta : </label>
+				  	<input id="pergunta"  class="form-control" type="text" name="" placeholder="informe a pergunta"/>	     
+					<a href="#" class="excluir-pergunta input-group-addon">
+				  		<span class="glyphicon glyphicon-trash" ></span>
+				  	</a>	     
+				</div>
+		
+				<div class="alternativas col-md-offset-1">
+		        	<h3>Elabore a primeira alternativa</h3>
+		        	<div class="alternativa input-group">
+		          		<div class="ordem input-group-addon">A</div>
+		          		<label class="sr-only" for="alternativa" >Alternativa :</label>
+		          		<input  id="alternativa" class = "form-control" type = "text" name="" placeholder="informe a alternativa"/>
+		            	<a href="#" class="excluir-pergunta input-group-addon">
+		        			<span class="glyphicon glyphicon-trash" ></span>		
+		        		</a>
+		        	</div>
+		       		<div class="nova-alternativa">
+		       			<a href="#" class="btn btn-default btn-xs">nova Alternativa</a>
+		       		</div>
+				</div>
+				
+			</div>
+		
+		    <div class="nova-questao btn btn-default btn-xs">nova Pergunta</div>
+		</div>
+	</div>
 
-<div id="aqui"></div>
-
-<div class='col-xs-4'>
-    <form >
-        <div class= 'form-group'>
-            <label>
-                Titulo do Questionario:
-            </label>
-            <input path="nome" class = 'form-control'/>
-        </div>
-        <div class= 'form-goup'>
-            <label>
-                Pergunta :
-            </label>
-            <input path="questoes[0].pergunta" class= 'form-control'/>
-        </div>
-        <div class = 'form-group'>
-
-            <div class='alternativas'>
-
-            </div>
-
-            <br>
-            <a href ='#' class = 'btn btn-default btn-xs' id='adicionaAlternativa'>+</a>
-            </br>
-
-        </div>
-
-    </form>
-</div>
+  </form>
 
 </body>
