@@ -18,7 +18,7 @@
 		
 		.painel-questao{ 
 			border:1px solid darkgray;
-            box-shadow: 5px 1px 3px #696969;
+            box-shadow: 3px 1px 3px #696969;
 
 		}
 
@@ -96,8 +96,8 @@
 	    <div class="painel-questao">
 		    <div class="questao">
 		
-		      <h3>Elabore a primeira pergunta</h3>
-                <div class="nova-questao form-group">
+		      <h4>Elabore a primeira pergunta</h4>
+                <div class="nova-questao form-group col-md-12">
                     <a href ="#" class="botao btn btn-default btn-xs pull-right">nova Pergunta</a>
                 </div>
 
@@ -111,7 +111,7 @@
 				</div>
 		
 				<div class="alternativas col-md-offset-1">
-		        	<h3>Elabore a primeira alternativa</h3>
+		        	<h4>Elabore a primeira alternativa</h4>
 		        	<div class="alternativa input-group">
 		          		<div class="ordem input-group-addon">A</div>
 		          		<label class="sr-only" for="input-alternativa" >Alternativa :</label>
