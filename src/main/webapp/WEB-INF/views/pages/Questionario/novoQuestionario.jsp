@@ -46,47 +46,89 @@
 
     <script>
         $(function(){
-            var source   = $("#entry-template").html();
-            var template = Handlebars.compile(source);
 
-            var context = {
-                nome: "João",
-                enderecos: [
-                    {
-                        bairro: "baaaa",
-                        cidade: "São Paulo"
-                    },
-                    {
-                        bairro: "asdasdas",
-                        cidade: "Rio de Janeiro"
-                    },
-                    {
-                        bairro: "ggggg",
-                        cidade: "jjajajajajaja"
-                    }
-                ]
-            };
-            var html    = template(context);
+            $(".nova-alternativa").on("click", function(){
+                var novaAlternativa = geraNovaAlternativa();
+                $("#alternativas").append(novaAlternativa);
+            });
 
-            $("#aqui").append(html);
+            var $botaoNovaQuestao = $(".nova-questao");
+            $botaoNovaQuestao.on("click", function () {
+                var novaQuestao = geraNovaQuestao();
+                $(".painel-questao").append(novaQuestao);
+            });
+
+            $botaoNovaQuestao.click();
+
         });
+
+        var numeroAlternativa = 0;
+        var numeroQuestao = 0;
+
+        function geraNovaAlternativa(){
+            var source =  $("#alternativa-template").html();
+            var template = Handlebars.compile(source);
+            var context = {numero: ++numeroAlternativa};
+            return template(context);
+        }
+
+        function geraNovaQuestao(){
+            var source =  $("#questao-template").html();
+            var template = Handlebars.compile(source);
+            var context = {numero: ++numeroQuestao};
+            return template(context);
+        }
+
     </script>
 
 </head>
 
 <body>
 
-<script id="entry-template" type="text/x-handlebars-template">
-    <div class="ha">
-        <h1>{{nome}}</h1>
-        <ul class="lista">
-        {{#each enderecos}}
-        <li>{{bairro}}</li>
-        <li>{{cidade}}</li>
-        {{/each}}
-        </ul>
+<script id="questao-template" type="text/x-handlebars-template">
+
+    <div class="questao{{numeroQuestao}}">
+
+        <div class="nova-questao form-group col-md-12">
+            <h4>Elabore a primeira pergunta</h4> <a href ="#" class="botao btn btn-default btn-xs pull-right">nova Pergunta</a>
+        </div>
+
+        <div class="pergunta input-group">
+            <div class="ordem input-group-addon">1</div>
+            <label class="sr-only" for="input-pergunta">pergunta : </label>
+            <input id="input-pergunta"  class="form-control" type="text" name="questao{{numeroQuestao}}" placeholder="informe a pergunta"/>
+            <a href="#" class="excluir-pergunta input-group-addon">
+                <span class="glyphicon glyphicon-trash" ></span>
+            </a>
+        </div>
+
+        <div id ="alternativas" class="alternativas col-md-offset-1">
+            <h4>Elabore a primeira alternativa</h4>
+
+
+            <div class="nova-alternativa">
+                <a href="#" class="btn btn-default btn-xs">nova Alternativa</a>
+            </div>
+        </div>
+
+    </div>
+
+
+</script>
+
+
+<script id="alternativa-template" type="text/x-handlebars-template">
+    <div class="alternativa{{numeroAlternativa}} input-group">
+        <div class="ordem input-group-addon"></div>
+        <label class="sr-only" for="input-alternativa" >Alternativa :</label>
+        <input  id="input-alternativa" class = "form-control" type = "text" name="alternativa{{numeroAlternativa}}" placeholder="informe a alternativa"/>
+        <a href="#" class="excluir-pergunta input-group-addon">
+            <span class="glyphicon glyphicon-trash" ></span>
+        </a>
     </div>
 </script>
+
+
 
  <form>
     
@@ -94,39 +136,7 @@
     <div class="questionario col-md-12 ">
     
 	    <div class="painel-questao">
-		    <div class="questao">
-		
-		      <h4>Elabore a primeira pergunta</h4>
-                <div class="nova-questao form-group col-md-12">
-                    <a href ="#" class="botao btn btn-default btn-xs pull-right">nova Pergunta</a>
-                </div>
 
-                <div class="pergunta input-group">
-					<div class="ordem input-group-addon">1</div>
-				  	<label class="sr-only" for="input-pergunta">pergunta : </label>
-				  	<input id="input-pergunta"  class="form-control" type="text" name="" placeholder="informe a pergunta"/>
-					<a href="#" class="excluir-pergunta input-group-addon">
-				  		<span class="glyphicon glyphicon-trash" ></span>
-				  	</a>	     
-				</div>
-		
-				<div class="alternativas col-md-offset-1">
-		        	<h4>Elabore a primeira alternativa</h4>
-		        	<div class="alternativa input-group">
-		          		<div class="ordem input-group-addon">A</div>
-		          		<label class="sr-only" for="input-alternativa" >Alternativa :</label>
-		          		<input  id="input-alternativa" class = "form-control" type = "text" name="" placeholder="informe a alternativa"/>
-		            	<a href="#" class="excluir-pergunta input-group-addon">
-		        			<span class="glyphicon glyphicon-trash" ></span>		
-		        		</a>
-		        	</div>
-		       		<div class="nova-alternativa">
-		       			<a href="#" class="btn btn-default btn-xs">nova Alternativa</a>
-		       		</div>
-				</div>
-				
-			</div>
-		
 
 		</div>
 	</div>
