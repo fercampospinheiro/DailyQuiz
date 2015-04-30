@@ -27,9 +27,9 @@
                         <button type="submit" class="btn btn-default">Entrar</button>
                     </div>
                     <div class="form-group">
-                        <a href = "/CadastraMembro">Não possuo usuário</a>
+                        <a href = "<c:url value ='/CadastraMembro'/>">Não possuo usuário</a>
                     </div>
-
+ 
                     <c:if test="${not empty erro}">
                         <div class="alert alert-danger" role="alert">
                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

@@ -55,6 +55,6 @@ public class Alternativa {
 
     @Override
     public int hashCode() {
-        return ordem.hashCode();
-    }
+		return ordem.hashCode();
+	}
 }

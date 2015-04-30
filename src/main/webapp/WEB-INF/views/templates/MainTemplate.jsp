@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/libs/bootstrap/3_3/css/bootstrap.min.css"/>">
     <script src="<c:url value="/resources/libs/bootstrap/3_3/js/bootstrap.min.js" />"></script>
     <script src="<c:url value="/resources/js/novoQuestionario.js" />"></script>
-    <style>
+                      <style>
         #corpoPagina{
             border-color: #222222;
             border : 10px;
