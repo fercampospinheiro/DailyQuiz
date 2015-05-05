@@ -5,6 +5,7 @@
 
 <head>
 <script src="<c:url value="/resources/libs/handleBars/handlebars-v3.0.1.js" />"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
     <style>
         .ha {
@@ -47,23 +48,20 @@
     <script>
         $(function(){
 
-            $(".nova-alternativa").on("click", function(){
-                var novaAlternativa = geraNovaAlternativa();
-                $("#alternativas").append(novaAlternativa);
-            });
+            $(".nova-alternativa").on("click", insereNovaQuestao());
 
-            var $botaoNovaQuestao = $(".nova-questao");
-            $botaoNovaQuestao.on("click", function () {
-                var novaQuestao = geraNovaQuestao();
-                $(".painel-questao").append(novaQuestao);
-            });
+            $(".nova-questao").on("click",insereNovaQuestao());
 
-            $botaoNovaQuestao.click();
+
+            insereNovaQuestao();
+            insereNovaAlternativa();
+            insereNovaAlternativa();
 
         });
 
         var numeroAlternativa = 0;
         var numeroQuestao = 0;
+
 
         function geraNovaAlternativa(){
             var source =  $("#alternativa-template").html();
@@ -79,6 +77,24 @@
             return template(context);
         }
 
+
+        function insereNovaQuestao(){
+            var novaQuestao = geraNovaQuestao();
+            $(".painel-questao").append(novaQuestao);
+        }
+
+        function insereNovaAlternativa(){
+            var novaAlternativa = geraNovaAlternativa();
+            $(".lista-alternativas").append(novaAlternativa);
+        }
+
+
+
+        $(function() {
+            $( ".lista-alternativas" ).sortable();
+            $( ".lista-alternativas" ).disableSelection();
+        });
+
     </script>
 
 </head>
@@ -87,27 +103,30 @@
 
 <script id="questao-template" type="text/x-handlebars-template">
 
-    <div class="questao{{numeroQuestao}}">
+    <div class="questao{{numero}}">
 
         <div class="nova-questao form-group col-md-12">
-            <h4>Elabore a primeira pergunta</h4> <a href ="#" class="botao btn btn-default btn-xs pull-right">nova Pergunta</a>
+            <h4>Elabore a primeira pergunta</h4> <a href ="#" class="btn btn-default btn-xs pull-right">nova Pergunta</a>
         </div>
 
         <div class="pergunta input-group">
             <div class="ordem input-group-addon">1</div>
             <label class="sr-only" for="input-pergunta">pergunta : </label>
-            <input id="input-pergunta"  class="form-control" type="text" name="questao{{numeroQuestao}}" placeholder="informe a pergunta"/>
+            <input id="input-pergunta"  class="form-control" type="text" name="questao{{numero}}" placeholder="informe a pergunta"/>
             <a href="#" class="excluir-pergunta input-group-addon">
                 <span class="glyphicon glyphicon-trash" ></span>
             </a>
         </div>
 
-        <div id ="alternativas" class="alternativas col-md-offset-1">
+        <div class="alternativas col-md-offset-1">
             <h4>Elabore a primeira alternativa</h4>
+            <div class="lista-alternativas" >
 
+
+            </div>
 
             <div class="nova-alternativa">
-                <a href="#" class="btn btn-default btn-xs">nova Alternativa</a>
+                <a href="#" class=" btn btn-default btn-xs">nova Alternativa</a>
             </div>
         </div>
 
@@ -118,10 +137,10 @@
 
 
 <script id="alternativa-template" type="text/x-handlebars-template">
-    <div class="alternativa{{numeroAlternativa}} input-group">
+    <div class="alternativa{{numero}} ui-state-default input-group">
         <div class="ordem input-group-addon"></div>
         <label class="sr-only" for="input-alternativa" >Alternativa :</label>
-        <input  id="input-alternativa" class = "form-control" type = "text" name="alternativa{{numeroAlternativa}}" placeholder="informe a alternativa"/>
+        <input  id="input-alternativa" class = "form-control" type = "text" name="alternativa{{numero}}" placeholder="informe a alternativa"/>
         <a href="#" class="excluir-pergunta input-group-addon">
             <span class="glyphicon glyphicon-trash" ></span>
         </a>
