@@ -20,7 +20,6 @@
 		.painel-questao{ 
 			border:1px solid darkgray;
             box-shadow: 3px 1px 3px #696969;
-
 		}
 
         .questao{
@@ -33,8 +32,6 @@
             border-bottom: 1px lightgrey solid ;
             border-radius: 0px 0px 8px 8px;
             padding: 0.5% 1%;
-
-
         }
         .nova-questao{
             width: 100%;
@@ -48,27 +45,20 @@
     <script>
         $(function(){
 
-            $(".nova-alternativa").on("click", insereNovaQuestao());
-            $(".nova-questao").on("click",insereNovaQuestao());
-            $(".nova-questao").trigger("click");
 
+            insereNovaQuestao();
+            insereNovaAlternativa();
 
-            $( ".lista-alternativas" ).sortable();
-            $( ".lista-alternativas" ).disableSelection();
-            $(".lista-alternativas").resizable();
+            $(".nova-questao").on("click",insereNovaQuestao);
+            $(".nova-alternativa").on("click",insereNovaAlternativa);
+
+            $(".lista-alternativas").sortable();
+            $(".lista-alternativas").disableSelection();
 
         });
 
         var numeroAlternativa = 0;
         var numeroQuestao = 0;
-
-
-        function geraNovaAlternativa(){
-            var source =  $("#alternativa-template").html();
-            var template = Handlebars.compile(source);
-            var context = {numero: ++numeroAlternativa};
-            return template(context);
-        }
 
         function geraNovaQuestao(){
             var source =  $("#questao-template").html();
@@ -76,7 +66,12 @@
             var context = {numero: ++numeroQuestao};
             return template(context);
         }
-
+        function geraNovaAlternativa(){
+            var source = $("#alternativa-template").html();
+            var template = Handlebars.compile(source);
+            var context = {numero: ++numeroAlternativa};
+            return template(context);
+        }
 
         function insereNovaQuestao(){
             var novaQuestao = geraNovaQuestao();
@@ -114,13 +109,13 @@
 
         <div class="alternativas col-md-offset-1">
             <h4>Elabore a primeira alternativa</h4>
-            <div class="lista-alternativas ui-widget-content" >
+            <div class="lista-alternativas" >
 
 
             </div>
 
             <div class="nova-alternativa">
-                <a href="#" class=" btn btn-default btn-xs">nova Alternativa</a>
+                <a href="#" class="botao-alternativa btn btn-default btn-xs">nova Alternativa</a>
             </div>
         </div>
 
@@ -131,7 +126,7 @@
 
 
 <script id="alternativa-template" type="text/x-handlebars-template">
-    <div class="alternativa{{numero}} ui-state-default ui-widget-header input-group">
+    <div class="alternativa{{numero}} ui-state-default input-group">
         <div class="ordem input-group-addon"></div>
         <input  id="input-alternativa" class = "form-control" type = "text" name="alternativa{{numero}}" placeholder="informe a alternativa"/>
         <a href="#" class="excluir-pergunta input-group-addon">
