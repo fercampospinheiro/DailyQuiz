@@ -47,10 +47,18 @@
 
 
             insereNovaQuestao();
-            insereNovaAlternativa();
+            insereNovaAlternativa(document);
 
-            $(".nova-questao").on("click",insereNovaQuestao);
-            $(".nova-alternativa").on("click",insereNovaAlternativa);
+            $(".nova-questao").on("click", function(){
+                insereNovaQuestao()
+            });
+            $(".nova-alternativa").on("click", function(){
+                var self = this;
+                insereNovaAlternativa(self)
+            });
+
+            $(".nova-questao").click();
+
 
             $(".lista-alternativas").sortable();
             $(".lista-alternativas").disableSelection();
@@ -78,9 +86,9 @@
             $(".painel-questao").append(novaQuestao);
         }
 
-        function insereNovaAlternativa(){
+        function insereNovaAlternativa(context){
             var novaAlternativa = geraNovaAlternativa();
-            $(".lista-alternativas").append(novaAlternativa);
+            $(context).closest(".alternativas").find(".lista-alternativas").append(novaAlternativa);
         }
 
 
