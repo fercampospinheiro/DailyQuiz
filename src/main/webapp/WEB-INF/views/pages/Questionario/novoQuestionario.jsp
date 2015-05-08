@@ -50,11 +50,13 @@
             insereNovaAlternativa(document);
 
             $(".nova-questao").on("click", function(){
-                insereNovaQuestao()
+                var self = this;
+                insereNovaQuestao();
+                ocultaBotaoNovaQuestao(self);
             });
             $(".nova-alternativa").on("click", function(){
                 var self = this;
-                insereNovaAlternativa(self)
+                insereNovaAlternativa(self);
             });
 
             $(".nova-questao").click();
@@ -84,6 +86,11 @@
         function insereNovaQuestao(){
             var novaQuestao = geraNovaQuestao();
             $(".painel-questao").append(novaQuestao);
+
+        }
+
+        function ocultaBotaoNovaQuestao(context){
+            $(context).closest(".nova-questao").find(".botao-nova-questao").hide();
         }
 
         function insereNovaAlternativa(context){
@@ -103,7 +110,7 @@
     <div class="questao{{numero}}">
 
         <div class="nova-questao form-group col-md-12">
-            <h4>Elabore a primeira pergunta</h4> <a href ="#" class="btn btn-default btn-xs pull-right">nova Pergunta</a>
+            <h4>Elabore a primeira pergunta</h4> <a href ="#" class="botao-nova-questao btn btn-default btn-xs pull-right">nova Pergunta</a>
         </div>
 
         <div class="pergunta input-group">
