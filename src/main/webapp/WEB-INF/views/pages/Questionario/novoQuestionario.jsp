@@ -59,6 +59,11 @@
                 insereNovaAlternativa(self);
             });
 
+            $(".exclui-alternativa").on("click",function(){
+                var self = this;
+                excluiAlternativa(this);
+            });
+
             $(".nova-questao").click();
 
 
@@ -89,6 +94,12 @@
 
         }
 
+        function excluiAlternativa(context){
+            $(context).parent(".alternativa").hide("slow",function(){
+               $(this).remove();
+            });
+        }
+
         function ocultaBotaoNovaQuestao(context){
             $(context).closest(".nova-questao").find(".botao-nova-questao").hide();
         }
@@ -117,8 +128,8 @@
             <div class="ordem input-group-addon">1</div>
             <label class="sr-only" for="input-pergunta">pergunta : </label>
             <input id="input-pergunta"  class="form-control" type="text" name="questao{{numero}}" placeholder="informe a pergunta"/>
-            <a href="#" class="excluir-pergunta input-group-addon">
-                <span class="glyphicon glyphicon-trash" ></span>
+            <a href="#" class=" input-group-addon">
+                <span class="exclui-pergunta glyphicon glyphicon-trash" ></span>
             </a>
         </div>
 
@@ -141,10 +152,10 @@
 
 
 <script id="alternativa-template" type="text/x-handlebars-template">
-    <div class="alternativa{{numero}} ui-state-default input-group">
+    <div class="alternativa ui-state-default input-group">
         <div class="ordem input-group-addon"></div>
         <input  id="input-alternativa" class = "form-control" type = "text" name="alternativa{{numero}}" placeholder="informe a alternativa"/>
-        <a href="#" class="excluir-pergunta input-group-addon">
+        <a href="#" class="exclui-alternativa input-group-addon">
             <span class="glyphicon glyphicon-trash" ></span>
         </a>
     </div>
