@@ -49,10 +49,10 @@
             insereNovaQuestao();
             insereNovaAlternativa(document);
 
-            $(".nova-questao").on("click", function(){
+            $(".botao-nova-questao").on("click", function(){
                 var self = this;
-                insereNovaQuestao();
-                ocultaBotaoNovaQuestao(self);
+                insereNovaQuestao(self);
+                moveBotaoNovaPerguntaParaUltimaQuestao();
             });
             $(".nova-alternativa").on("click", function(){
                 var self = this;
@@ -64,8 +64,6 @@
                 excluiAlternativa(this);
             });
 
-            $(".nova-questao").click();
-
 
             $(".lista-alternativas").sortable();
             $(".lista-alternativas").disableSelection();
@@ -75,10 +73,10 @@
         var numeroAlternativa = 0;
         var numeroQuestao = 0;
 
-        function geraNovaQuestao(){
+        function geraNovaQuestao(exibeBotao){
             var source =  $("#questao-template").html();
             var template = Handlebars.compile(source);
-            var context = {numero: ++numeroQuestao};
+            var context = {numero: ++numeroQuestao, exibeBotao: exibeBotao};
             return template(context);
         }
         function geraNovaAlternativa(){
@@ -88,7 +86,7 @@
             return template(context);
         }
 
-        function insereNovaQuestao(){
+        function insereNovaQuestao(context){
             var novaQuestao = geraNovaQuestao();
             $(".painel-questao").append(novaQuestao);
 
@@ -100,13 +98,15 @@
             });
         }
 
-        function ocultaBotaoNovaQuestao(context){
-            $(context).closest(".nova-questao").find(".botao-nova-questao").hide();
-        }
 
         function insereNovaAlternativa(context){
             var novaAlternativa = geraNovaAlternativa();
             $(context).closest(".alternativas").find(".lista-alternativas").append(novaAlternativa);
+        }
+
+        function moveBotaoNovaPerguntaParaUltimaQuestao() {
+            var $botaoNovaQuestao = $(".botao-nova-questao");
+            $(".painel-questao .questao:last-child .nova-questao").prepend($botaoNovaQuestao);
         }
 
 
@@ -118,10 +118,13 @@
 
 <script id="questao-template" type="text/x-handlebars-template">
 
-    <div class="questao{{numero}}">
+    <div class="questao">
 
         <div class="nova-questao form-group col-md-12">
-            <h4>Elabore a primeira pergunta</h4> <a href ="#" class="botao-nova-questao btn btn-default btn-xs pull-right">nova Pergunta</a>
+            <h4>Elabore a primeira pergunta</h4>
+            {{#if exibeBotao}}
+            <a href ='#' class='botao-nova-questao btn btn-default btn-xs pull-right'>nova Pergunta</a>
+            {{/if}}
         </div>
 
         <div class="pergunta input-group">
