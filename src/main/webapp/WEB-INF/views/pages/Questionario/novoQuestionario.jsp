@@ -46,17 +46,16 @@
         $(function(){
 
 
-            insereNovaQuestao();
+            insereNovaQuestao({exibeBotao: false});
             insereNovaAlternativa(document);
 
             $(".botao-nova-questao").on("click", function(){
                 var self = this;
-                insereNovaQuestao(self);
+                insereNovaQuestao({exibeBotao: true});
                 moveBotaoNovaPerguntaParaUltimaQuestao();
             });
             $(".nova-alternativa").on("click", function(){
-                var self = this;
-                insereNovaAlternativa(self);
+                insereNovaAlternativa(true);
             });
 
             $(".exclui-alternativa").on("click",function(){
@@ -73,12 +72,25 @@
         var numeroAlternativa = 0;
         var numeroQuestao = 0;
 
-        function geraNovaQuestao(exibeBotao){
+        function insereNovaQuestao(conf){
+            var novaQuestao = geraNovaQuestao(conf);
+            $(".painel-questao").append(novaQuestao);
+
+        }
+
+        function geraNovaQuestao(conf){
             var source =  $("#questao-template").html();
             var template = Handlebars.compile(source);
-            var context = {numero: ++numeroQuestao, exibeBotao: exibeBotao};
+            var context = {numero: ++numeroQuestao, exibeBotao: conf.exibeBotao};
+
             return template(context);
         }
+
+        function insereNovaAlternativa(context){
+            var novaAlternativa = geraNovaAlternativa();
+            $(context).closest(".alternativas").find(".lista-alternativas").append(novaAlternativa);
+        }
+
         function geraNovaAlternativa(){
             var source = $("#alternativa-template").html();
             var template = Handlebars.compile(source);
@@ -86,11 +98,7 @@
             return template(context);
         }
 
-        function insereNovaQuestao(context){
-            var novaQuestao = geraNovaQuestao();
-            $(".painel-questao").append(novaQuestao);
 
-        }
 
         function excluiAlternativa(context){
             $(context).parent(".alternativa").hide("slow",function(){
@@ -99,10 +107,6 @@
         }
 
 
-        function insereNovaAlternativa(context){
-            var novaAlternativa = geraNovaAlternativa();
-            $(context).closest(".alternativas").find(".lista-alternativas").append(novaAlternativa);
-        }
 
         function moveBotaoNovaPerguntaParaUltimaQuestao() {
             var $botaoNovaQuestao = $(".botao-nova-questao");
