@@ -46,16 +46,17 @@
         $(function(){
 
 
-            insereNovaQuestao({exibeBotao: false});
+            insereNovaQuestao({exibeBotao: true});
             insereNovaAlternativa(document);
 
             $(".botao-nova-questao").on("click", function(){
-                var self = this;
-                insereNovaQuestao({exibeBotao: true});
+                insereNovaQuestao({exibeBotao: false});
                 moveBotaoNovaPerguntaParaUltimaQuestao();
             });
-            $(".nova-alternativa").on("click", function(){
-                insereNovaAlternativa(true);
+
+            $(".painel-questao").on("click",".nova-alternativa", function(){
+                var self = this;
+                insereNovaAlternativa(self);
             });
 
             $(".exclui-alternativa").on("click",function(){
