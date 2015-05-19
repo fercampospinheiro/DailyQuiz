@@ -16,7 +16,6 @@
             border: 1px solid;
         }
 
-		
 		.painel-questao{ 
 			border:1px solid darkgray;
             box-shadow: 3px 1px 3px #696969;
@@ -45,13 +44,14 @@
     <script>
         $(function(){
 
-
             insereNovaQuestao({exibeBotao: true});
             insereNovaAlternativa(document);
 
             $(".botao-nova-questao").on("click", function(){
                 insereNovaQuestao({exibeBotao: false});
                 moveBotaoNovaPerguntaParaUltimaQuestao();
+                $(".lista-alternativas").sortable();
+                $(".lista-alternativas").disableSelection();
             });
 
             $(".painel-questao").on("click",".nova-alternativa", function(){
@@ -62,8 +62,8 @@
             $(".exclui-alternativa").on("click",function(){
                 var self = this;
                 excluiAlternativa(this);
-            });
 
+            });
 
             $(".lista-alternativas").sortable();
             $(".lista-alternativas").disableSelection();
@@ -99,21 +99,16 @@
             return template(context);
         }
 
-
-
         function excluiAlternativa(context){
             $(context).parent(".alternativa").hide("slow",function(){
                $(this).remove();
             });
         }
 
-
-
         function moveBotaoNovaPerguntaParaUltimaQuestao() {
             var $botaoNovaQuestao = $(".botao-nova-questao");
             $(".painel-questao .questao:last-child .nova-questao").prepend($botaoNovaQuestao);
         }
-
 
     </script>
 
@@ -128,7 +123,7 @@
         <div class="nova-questao form-group col-md-12">
             <h4>Elabore a primeira pergunta</h4>
             {{#if exibeBotao}}
-            <a href ='#' class='botao-nova-questao btn btn-default btn-xs pull-right'>nova Pergunta</a>
+            <a href ='javascript:void(0)' class='botao-nova-questao btn btn-default btn-xs pull-right'>nova Pergunta</a>
             {{/if}}
         </div>
 
@@ -136,20 +131,19 @@
             <div class="ordem input-group-addon">1</div>
             <label class="sr-only" for="input-pergunta">pergunta : </label>
             <input id="input-pergunta"  class="form-control" type="text" name="questao{{numero}}" placeholder="informe a pergunta"/>
-            <a href="#" class=" input-group-addon">
+            <a href="javascript:void(0)" class=" input-group-addon">
                 <span class="exclui-pergunta glyphicon glyphicon-trash" ></span>
             </a>
         </div>
 
         <div class="alternativas col-md-offset-1">
             <h4>Elabore a primeira alternativa</h4>
-            <div class="lista-alternativas" >
-
+            <div class="lista-alternativas ui-sortable" >
 
             </div>
 
             <div class="nova-alternativa">
-                <a href="#" class="botao-alternativa btn btn-default btn-xs">nova Alternativa</a>
+                <a href="javascript:void(0)" class="botao-alternativa btn btn-default btn-xs">nova Alternativa</a>
             </div>
         </div>
 
