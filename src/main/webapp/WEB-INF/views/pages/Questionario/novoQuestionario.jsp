@@ -59,11 +59,16 @@
                 insereNovaAlternativa(self);
             });
 
-            $(".exclui-alternativa").on("click",function(){
+            $(".painel-questao").on("click",".exclui-alternativa",function(){
                 var self = this;
-                excluiAlternativa(this);
-
+                excluiAlternativa(self);
             });
+
+            $(".painel-questao").on("keydown",".input-pergunta", function () {
+                var self = this;
+                ocultaOrientacaoQuestao(self);
+            })
+
 
             $(".lista-alternativas").sortable();
             $(".lista-alternativas").disableSelection();
@@ -110,6 +115,10 @@
             $(".painel-questao .questao:last-child .nova-questao").prepend($botaoNovaQuestao);
         }
 
+        function ocultaOrientacaoQuestao(context){
+            $(context).closest(".nova-questao").find("h4").hide();
+        }
+
     </script>
 
 </head>
@@ -130,7 +139,7 @@
         <div class="pergunta input-group">
             <div class="ordem input-group-addon">1</div>
             <label class="sr-only" for="input-pergunta">pergunta : </label>
-            <input id="input-pergunta"  class="form-control" type="text" name="questao{{numero}}" placeholder="informe a pergunta"/>
+            <input id="input-pergunta"  class="input-pergunta form-control" type="text" name="questao{{numero}}" placeholder="informe a pergunta"/>
             <a href="javascript:void(0)" class=" input-group-addon">
                 <span class="exclui-pergunta glyphicon glyphicon-trash" ></span>
             </a>
