@@ -64,14 +64,25 @@
                 excluiAlternativa(self);
             });
 
+            $(".painel-questao").on("click",".exclui-questao",function(){
+                var self = this;
+                excluiQuestao(self)
+            });
+
+
             $(".painel-questao").on("keydown",".input-pergunta", function () {
                 var self = this;
                 ocultaOrientacaoQuestao(self);
             })
 
 
-            $(".lista-alternativas").sortable();
-            $(".lista-alternativas").disableSelection();
+            $(".painel-questao").sortable({
+                stop: function( event, ui ) {
+                    moveBotaoNovaPerguntaParaUltimaQuestao(event);
+                }
+            }).disableSelection();
+
+            $(".lista-alternativas").sortable().disableSelection();
 
         });
 
@@ -110,13 +121,21 @@
             });
         }
 
+        function excluiQuestao(context){
+            $(context).closest(".questao").hide("slow",function(){
+                $(this).remove();
+            });
+
+
+        }
+
         function moveBotaoNovaPerguntaParaUltimaQuestao() {
             var $botaoNovaQuestao = $(".botao-nova-questao");
             $(".painel-questao .questao:last-child .nova-questao").prepend($botaoNovaQuestao);
         }
 
         function ocultaOrientacaoQuestao(context){
-            $(context).closest(".nova-questao").find("h4").hide();
+            $(context).closest(".questao").find(".nova-questao h4").hide();
         }
 
     </script>
@@ -127,7 +146,7 @@
 
 <script id="questao-template" type="text/x-handlebars-template">
 
-    <div class="questao">
+    <div class="questao ui-state-default">
 
         <div class="nova-questao form-group col-md-12">
             <h4>Elabore a primeira pergunta</h4>
@@ -141,7 +160,7 @@
             <label class="sr-only" for="input-pergunta">pergunta : </label>
             <input id="input-pergunta"  class="input-pergunta form-control" type="text" name="questao{{numero}}" placeholder="informe a pergunta"/>
             <a href="javascript:void(0)" class=" input-group-addon">
-                <span class="exclui-pergunta glyphicon glyphicon-trash" ></span>
+                <span class="exclui-questao glyphicon glyphicon-trash" ></span>
             </a>
         </div>
 
@@ -179,7 +198,7 @@
     
     <div class="questionario col-md-12 ">
     
-	    <div class="painel-questao">
+	    <div class="painel-questao ui-sortable">
 
 
 		</div>
