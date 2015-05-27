@@ -16,7 +16,7 @@
             border: 1px solid;
         }
 
-		.painel-questao{ 
+		.questionario{
 			border:1px solid darkgray;
             box-shadow: 3px 1px 3px #696969;
 		}
@@ -184,7 +184,7 @@
 <script id="alternativa-template" type="text/x-handlebars-template">
     <div class="alternativa ui-state-default input-group">
         <div class="ordem input-group-addon"></div>
-        <input  id="input-alternativa" class = "form-control" type = "text" name="alternativa{{numero}}" placeholder="informe a alternativa"/>
+        <input  id="input-alternativa" cssClass= "form-control" path="alternativa{{numero}}" placeholder="informe a alternativa"/>
         <a href="#" class="exclui-alternativa input-group-addon">
             <span class="glyphicon glyphicon-trash" ></span>
         </a>
@@ -193,7 +193,7 @@
 
 
 
- <form>
+ <form:form modelAttribute="formulario" method="post">
     
     
     <div class="questionario col-md-12 ">
@@ -202,8 +202,11 @@
 
 
 		</div>
+        <div class="form-group col-md-12">
+            <button class="btn btn-success pull-right">Salvar</button>
+        </div>
 	</div>
 
-  </form>
+ </form:form>
 
 </body>

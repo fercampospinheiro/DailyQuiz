@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.QuestionarioRepository;
-import br.com.sidlar.dailyquiz.domain.formularios.FormularioQuestionario;
+import br.com.sidlar.dailyquiz.presentation.formularios.FormularioQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioFactory;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioService;

@@ -1,7 +1,7 @@
 package br.com.sidlar.dailyquiz.presentation.membro;
 
 import br.com.sidlar.dailyquiz.domain.excecoes.EmailJaCadastradoException;
-import br.com.sidlar.dailyquiz.domain.formularios.FormularioMembro;
+import br.com.sidlar.dailyquiz.presentation.formularios.FormularioMembro;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import br.com.sidlar.dailyquiz.domain.membro.MembroFactory;
 import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
