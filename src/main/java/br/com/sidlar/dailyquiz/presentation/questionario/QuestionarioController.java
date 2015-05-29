@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.QuestionarioRepository;
-import br.com.sidlar.dailyquiz.presentation.formularios.FormularioQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionario;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioFactory;
 import br.com.sidlar.dailyquiz.domain.respostaQuestionario.RespostaQuestionarioService;
@@ -36,7 +35,7 @@ public class QuestionarioController {
 
 
     @RequestMapping(value = "/lista" , method = RequestMethod.GET)
-    public String  listaQuestionarios(Model model){
+    public String obtemQuestionarios(Model model){
       List<Questionario> questionarios = repository.buscaPorData(DateTime.now());
       model.addAttribute("questionarios",questionarios);
       return "/Questionario/questionario";

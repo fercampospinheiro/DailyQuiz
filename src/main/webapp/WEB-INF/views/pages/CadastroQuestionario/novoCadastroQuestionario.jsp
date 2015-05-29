@@ -184,7 +184,7 @@
 <script id="alternativa-template" type="text/x-handlebars-template">
     <div class="alternativa ui-state-default input-group">
         <div class="ordem input-group-addon"></div>
-        <input  id="input-alternativa" cssClass= "form-control" path="alternativa{{numero}}" placeholder="informe a alternativa"/>
+        <input  id="input-alternativa" class= "form-control" path="alternativa{{numero}}" placeholder="informe a alternativa"/>
         <a href="#" class="exclui-alternativa input-group-addon">
             <span class="glyphicon glyphicon-trash" ></span>
         </a>

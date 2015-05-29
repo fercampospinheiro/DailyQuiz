@@ -1,9 +1,6 @@
-package br.com.sidlar.dailyquiz.domain.validacoes;
+package br.com.sidlar.dailyquiz.domain.membro;
 
-import br.com.sidlar.dailyquiz.domain.excecoes.EmailJaCadastradoException;
 import br.com.sidlar.dailyquiz.domain.excecoes.EmailOuSenhaInexistenteException;
-import br.com.sidlar.dailyquiz.domain.membro.Membro;
-import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
 import br.com.sidlar.dailyquiz.infrastructure.GeradorHash;
 import br.com.sidlar.dailyquiz.infrastructure.HashSha1;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +22,9 @@ public class ValidadorMembro {
         this.repository = repository;
     }
 
-    public void verificaExistenciaDeEmail(String email){
+    public void verificaEmailCadastrado(String email){
         if(repository.existeEmail(email)) {
-            throw new EmailJaCadastradoException("Email  " + email + "  já existe!");
+            throw new EmailCadastradoException("Email  " + email + "  já possui cadastrado! Informe outro e-mail.");
         }
     }
 

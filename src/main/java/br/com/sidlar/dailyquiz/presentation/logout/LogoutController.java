@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.presentation.login;
+package br.com.sidlar.dailyquiz.presentation.logout;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

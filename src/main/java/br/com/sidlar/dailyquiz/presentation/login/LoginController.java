@@ -30,9 +30,9 @@ public class LoginController {
 	}
 
 	/**
-	 * Efetua o processo de autenticão de um possivel membro através do e-mail e senha.
-	 * @param email do  membro da aplicação
-	 * @param senha do membro da aplicação
+	 * Efetua o processo de autenticão de um possivel cadastroMembro através do e-mail e senha.
+	 * @param email do  cadastroMembro da aplicação
+	 * @param senha do cadastroMembro da aplicação
 	 * @return String : view Home  ou Login
 	 */
 	@RequestMapping(method = RequestMethod.POST)

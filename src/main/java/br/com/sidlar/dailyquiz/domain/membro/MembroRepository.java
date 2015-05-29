@@ -1,6 +1,4 @@
 package br.com.sidlar.dailyquiz.domain.membro;
-import br.com.sidlar.dailyquiz.domain.excecoes.EntidadeInexistenteException;
-import br.com.sidlar.dailyquiz.domain.excecoes.EntidadeJaExistenteException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,9 +21,9 @@ public class MembroRepository {
 
 	/**
 	 * Busca por membros que possuam o e-mail informado
-	 * @param email do membro do site
+	 * @param email do cadastroMembro do site
 	 * @return Membro com email especificado
-	 * @throws br.com.sidlar.dailyquiz.domain.excecoes.EntidadeInexistenteException caso não exista membro
+	 * @throws br.com.sidlar.dailyquiz.domain.membro.EmailCadastradoException caso não exista e-mail cadastrado
 	 */
 	public @Nullable Membro buscaPorEmail(String email){
 
@@ -38,16 +36,16 @@ public class MembroRepository {
 			return query.getSingleResult();
 		}
 		catch (NoResultException e) {
-			throw new EntidadeInexistenteException("E-mail não cadastrado : "+ email,e);
+			throw new EmailCadastradoException("E-mail não cadastrado : "+ email,e);
 		}
 	}
 
 
 	/**
-	 * Adiciona um novo membro ao repositório
+	 * Adiciona um novo cadastroMembro ao repositório
 	 * Seguindo os passos abaixo:
 	 * <ul>
-	 * <li>Procura no banco algum membro com o email informado</li>
+	 * <li>Procura no banco algum cadastroMembro com o email informado</li>
 	 * <li>Se o usuário não existir grava no banco</li>
 	 * <li>Caso o usuário ja exista lança uma {@code EmailOuSenhaInexistenteException }</li>
 	 * </ul>

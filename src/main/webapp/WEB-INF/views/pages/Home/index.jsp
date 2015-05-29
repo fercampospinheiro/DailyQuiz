@@ -8,7 +8,7 @@
 <body onload="format()">
 
 <div class="container">
-    <!--Area de login do membro -->
+    <!--Area de login do cadastroMembro -->
 
     <div id="areaLogin" class="row" >
         <c:set var="dadosAutenticacao" value="${sessionScope.get('dadosDeAutenticacao')}"/>

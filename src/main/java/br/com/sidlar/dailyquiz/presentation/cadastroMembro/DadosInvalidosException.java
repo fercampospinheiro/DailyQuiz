@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.presentation.excecoes;
+package br.com.sidlar.dailyquiz.presentation.cadastroMembro;
 
 /**
  * Classe que representa uma excessão por dados inconsistentes vindo de um formulário na camada de apresentação

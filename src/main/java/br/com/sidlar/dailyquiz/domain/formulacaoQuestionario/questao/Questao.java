@@ -1,6 +1,5 @@
 package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao;
 
-import br.com.sidlar.dailyquiz.domain.excecoes.AlternativaRepetidaException;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.alternativa.Alternativa;
 import com.google.common.collect.Lists;
 
@@ -30,7 +29,7 @@ public class Questao {
 	public Questao(String pergunta) {
 		this.pergunta = pergunta;
 	}
-	
+
 	public void adicionaAlternativa(Alternativa alternativa){
 
 		if(!alternativas.contains(alternativa)) {
@@ -40,7 +39,7 @@ public class Questao {
 			throw  new AlternativaRepetidaException(String.format("Alternativa já cadastrada : '%' ! Informe outra",alternativa.exibe()));
 		}
 	}
-	public String exibe() {
+	public String exibePergunta() {
 		return pergunta;
 	}
 

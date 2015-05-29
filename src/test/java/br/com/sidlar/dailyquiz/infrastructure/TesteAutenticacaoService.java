@@ -1,10 +1,10 @@
 package br.com.sidlar.dailyquiz.infrastructure;
 
 import br.com.sidlar.dailyquiz.domain.excecoes.EmailOuSenhaInexistenteException;
-import br.com.sidlar.dailyquiz.domain.excecoes.EntidadeInexistenteException;
+import br.com.sidlar.dailyquiz.domain.membro.EmailCadastradoException;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
-import br.com.sidlar.dailyquiz.domain.validacoes.ValidadorMembro;
+import br.com.sidlar.dailyquiz.domain.membro.ValidadorMembro;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -32,7 +32,7 @@ public class TesteAutenticacaoService {
     @Test(expected = EmailOuSenhaInexistenteException.class)
     public void emailDoMembroNaoAutenticado_lancaEmailOuSenhaInexistenteExcpetion(){
         //Fixture);
-        when(repository.buscaPorEmail(anyString())).thenThrow(EntidadeInexistenteException.class);
+        when(repository.buscaPorEmail(anyString())).thenThrow(EmailCadastradoException.class);
         //Exercise SUT
         autenticador.autenticaEmailESenhaDoMembro(null,null);
     }

@@ -76,7 +76,7 @@ public class Posicao implements Comparable<Posicao>{
         return "Posicao{" +
                 "ordem=" + ordem +
                 ", pontuacao=" + pontuacao +
-                ", membro=" + membro +
+                ", cadastroMembro=" + membro +
                 '}';
     }
 }

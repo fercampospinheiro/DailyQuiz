@@ -1,10 +1,10 @@
 package br.com.sidlar.dailyquiz.infrastructure;
 
 import br.com.sidlar.dailyquiz.domain.excecoes.EmailOuSenhaInexistenteException;
-import br.com.sidlar.dailyquiz.domain.excecoes.EntidadeInexistenteException;
+import br.com.sidlar.dailyquiz.domain.membro.EmailCadastradoException;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
-import br.com.sidlar.dailyquiz.domain.validacoes.ValidadorMembro;
+import br.com.sidlar.dailyquiz.domain.membro.ValidadorMembro;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class AutenticacaoService {
             validador.validaSenha(senha, membro);
             adicionaMembroNaSessao(membro);
         }
-        catch (EntidadeInexistenteException | EmailOuSenhaInexistenteException e){
+        catch (EmailCadastradoException | EmailOuSenhaInexistenteException e){
             throw new EmailOuSenhaInexistenteException(e.getMessage());
         }
 	}

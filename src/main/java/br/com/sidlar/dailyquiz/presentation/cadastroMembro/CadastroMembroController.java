@@ -1,13 +1,10 @@
-package br.com.sidlar.dailyquiz.presentation.membro;
+package br.com.sidlar.dailyquiz.presentation.cadastroMembro;
 
-import br.com.sidlar.dailyquiz.domain.excecoes.EmailJaCadastradoException;
-import br.com.sidlar.dailyquiz.presentation.formularios.FormularioMembro;
+import br.com.sidlar.dailyquiz.domain.membro.EmailCadastradoException;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import br.com.sidlar.dailyquiz.domain.membro.MembroFactory;
 import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
 import br.com.sidlar.dailyquiz.infrastructure.AutenticacaoService;
-import br.com.sidlar.dailyquiz.presentation.excecoes.DadosInvalidosException;
-import br.com.sidlar.dailyquiz.presentation.validacoes.ValidadorFormulario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author  Fernando de Campos Pinheiro
- * Responsavel por todas as solicitações que envolvem o cadastro de um membro
+ * Responsavel por todas as solicitações que envolvem o cadastro de um cadastroMembro
  */
 
 @Controller
@@ -30,21 +27,21 @@ public class CadastroMembroController {
 	@Autowired
     MembroRepository repository;
     /**
-	 * Carrega a página o formulario para cadastro de um novo membro
+	 * Carrega a página o formulario para cadastro de um novo cadastroMembro
 	 */
 	@RequestMapping( method = RequestMethod.GET)
 	public String carregaCadastroMembro(Model model){
 		FormularioMembro formulario = new FormularioMembro();
         model.addAttribute("formulario",formulario);
-		return "/CadastroDeMembro/cadastroDeMembro";
+		return "/CadastroMembro/cadastroMembro";
 	}
 
 	/**
-	 * Cadastra um novo membro seguindo os seguintes passos :
+	 * Cadastra um novo cadastroMembro seguindo os seguintes passos :
      * - Recebe os dados do formulario
      * - Valida os dados do formulario
-     * - Cadastra o novo membro no repositorios de membros
-     * - E autentica o membro e redireciona logado para a home.
+     * - Cadastra o novo cadastroMembro no repositorios de membros
+     * - E autentica o cadastroMembro e redireciona logado para a home.
 	 * @param formulario : Recebe um objeto Formulario populado
 	 */
 	@RequestMapping(method = RequestMethod.POST)
@@ -55,19 +52,19 @@ public class CadastroMembroController {
         ){
 
         try {
-            ValidadorFormulario validador = new ValidadorFormulario(formulario,resultado);
+            ValidadorFormularioMembro validador = new ValidadorFormularioMembro(formulario,resultado);
             validador.validaCampos();
-            Membro membro = membroFactory.fabricaPorformulario(formulario);
+            Membro membro = membroFactory.comDadosFormulario(formulario);
             repository.adicionaNovoMembro(membro);
 			autenticacaoService.autenticaMembro(membro);
             return "redirect:/";
 		}
-		catch (EmailJaCadastradoException e) {
+		catch (EmailCadastradoException e) {
             resultado.rejectValue("email","resultado",e.getMessage());
-            return "/CadastroDeMembro/cadastroDeMembro";
+            return "/CadastroMembro/cadastroMembro";
         }
         catch (DadosInvalidosException e){
-            return "/CadastroDeMembro/cadastroDeMembro";
+            return "/CadastroMembro/cadastroMembro";
         }
 
 	}

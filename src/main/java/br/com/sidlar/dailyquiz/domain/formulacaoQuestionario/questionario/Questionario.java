@@ -1,6 +1,5 @@
 package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario;
 
-import br.com.sidlar.dailyquiz.domain.excecoes.QuestaoRepetidaException;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao.Questao;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import com.google.common.collect.Lists;

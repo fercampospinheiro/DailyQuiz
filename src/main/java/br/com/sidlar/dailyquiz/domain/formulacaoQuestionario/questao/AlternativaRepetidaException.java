@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.domain.excecoes;
+package br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao;
 
 /**
  * Created by fernando on 01/11/14.

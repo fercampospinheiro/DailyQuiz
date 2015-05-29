@@ -6,13 +6,13 @@ import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao.Questao;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questao.QuestaoRepository;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.QuestionarioRepository;
-import br.com.sidlar.dailyquiz.presentation.formularios.FormularioQuestao;
+import br.com.sidlar.dailyquiz.presentation.questionario.FormularioQuestao;
 import com.google.common.collect.Lists;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.sidlar.dailyquiz.presentation.formularios.FormularioQuestionario;
+import br.com.sidlar.dailyquiz.presentation.questionario.FormularioQuestionario;
 import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
 

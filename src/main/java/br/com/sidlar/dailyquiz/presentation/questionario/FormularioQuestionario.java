@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.presentation.formularios;
+package br.com.sidlar.dailyquiz.presentation.questionario;
 
 import java.util.List;
 

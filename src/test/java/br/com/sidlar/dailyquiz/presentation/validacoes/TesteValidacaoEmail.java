@@ -1,8 +1,9 @@
 package br.com.sidlar.dailyquiz.presentation.validacoes;
 
-import br.com.sidlar.dailyquiz.presentation.excecoes.DadosInvalidosException;
 import static org.junit.Assert.*;
 
+import br.com.sidlar.dailyquiz.presentation.cadastroMembro.DadosInvalidosException;
+import br.com.sidlar.dailyquiz.presentation.cadastroMembro.ValidaEmail;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 import org.springframework.validation.BindingResult;

@@ -1,15 +1,13 @@
-package br.com.sidlar.dailyquiz.presentation.validacoes;
+package br.com.sidlar.dailyquiz.presentation.cadastroMembro;
 
-import br.com.sidlar.dailyquiz.presentation.formularios.FormularioMembro;
-import br.com.sidlar.dailyquiz.presentation.excecoes.DadosInvalidosException;
 import org.springframework.validation.BindingResult;
 
 /**
  * Responśavel pela pré-validação dos dados do formulario com propósito
- * de cadastro de um novo membro
+ * de cadastro de um novo cadastroMembro
  * @author Fernando de Campos Pinheiro
  */
-public class ValidadorFormulario {
+public class ValidadorFormularioMembro {
 
 
     private BindingResult resultado;
@@ -18,7 +16,7 @@ public class ValidadorFormulario {
     private ValidaNome nome = new ValidaNome();
     private ValidaSenha senha = new ValidaSenha();
 
-    public ValidadorFormulario( FormularioMembro formulario,BindingResult resultado){
+    public ValidadorFormularioMembro(FormularioMembro formulario, BindingResult resultado){
         this.resultado = resultado;
         this.formulario = formulario;
     }
