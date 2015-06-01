@@ -158,7 +158,7 @@
         <div class="pergunta input-group">
             <div class="ordem input-group-addon">1</div>
             <label class="sr-only" for="input-pergunta">pergunta : </label>
-            <input id="input-pergunta"  class="input-pergunta form-control" type="text" name="questao{{numero}}" placeholder="informe a pergunta"/>
+            <input id="input-pergunta"  class="input-pergunta form-control" type="text" name="" placeholder="informe a pergunta"/>
             <a href="javascript:void(0)" class=" input-group-addon">
                 <span class="exclui-questao glyphicon glyphicon-trash" ></span>
             </a>
@@ -193,11 +193,16 @@
 
 
 
- <form:form modelAttribute="formulario" method="post">
+ <form:form modelAttribute="formulario" action="" method="post">
     
     
     <div class="questionario col-md-12 ">
-    
+
+        <div class="nome-questionario col-md-12">
+            <label for="input-pergunta" class="input-pergunta sr-only">Nome do Questionário : </label>
+            <form:input path="nome" id ="input-pergunta" cssClass="input-pergunta form-control" placeholder="informe o nome "></form:input>
+        </div>
+
 	    <div class="painel-questao ui-sortable">
 
 
