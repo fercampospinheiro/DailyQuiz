@@ -156,9 +156,9 @@
         </div>
 
         <div class="pergunta input-group">
-            <div class="ordem input-group-addon">1</div>
+            <div class="ordem input-group-addon" name="formulariosCadastroQuestao[0].ordem">1</div>
             <label class="sr-only" for="input-pergunta">pergunta : </label>
-            <input id="input-pergunta"  class="input-pergunta form-control" type="text" name="" placeholder="informe a pergunta"/>
+            <input id="input-pergunta"  class="input-pergunta form-control" type="text" name="formulariosCadastroQuestao[0].pergunta" placeholder="informe a pergunta"/>
             <a href="javascript:void(0)" class=" input-group-addon">
                 <span class="exclui-questao glyphicon glyphicon-trash" ></span>
             </a>
@@ -183,9 +183,12 @@
 
 <script id="alternativa-template" type="text/x-handlebars-template">
     <div class="alternativa ui-state-default input-group">
-        <div class="ordem input-group-addon"></div>
-        <input  id="input-alternativa" class= "form-control" path="alternativa{{numero}}" placeholder="informe a alternativa"/>
-        <a href="#" class="exclui-alternativa input-group-addon">
+        <div class="ordem input-group-addon">
+            <input type="hidden" name="formulariosCadastroAlternativa[0].ordem" value="">
+
+        </div>
+            <input  id="input-alternativa" class= "form-control" name="formulariosCadastroAlternativa[0].descricao" placeholder="informe a alternativa"/>
+            <a href="#" class="exclui-alternativa input-group-addon">
             <span class="glyphicon glyphicon-trash" ></span>
         </a>
     </div>

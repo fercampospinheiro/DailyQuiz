@@ -20,4 +20,16 @@ public class FormularioCadastroQuestao {
     public void setFormulariosCadastroAlternativa(List<FormularioCadastroAlternativa> formulariosCadastroAlternativa) {
         this.formulariosCadastroAlternativa = formulariosCadastroAlternativa;
     }
+
+    public int getOrdem() {
+        return ordem;
+    }
+
+    public String getPergunta() {
+        return pergunta;
+    }
+
+    public List<FormularioCadastroAlternativa> getFormulariosCadastroAlternativa() {
+        return formulariosCadastroAlternativa;
+    }
 }
