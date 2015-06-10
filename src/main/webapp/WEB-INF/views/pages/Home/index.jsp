@@ -41,7 +41,7 @@
                 <br>
                 <p class="list-group-item-text">Fácil, simples para você criar seu questionário</p>
                 <br>
-                <a href =" <c:url value ='/CadastroQuestionario/novo'/>" class="btn btn-success btn-lg small">Criar Agora</a>
+                <a href =" <c:url value ='CadastroQuestionario/novo'/>" class="btn btn-success btn-lg small">Criar Agora</a>
             </div>
             <br>
 

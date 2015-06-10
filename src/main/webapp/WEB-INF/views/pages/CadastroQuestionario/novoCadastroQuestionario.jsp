@@ -92,7 +92,7 @@
         function insereNovaQuestao(conf){
             var novaQuestao = geraNovaQuestao(conf);
             $(".painel-questao").append(novaQuestao);
-
+            preparaPropriedadesBinding();
         }
 
         function geraNovaQuestao(conf){
@@ -138,6 +138,22 @@
             $(context).closest(".questao").find(".nova-questao h4").hide();
         }
 
+		function preparaPropriedadesBinding(){
+			geraNamePergunta();
+			geraNameOrdemPergunta();
+		}
+
+		function geraNamePergunta(){
+			var inputPergunta = $(".pergunta").find(".input-pergunta");
+			var indicePergunta = inputPergunta.lenght;
+			inputPergunta.attr("nsame","formulariosCadastroQuestao["+ indicePergunta + "].pergunta");
+		}
+		function geraNameOrdemPergunta(){
+			var inputOrdem = $(".pergunta").find(".ordem-questao");
+			var indiceOrdem = inputOrdem.lenght;
+			inputOrdem.attr("name","formulariosCadastroQuestao["+ indiceOrdem + "].ordem");
+		}
+        
     </script>
 
 </head>
@@ -157,8 +173,9 @@
 
         <div class="pergunta input-group">
             <div class="ordem input-group-addon" name="formulariosCadastroQuestao[0].ordem">1</div>
+			<input type="hidden" class="ordem-questao"/>
             <label class="sr-only" for="input-pergunta">pergunta : </label>
-            <input id="input-pergunta"  class="input-pergunta form-control" type="text" name="formulariosCadastroQuestao[0].pergunta" placeholder="informe a pergunta"/>
+            <input id="input-pergunta"  class="input-pergunta form-control" type="text" placeholder="informe a pergunta"/>
             <a href="javascript:void(0)" class=" input-group-addon">
                 <span class="exclui-questao glyphicon glyphicon-trash" ></span>
             </a>
