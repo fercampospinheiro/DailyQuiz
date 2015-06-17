@@ -44,12 +44,12 @@
     <script>
         $(function(){
 
-            insereNovaQuestao({exibeBotao: true},document);
+            insereNovaQuestao({exibeBotao: true});
             insereNovaAlternativa(document);
 
             $(".botao-nova-questao").on("click", function(){
 				var self = this;
-                insereNovaQuestao({exibeBotao: false},self);
+                insereNovaQuestao({exibeBotao: false}, self);
                 $(".lista-alternativas").sortable();
                 $(".lista-alternativas").disableSelection();
             });
@@ -90,10 +90,10 @@
         var numeroQuestao = 0;
 
         function insereNovaQuestao(conf,context){
-            var novaQuestao = geraNovaQuestao(conf);
-            $(".painel-questao").append(novaQuestao);
+            var $novaQuestao = $(geraNovaQuestao(conf));
+            $(".painel-questao").append($novaQuestao);
             moveBotaoNovaPerguntaParaUltimaQuestao();
-            preparaAtibutoNameQuestao(context); 
+            preparaAtibutoNameQuestao($novaQuestao);
         }
 
         function geraNovaQuestao(conf){
@@ -139,34 +139,22 @@
             $(context).closest(".questao").find(".nova-questao h4").hide();
         }
 
-		function preparaAtibutoNameQuestao(context){
-			geraNamePerguntaQuestao(context);
-			geraNameOrdemQuestao(context);
+		function preparaAtibutoNameQuestao($novaQuestao){
+			geraNamePerguntaQuestao($novaQuestao);
+			geraNameOrdemQuestao($novaQuestao);
 		}
 		
-		function geraNamePerguntaQuestao(context){
-			var inputPergunta;
-			if(context){
-				inputPergunta = $(".pergunta .input-pergunta");
-			}
-			else{
-				inputPergunta = $(context).closest(".questao").find(".input-pergunta");
-				}
-				
+		function geraNamePerguntaQuestao($novaQuestao){
+			var inputPergunta = $novaQuestao.find(".input-pergunta");
+
 			var indice = $(".pergunta").length;		
-			inputPergunta.attr("name","formulariosCadastroQuestao["+ indice + "].pergunta");
+			inputPergunta.prop("name","formulariosCadastroQuestao["+ indice + "].pergunta");
 		}
 
-		function geraNameOrdemQuestao(context){
-			var inputOrdem;
-			if(!context){
-				inputOrdem = $(".pergunta .input-pergunta");
-			}
-			else{
-				inputOrdem = $(context).closest(".questao").find(".input-pergunta");
-				}
-				
-			var indice = $(".ordem-questao").length;	
+		function geraNameOrdemQuestao($novaQuestao){
+			var inputOrdem = $novaQuestao.find(".input-pergunta");
+
+			var indice = $(".ordem-questao").length;
 			inputOrdem.attr("name","formulariosCadastroQuestao["+ indice + "].ordem");
 			
 		}
