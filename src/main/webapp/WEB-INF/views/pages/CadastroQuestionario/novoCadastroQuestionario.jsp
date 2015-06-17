@@ -44,12 +44,12 @@
     <script>
         $(function(){
 
-            insereNovaQuestao({exibeBotao: true});
+            insereNovaQuestao({exibeBotao: true},document);
             insereNovaAlternativa(document);
 
             $(".botao-nova-questao").on("click", function(){
-                insereNovaQuestao({exibeBotao: false});
-                moveBotaoNovaPerguntaParaUltimaQuestao();
+				var self = this;
+                insereNovaQuestao({exibeBotao: false},self);
                 $(".lista-alternativas").sortable();
                 $(".lista-alternativas").disableSelection();
             });
@@ -89,10 +89,11 @@
         var numeroAlternativa = 0;
         var numeroQuestao = 0;
 
-        function insereNovaQuestao(conf){
+        function insereNovaQuestao(conf,context){
             var novaQuestao = geraNovaQuestao(conf);
             $(".painel-questao").append(novaQuestao);
-            preparaPropriedadesBinding();
+            moveBotaoNovaPerguntaParaUltimaQuestao();
+            preparaAtibutoNameQuestao(context); 
         }
 
         function geraNovaQuestao(conf){
@@ -138,20 +139,36 @@
             $(context).closest(".questao").find(".nova-questao h4").hide();
         }
 
-		function preparaPropriedadesBinding(){
-			geraNamePergunta();
-			geraNameOrdemPergunta();
+		function preparaAtibutoNameQuestao(context){
+			geraNamePerguntaQuestao(context);
+			geraNameOrdemQuestao(context);
+		}
+		
+		function geraNamePerguntaQuestao(context){
+			var inputPergunta;
+			if(context){
+				inputPergunta = $(".pergunta .input-pergunta");
+			}
+			else{
+				inputPergunta = $(context).closest(".questao").find(".input-pergunta");
+				}
+				
+			var indice = $(".pergunta").length;		
+			inputPergunta.attr("name","formulariosCadastroQuestao["+ indice + "].pergunta");
 		}
 
-		function geraNamePergunta(){
-			var inputPergunta = $(".pergunta").find(".input-pergunta");
-			var indicePergunta = inputPergunta.lenght;
-			inputPergunta.attr("nsame","formulariosCadastroQuestao["+ indicePergunta + "].pergunta");
-		}
-		function geraNameOrdemPergunta(){
-			var inputOrdem = $(".pergunta").find(".ordem-questao");
-			var indiceOrdem = inputOrdem.lenght;
-			inputOrdem.attr("name","formulariosCadastroQuestao["+ indiceOrdem + "].ordem");
+		function geraNameOrdemQuestao(context){
+			var inputOrdem;
+			if(!context){
+				inputOrdem = $(".pergunta .input-pergunta");
+			}
+			else{
+				inputOrdem = $(context).closest(".questao").find(".input-pergunta");
+				}
+				
+			var indice = $(".ordem-questao").length;	
+			inputOrdem.attr("name","formulariosCadastroQuestao["+ indice + "].ordem");
+			
 		}
         
     </script>
@@ -159,7 +176,7 @@
 </head>
 
 <body>
-
+<!-- Template de questoes -->
 <script id="questao-template" type="text/x-handlebars-template">
 
     <div class="questao ui-state-default">
@@ -172,15 +189,19 @@
         </div>
 
         <div class="pergunta input-group">
-            <div class="ordem input-group-addon" name="formulariosCadastroQuestao[0].ordem">1</div>
-			<input type="hidden" class="ordem-questao"/>
-            <label class="sr-only" for="input-pergunta">pergunta : </label>
+            <!-- Ordem da questao-->
+			<input type="hidden" class="ordem-questao" />
+            
+			<!-- Pergunta da questão-->
+			<label class="sr-only" for="input-pergunta">pergunta : </label>
             <input id="input-pergunta"  class="input-pergunta form-control" type="text" placeholder="informe a pergunta"/>
-            <a href="javascript:void(0)" class=" input-group-addon">
+            
+			<a href="javascript:void(0)" class=" input-group-addon">
                 <span class="exclui-questao glyphicon glyphicon-trash" ></span>
             </a>
         </div>
 
+		<!-- Alternativas da questão -->
         <div class="alternativas col-md-offset-1">
             <h4>Elabore a primeira alternativa</h4>
             <div class="lista-alternativas ui-sortable" >
@@ -213,16 +234,16 @@
 
 
 
- <form:form modelAttribute="formulario" action="" method="post">
+ <form action="" method="post">
     
     
     <div class="questionario col-md-12 ">
-
+		<!-- Nome do questionario -->
         <div class="nome-questionario col-md-12">
-            <label for="input-pergunta" class="input-pergunta sr-only">Nome do Questionário : </label>
-            <form:input path="nome" id ="input-pergunta" cssClass="input-pergunta form-control" placeholder="informe o nome "></form:input>
+            <label for="input-nome" class="label-nome sr-only">Nome do Questionário : </label>
+            <input name="nome" id ="input-pergunta" class="input-pergunta form-control" placeholder="informe o nome "></input>
         </div>
-
+		<!-- Questoes -->
 	    <div class="painel-questao ui-sortable">
 
 
@@ -232,6 +253,6 @@
         </div>
 	</div>
 
- </form:form>
+ </form>
 
 </body>
