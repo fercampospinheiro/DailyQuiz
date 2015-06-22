@@ -93,7 +93,7 @@
             var $novaQuestao = $(geraNovaQuestao(conf));
             $(".painel-questao").append($novaQuestao);
             moveBotaoNovaPerguntaParaUltimaQuestao();
-            preparaAtibutoNameQuestao($novaQuestao);
+            preparaAtributoNameQuestao($novaQuestao);
         }
 
         function geraNovaQuestao(conf){
@@ -105,8 +105,10 @@
         }
 
         function insereNovaAlternativa(context){
-            var novaAlternativa = geraNovaAlternativa();
-            $(context).closest(".alternativas").find(".lista-alternativas").append(novaAlternativa);
+            var $novaAlternativa = $(geraNovaAlternativa());
+            $listaAlternativas =  $(context).closest(".alternativas").find(".lista-alternativas");
+            $listaAlternativas.append($novaAlternativa);
+            preparaAtributoNameAlternativa($novaAlternativa)
         }
 
         function geraNovaAlternativa(){
@@ -139,11 +141,11 @@
             $(context).closest(".questao").find(".nova-questao h4").hide();
         }
 
-		function preparaAtibutoNameQuestao($novaQuestao){
+		function preparaAtributoNameQuestao($novaQuestao){
 			geraNamePerguntaQuestao($novaQuestao);
 			geraNameOrdemQuestao($novaQuestao);
 		}
-		
+
 		function geraNamePerguntaQuestao($novaQuestao){
 			var inputPergunta = $novaQuestao.find(".input-pergunta");
 
@@ -158,6 +160,29 @@
 			inputOrdem.attr("name","formulariosCadastroQuestao["+ indice + "].ordem");
 			
 		}
+
+        function preparaAtributoNameAlternativa($novaAlternativa){
+            geraNameOrdemAlternativa($novaAlternativa);
+            geraNameDescricaoAlternativa($novaAlternativa);
+        }
+
+        function geraNameOrdemAlternativa($novaAlternativa){
+            var inputOrdem = $novaAlternativa.find(".input-alternativa");
+
+            var indiceQuestao = $(".pergunta").length;
+            var indiceAlternativa = $(".input-ordem-alternativa").length;
+            inputOrdem.prop("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
+        }
+
+        function geraNameDescricaoAlternativa($novaAlternativa){
+            var inputDescricao = $novaAlternativa.find(".input-alternativa");
+
+            var indiceQuestao = $(".pergunta").length;
+            var indiceAlternativa = $(".input-alternativa").length;
+            inputDescricao.prop("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
+
+        }
+
         
     </script>
 
@@ -210,10 +235,10 @@
 <script id="alternativa-template" type="text/x-handlebars-template">
     <div class="alternativa ui-state-default input-group">
         <div class="ordem input-group-addon">
-            <input type="hidden" name="formulariosCadastroAlternativa[0].ordem" value="">
+            <input type="hidden" class="input-ordem-alternativa" value="">
 
         </div>
-            <input  id="input-alternativa" class= "form-control" name="formulariosCadastroAlternativa[0].descricao" placeholder="informe a alternativa"/>
+            <input  id="input-alternativa" class= "form-control input-alternativa" name="formulariosCadastroAlternativa[0].descricao" placeholder="informe a alternativa"/>
             <a href="#" class="exclui-alternativa input-group-addon">
             <span class="glyphicon glyphicon-trash" ></span>
         </a>
