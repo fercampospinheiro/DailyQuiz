@@ -149,14 +149,14 @@
 		function geraNamePerguntaQuestao($novaQuestao){
 			var inputPergunta = $novaQuestao.find(".input-pergunta");
 
-			var indice = $(".pergunta").length;		
+			var indice = $(".pergunta").length -1;
 			inputPergunta.prop("name","formulariosCadastroQuestao["+ indice + "].pergunta");
 		}
 
 		function geraNameOrdemQuestao($novaQuestao){
 			var inputOrdem = $novaQuestao.find(".input-pergunta");
 
-			var indice = $(".ordem-questao").length;
+			var indice = $(".ordem-questao").length -1;
 			inputOrdem.attr("name","formulariosCadastroQuestao["+ indice + "].ordem");
 			
 		}
@@ -169,16 +169,16 @@
         function geraNameOrdemAlternativa($novaAlternativa){
             var inputOrdem = $novaAlternativa.find(".input-alternativa");
 
-            var indiceQuestao = $(".pergunta").length;
-            var indiceAlternativa = $(".input-ordem-alternativa").length;
+            var indiceQuestao = $(".pergunta").length -1;
+            var indiceAlternativa = $(".input-ordem-alternativa").length -1;
             inputOrdem.prop("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
         }
 
         function geraNameDescricaoAlternativa($novaAlternativa){
             var inputDescricao = $novaAlternativa.find(".input-alternativa");
 
-            var indiceQuestao = $(".pergunta").length;
-            var indiceAlternativa = $(".input-alternativa").length;
+            var indiceQuestao = $(".pergunta").length -1;
+            var indiceAlternativa = $(".input-alternativa").length -1 ;
             inputDescricao.prop("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
 
         }
@@ -247,14 +247,14 @@
 
 
 
- <form action="" method="post">
+ <form:form action="" modelAttribute="formulario" method="post">
     
     
     <div class="questionario col-md-12 ">
 		<!-- Nome do questionario -->
         <div class="nome-questionario col-md-12">
             <label for="input-nome" class="label-nome sr-only">Nome do Questionário : </label>
-            <input name="nome" id ="input-pergunta" class="input-pergunta form-control" placeholder="informe o nome "></input>
+            <form:input name="nome" id ="input-pergunta" cssClass="input-pergunta form-control" placeholder="informe o nome " path="nome"></form:input>
         </div>
 		<!-- Questoes -->
 	    <div class="painel-questao ui-sortable">
@@ -266,6 +266,6 @@
         </div>
 	</div>
 
- </form>
+ </form:form>
 
 </body>
