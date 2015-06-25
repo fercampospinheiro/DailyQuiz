@@ -195,20 +195,19 @@
     <div class="questao ui-state-default">
 
         <div class="nova-questao form-group col-md-12">
-            <h4>Elabore a primeira pergunta</h4>
+            <h4><strong>Elabore a primeira pergunta</strong></h4>
             {{#if exibeBotao}}
             <a href ='javascript:void(0)' class='botao-nova-questao btn btn-default btn-xs pull-right'>nova Pergunta</a>
             {{/if}}
         </div>
+        <!-- Ordem da questao-->
+        <input type="hidden" class="ordem-questao" />
 
+        <h6><strong>Pergunta</strong></h6>
         <div class="pergunta input-group">
-            <!-- Ordem da questao-->
-			<input type="hidden" class="ordem-questao" />
-            
 			<!-- Pergunta da questão-->
-			<label class="sr-only" for="input-pergunta">pergunta : </label>
             <input id="input-pergunta"  class="input-pergunta form-control" type="text" placeholder="informe a pergunta"/>
-            
+
 			<a href="javascript:void(0)" class=" input-group-addon">
                 <span class="exclui-questao glyphicon glyphicon-trash" ></span>
             </a>
@@ -216,7 +215,7 @@
 
 		<!-- Alternativas da questão -->
         <div class="alternativas col-md-offset-1">
-            <h4>Elabore a primeira alternativa</h4>
+            <h4><strong>Elabore a primeira alternativa</strong></h4>
             <div class="lista-alternativas ui-sortable" >
 
             </div>
@@ -252,12 +251,12 @@
     
     <div class="questionario col-md-12 ">
 		<!-- Nome do questionario -->
-        <div class="nome-questionario col-md-12">
-            <label for="input-nome" class="label-nome sr-only">Nome do Questionário : </label>
-            <form:input name="nome" id ="input-pergunta" cssClass="input-pergunta form-control" placeholder="informe o nome " path="nome"></form:input>
+        <div class="nome-questionario form-group col-md-5">
+            <h6><strong>Nome do Questionário</strong></h6>
+            <form:input id ="input-nome" cssClass="input-nome form-control" placeholder="informe o nome " path="nome"></form:input>
         </div>
 		<!-- Questoes -->
-	    <div class="painel-questao ui-sortable">
+	    <div class="painel-questao ui-sortable col-md-12">
 
 
 		</div>
