@@ -3,6 +3,7 @@ package br.com.sidlar.dailyquiz.presentation.cadastroQuestionario;
 
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FormularioCadastroQuestionario {
@@ -18,6 +19,10 @@ public class FormularioCadastroQuestionario {
 
     public String getNome() {
         return nome;
+    }
+
+    public List<FormularioCadastroQuestao> getFormulariosCadastroQuestao() {
+        return formulariosCadastroQuestao;
     }
 
     public void setFormulariosCadastroQuestao(List<FormularioCadastroQuestao> formulariosCadastroQuestao) {

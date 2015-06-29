@@ -154,7 +154,7 @@
 		}
 
 		function geraNameOrdemQuestao($novaQuestao){
-			var inputOrdem = $novaQuestao.find(".input-pergunta");
+			var inputOrdem = $novaQuestao.find(".ordem-questao");
 
 			var indice = $(".ordem-questao").length -1;
 			inputOrdem.attr("name","formulariosCadastroQuestao["+ indice + "].ordem");
@@ -167,11 +167,11 @@
         }
 
         function geraNameOrdemAlternativa($novaAlternativa){
-            var inputOrdem = $novaAlternativa.find(".input-alternativa");
+            var inputOrdem = $novaAlternativa.find(".ordem-alternativa");
 
             var indiceQuestao = $(".pergunta").length -1;
-            var indiceAlternativa = $(".input-ordem-alternativa").length -1;
-            inputOrdem.prop("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
+            var indiceAlternativa = $(".ordem-alternativa").length -1;
+            inputOrdem.prop("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].ordem");
         }
 
         function geraNameDescricaoAlternativa($novaAlternativa){
@@ -201,7 +201,7 @@
             {{/if}}
         </div>
         <!-- Ordem da questao-->
-        <input type="hidden" class="ordem-questao" />
+        <input type="hidden" class="ordem-questao" value="1"/>
 
         <h6><strong>Pergunta</strong></h6>
         <div class="pergunta input-group">
@@ -234,10 +234,10 @@
 <script id="alternativa-template" type="text/x-handlebars-template">
     <div class="alternativa ui-state-default input-group">
         <div class="ordem input-group-addon">
-            <input type="hidden" class="input-ordem-alternativa" value="">
+            <input type="hidden" class="ordem-alternativa" value="1">
 
         </div>
-            <input  id="input-alternativa" class= "form-control input-alternativa" name="formulariosCadastroAlternativa[0].descricao" placeholder="informe a alternativa"/>
+            <input  id="input-alternativa" class= "form-control input-alternativa"  placeholder="informe a alternativa"/>
             <a href="#" class="exclui-alternativa input-group-addon">
             <span class="glyphicon glyphicon-trash" ></span>
         </a>
@@ -246,7 +246,7 @@
 
 
 
- <form:form action="" modelAttribute="formulario" method="post">
+ <form:form modelAttribute="formulario" method="post">
     
     
     <div class="questionario col-md-12 ">
