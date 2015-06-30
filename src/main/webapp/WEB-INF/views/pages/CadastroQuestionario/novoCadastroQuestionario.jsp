@@ -149,7 +149,7 @@
 		function geraNamePerguntaQuestao($novaQuestao){
 			var inputPergunta = $novaQuestao.find(".input-pergunta");
 
-			var indice = $(".pergunta").length -1;
+			var indice =$(".pergunta").length -1;
 			inputPergunta.prop("name","formulariosCadastroQuestao["+ indice + "].pergunta");
 		}
 
@@ -157,7 +157,7 @@
 			var inputOrdem = $novaQuestao.find(".ordem-questao");
 
 			var indice = $(".ordem-questao").length -1;
-			inputOrdem.attr("name","formulariosCadastroQuestao["+ indice + "].ordem");
+			inputOrdem.prop("name","formulariosCadastroQuestao["+ indice + "].ordem");
 			
 		}
 
@@ -170,7 +170,7 @@
             var inputOrdem = $novaAlternativa.find(".ordem-alternativa");
 
             var indiceQuestao = $(".pergunta").length -1;
-            var indiceAlternativa = $(".ordem-alternativa").length -1;
+            var indiceAlternativa = $novaAlternativa.closest(".lista-alternativas").find(".ordem-alternativa").length -1;
             inputOrdem.prop("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].ordem");
         }
 
