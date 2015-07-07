@@ -82,6 +82,13 @@
                 }
             }).disableSelection();
 
+
+            $( "#periodo-disponibilidade" ).datepicker({
+                showOn: "button",
+                buttonImage: "images/calendar.gif",
+                buttonImageOnly: true,
+                buttonText: "Select date"});
+
             $(".lista-alternativas").sortable().disableSelection();
 
         });
@@ -253,6 +260,16 @@
         <div class="nome-questionario form-group col-md-5">
             <h6><strong>Nome do Questionário</strong></h6>
             <form:input id ="input-nome" cssClass="input-nome form-control" placeholder="informe o nome " path="nome"></form:input>
+        </div>
+        <div class ="periodo-de-acesso col-md-7">
+            <div class="data-disponivel col-md-3">
+                <h6><strong>Estará disponivel em :</strong></h6>
+                <form:input id ="periodo-disponibilidade" cssClass="form-control" placeholder="" path="dataDisponivel"></form:input>
+            </div>
+            <div class="data-limite-acesso col-md-3">
+                <h6><strong>Será acessado até :</strong></h6>
+                <form:input id ="periodo-disponibilidade" cssClass="form-control" placeholder="" path="dataLimite"></form:input>
+            </div>
         </div>
 		<!-- Questoes -->
 	    <div class="painel-questao ui-sortable col-md-12">
