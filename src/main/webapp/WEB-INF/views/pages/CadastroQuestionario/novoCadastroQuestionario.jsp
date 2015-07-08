@@ -189,7 +189,7 @@
 
         }
 
-        
+
     </script>
 
 </head>
@@ -253,8 +253,8 @@
 
 
  <form:form modelAttribute="formulario" method="post">
-    
-    
+
+
     <div class="questionario col-md-12 ">
 		<!-- Nome do questionario -->
         <div class="nome-questionario form-group col-md-5">
@@ -264,11 +264,11 @@
         <div class ="periodo-de-acesso col-md-7">
             <div class="data-disponivel col-md-3">
                 <h6><strong>Estará disponivel em :</strong></h6>
-                <form:input id ="periodo-disponibilidade" cssClass="form-control" placeholder="" path="dataDisponivel"></form:input>
+                <form:input id ="periodo-disponibilidade" cssClass="form-control" placeholder="" path="dataDisponivel" />
             </div>
             <div class="data-limite-acesso col-md-3">
                 <h6><strong>Será acessado até :</strong></h6>
-                <form:input id ="periodo-disponibilidade" cssClass="form-control" placeholder="" path="dataLimite"></form:input>
+                <form:input id ="periodo-disponibilidade" cssClass="form-control" placeholder="" path="dataLimite"/>
             </div>
         </div>
 		<!-- Questoes -->

@@ -10,7 +10,7 @@ import java.util.List;
 public class FormularioCadastroQuestionario {
 
     private String nome;
-    private List<FormularioCadastroQuestao> formulariosCadastroQuestao;
+    private List<FormularioCadastroQuestao> formulariosCadastroQuestao = new ArrayList<>();
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private DateTime dataDisponivel;
