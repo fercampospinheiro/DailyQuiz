@@ -73,7 +73,7 @@
             $(".painel-questao").on("keydown",".input-pergunta", function () {
                 var self = this;
                 ocultaOrientacaoQuestao(self);
-            })
+            });
 
 
             $(".painel-questao").sortable({
@@ -89,7 +89,14 @@
                 buttonImageOnly: true,
                 buttonText: "Select date"});
 
-            $(".lista-alternativas").sortable().disableSelection();
+            $(".lista-alternativas")
+                    .sortable({
+                        change: function( event, ui ) {
+                            var self = ui.item;
+                            //reoordenaAtributoNameAlternativa(self);
+                        }
+                    })
+                    .disableSelection();
 
         });
 
@@ -186,6 +193,15 @@
             var indiceQuestao =  $novaAlternativa.closest(".questao").find(".ordem-questao").attr("value");
             var indiceAlternativa = $novaAlternativa.closest(".lista-alternativas").find(".input-alternativa").length -1 ;
             inputDescricao.prop("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
+
+        }
+
+        function reoordenaAtributoNameAlternativa(context){
+
+            var  $alternativas = $(context).closest(".lista-alternativas");
+           $alternativas.find(".alternativa").each(function(indice){
+                 this.prop("name","");
+            })
 
         }
 
