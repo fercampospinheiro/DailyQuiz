@@ -93,7 +93,7 @@
                     .sortable({
                         change: function( event, ui ) {
                             var self = ui.item;
-                            //reoordenaAtributoNameAlternativa(self);
+                           reoordenaAtributoNameAlternativa(self);
                         }
                     })
                     .disableSelection();
@@ -198,9 +198,9 @@
 
         function reoordenaAtributoNameAlternativa(context){
 
-            var  $alternativas = $(context).closest(".lista-alternativas");
-           $alternativas.find(".alternativa").each(function(indice){
-                 this.prop("name","");
+           var  $alternativas = $(context).closest(".lista-alternativas");
+           $alternativas.find(".alternativa").each(function(indice,value){
+                 $(value).attr("name","indice");
             })
 
         }
