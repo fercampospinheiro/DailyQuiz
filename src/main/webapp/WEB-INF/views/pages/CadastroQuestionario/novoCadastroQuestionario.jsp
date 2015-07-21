@@ -79,6 +79,10 @@
             $(".painel-questao").sortable({
                 stop: function( event, ui ) {
                     moveBotaoNovaPerguntaParaUltimaQuestao(event);
+                },
+                change: function( event, ui ) {
+                    var self = ui.item;
+                    redefineAtributosNameQuestoes(self);
                 }
             }).disableSelection();
 
@@ -93,7 +97,7 @@
                     .sortable({
                         change: function( event, ui ) {
                             var self = ui.item;
-                           reoordenaAtributoNameAlternativa(self);
+                           redefineAtributosNameAlternativas(self);
                         }
                     })
                     .disableSelection();
@@ -196,14 +200,48 @@
 
         }
 
-        function reoordenaAtributoNameAlternativa(context){
 
-           var  $alternativas = $(context).closest(".lista-alternativas");
-           $alternativas.find(".alternativa").each(function(indice,value){
-                 $(value).attr("name","indice");
-            })
-
+        function redefineAtributosNameQuestoes(context){
+            redefineAtributoNameOrdemQuestao(context);
+            redefineAtributoNamePerguntaQuestao(context);
         }
+
+        function redefineAtributoNameOrdemQuestao(context){
+            var  $questoes = $(context);
+            $questoes.closest(".painel-questao").find(".ordem").each(function(indice,value){
+                $(value).attr("name","formulariosCadastroQuestao["+ indice + "].ordem");
+            })
+        }
+
+        function redefineAtributoNamePerguntaQuestao(context){
+            var  $questoes = $(context);
+            $questoes.closest(".painel-questao").find(".pergunta").each(function(indice,value){
+                $(value).attr("name","formulariosCadastroQuestao["+ indice + "].pergunta");
+            })
+        }
+
+
+        function redefineAtributosNameAlternativas(context){
+            redefineAtributoNameDescricaoAlternativa(context);
+            redefineAtributoNameOrdemAlternativa(context);
+        }
+
+        function redefineAtributoNameDescricaoAlternativa(context){
+            var  $alternativas = $(context).closest(".lista-alternativas");
+            var indiceQuestao = $(context).closest(".ordem").val();
+            $alternativas.find(".alternativa").each(function(indiceAlternativa,value){
+                $(value).attr("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
+            })
+        }
+
+        function redefineAtributoNameOrdemAlternativa(context){
+            var  $alternativas = $(context).closest(".lista-alternativas");
+            var indiceQuestao = $(context).closest(".ordem").val();
+            $alternativas.find(".alternativa").each(function(indiceAlternativa,value){
+                $(value).attr("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].ordem");
+            })
+        }
+
 
 
     </script>
