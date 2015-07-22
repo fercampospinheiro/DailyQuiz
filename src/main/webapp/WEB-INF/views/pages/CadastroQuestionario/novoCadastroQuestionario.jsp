@@ -80,7 +80,7 @@
                 stop: function( event, ui ) {
                     moveBotaoNovaPerguntaParaUltimaQuestao(event);
                 },
-                change: function( event, ui ) {
+                beforeStop: function( event, ui ) {
                     var self = ui.item;
                     redefineAtributosNameQuestoes(self);
                 }
@@ -95,12 +95,11 @@
 
             $(".lista-alternativas")
                     .sortable({
-                        change: function( event, ui ) {
+                        beforeStop: function( event, ui ) {
                             var self = ui.item;
                            redefineAtributosNameAlternativas(self);
                         }
-                    })
-                    .disableSelection();
+                    }).disableSelection();
 
         });
 
@@ -207,15 +206,22 @@
         }
 
         function redefineAtributoNameOrdemQuestao(context){
-            var  $questoes = $(context);
-            $questoes.closest(".painel-questao").find(".ordem").each(function(indice,value){
+            var $questoes = $(context);
+            var $painelQuestoes = $questoes.closest(".painel-questao");
+            var $ordem = $painelQuestoes.find(".ordem-questao");
+
+            $ordem.each(function(indice,value){
                 $(value).attr("name","formulariosCadastroQuestao["+ indice + "].ordem");
+                $(value).attr("value",indice);
             })
         }
 
         function redefineAtributoNamePerguntaQuestao(context){
-            var  $questoes = $(context);
-            $questoes.closest(".painel-questao").find(".pergunta").each(function(indice,value){
+            var $questoes = $(context);
+            var $painelQuestoes = $questoes.closest(".painel-questao");
+            var $inputPergunta =  $painelQuestoes.find(".input-pergunta");
+
+            $inputPergunta.each(function(indice,value){
                 $(value).attr("name","formulariosCadastroQuestao["+ indice + "].pergunta");
             })
         }
