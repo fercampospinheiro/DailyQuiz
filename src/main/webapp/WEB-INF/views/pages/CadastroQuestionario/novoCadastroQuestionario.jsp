@@ -95,7 +95,7 @@
 
             $(".lista-alternativas")
                     .sortable({
-                        beforeStop: function( event, ui ) {
+                        stop: function( event, ui ) {
                             var self = ui.item;
                            redefineAtributosNameAlternativas(self);
                         }
@@ -234,16 +234,16 @@
 
         function redefineAtributoNameDescricaoAlternativa(context){
             var  $alternativas = $(context).closest(".lista-alternativas");
-            var indiceQuestao = $(context).closest(".ordem").val();
-            $alternativas.find(".alternativa").each(function(indiceAlternativa,value){
+            var indiceQuestao = $alternativas.closest(".questao").find(".ordem-questao").val();
+            $alternativas.find(".input-alternativa").each(function(indiceAlternativa,value){
                 $(value).attr("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
             })
         }
 
         function redefineAtributoNameOrdemAlternativa(context){
             var  $alternativas = $(context).closest(".lista-alternativas");
-            var indiceQuestao = $(context).closest(".ordem").val();
-            $alternativas.find(".alternativa").each(function(indiceAlternativa,value){
+            var indiceQuestao = $alternativas.closest(".questao").find(".ordem-questao").val();
+            $alternativas.find(".ordem-alternativa").each(function(indiceAlternativa,value){
                 $(value).attr("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].ordem");
             })
         }
