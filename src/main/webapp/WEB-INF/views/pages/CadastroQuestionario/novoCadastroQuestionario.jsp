@@ -91,7 +91,9 @@
                 showOn: "button",
                 buttonImage: "images/calendar.gif",
                 buttonImageOnly: true,
-                buttonText: "Select date"});
+                buttonText: "Select date",
+                altFormat: "yyyy-mm-dd hh:mm"
+            });
 
             $(".lista-alternativas")
                     .sortable({
@@ -324,11 +326,11 @@
         <div class ="periodo-de-acesso col-md-7">
             <div class="data-disponivel col-md-3">
                 <h6><strong>Estará disponivel em :</strong></h6>
-                <form:input id ="periodo-disponibilidade" cssClass="form-control" placeholder="" path="dataDisponivel" />
+                <form:input id ="" cssClass="form-control" placeholder="" path="dataDisponivel" />
             </div>
             <div class="data-limite-acesso col-md-3">
                 <h6><strong>Será acessado até :</strong></h6>
-                <form:input id ="periodo-disponibilidade" cssClass="form-control" placeholder="" path="dataLimite"/>
+                <form:input id ="" cssClass="form-control" placeholder="" path="dataLimite"/>
             </div>
         </div>
 		<!-- Questoes -->

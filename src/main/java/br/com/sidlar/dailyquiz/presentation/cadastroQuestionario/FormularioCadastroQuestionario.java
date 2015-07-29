@@ -12,10 +12,10 @@ public class FormularioCadastroQuestionario {
     private String nome;
     private List<FormularioCadastroQuestao> formulariosCadastroQuestao = new ArrayList<>();
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.NONE)
     private DateTime dataDisponivel;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.NONE)
     private DateTime dataLimite;
 
     public void setNome(String nome) {
