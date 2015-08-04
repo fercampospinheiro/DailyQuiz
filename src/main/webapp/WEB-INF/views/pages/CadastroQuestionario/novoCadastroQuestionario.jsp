@@ -6,7 +6,6 @@
 <head>
 <script src="<c:url value="/resources/libs/handleBars/handlebars-v3.0.1.js" />"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
     <style>
         .ha {
             border: 2px dotted blue;
@@ -87,13 +86,7 @@
             }).disableSelection();
 
 
-            $( "#periodo-disponibilidade" ).datepicker({
-                showOn: "button",
-                buttonImage: "images/calendar.gif",
-                buttonImageOnly: true,
-                buttonText: "Select date",
-                altFormat: "yyyy-mm-dd hh:mm"
-            });
+            $('.datetimepicker').datetimepicker();
 
             $(".lista-alternativas")
                     .sortable({
@@ -326,11 +319,11 @@
         <div class ="periodo-de-acesso col-md-7">
             <div class="data-disponivel col-md-3">
                 <h6><strong>Estará disponivel em :</strong></h6>
-                <form:input id ="" cssClass="form-control" placeholder="" path="dataDisponivel" />
+                <form:input  cssClass="form-control datetimepicker" placeholder="" path="dataDisponivel" />
             </div>
             <div class="data-limite-acesso col-md-3">
                 <h6><strong>Será acessado até :</strong></h6>
-                <form:input id ="" cssClass="form-control" placeholder="" path="dataLimite"/>
+                <form:input  cssClass="form-control datetimepicker" placeholder="" path="dataLimite"/>
             </div>
         </div>
 		<!-- Questoes -->

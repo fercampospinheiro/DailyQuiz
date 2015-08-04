@@ -110,6 +110,26 @@ public class Questionario {
 	public Integer getId() {
 		return id;
 	}
+
+    public void setQuestoes(List<Questao> questoes) {
+        this.questoes = questoes;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDataDisponivel(DateTime dataDisponivel) {
+        this.dataDisponivel = dataDisponivel;
+    }
+
+    public void setDataLimite(DateTime dataLimite) {
+        this.dataLimite = dataLimite;
+    }
+
+    public void setMembroCriador(Membro membroCriador) {
+        this.membroCriador = membroCriador;
+    }
 }
 
 
