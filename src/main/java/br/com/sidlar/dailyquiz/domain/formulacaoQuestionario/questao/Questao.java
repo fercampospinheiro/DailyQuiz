@@ -39,13 +39,6 @@ public class Questao {
 			throw  new AlternativaRepetidaException(String.format("Alternativa já cadastrada : '%' ! Informe outra",alternativa.exibe()));
 		}
 	}
-	public String exibePergunta() {
-		return pergunta;
-	}
-
-	public void defineAlternativaCorreta(Alternativa alternativa){
-		this.alternativaCorreta = alternativa;
-	}
 
 
 	public void setOrdem(Integer ordem) {
@@ -65,7 +58,19 @@ public class Questao {
 		return true;
 	}
 
-	public Integer getId() {
+    public void setPergunta(String pergunta) {
+        this.pergunta = pergunta;
+    }
+
+    public void setAlternativas(List<Alternativa> alternativas) {
+        this.alternativas = alternativas;
+    }
+
+    public void setAlternativaCorreta(Alternativa alternativaCorreta) {
+        this.alternativaCorreta = alternativaCorreta;
+    }
+
+    public Integer getId() {
 		return id;
 	}
 

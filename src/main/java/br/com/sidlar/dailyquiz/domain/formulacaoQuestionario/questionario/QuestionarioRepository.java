@@ -45,8 +45,8 @@ public class QuestionarioRepository {
     }
 
     @Transactional
-    public void salva(RespostaQuestionario resposta){
-        em.persist(resposta);
+    public void salva(Questionario questionario){
+        em.persist(questionario);
     }
 
 }
