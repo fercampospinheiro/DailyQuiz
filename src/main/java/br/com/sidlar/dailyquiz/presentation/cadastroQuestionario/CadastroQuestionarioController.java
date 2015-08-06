@@ -3,6 +3,7 @@ package br.com.sidlar.dailyquiz.presentation.cadastroQuestionario;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.Questionario;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.QuestionarioFactory;
 import br.com.sidlar.dailyquiz.domain.formulacaoQuestionario.questionario.QuestionarioRepository;
+import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,7 @@ public class CadastroQuestionarioController {
             return "/CadastroQuestionario/novoCadastroQuestionario";
         }
         catch (Exception e ){
+            System.out.println("hhsjshjd");
             return  "";
         }
 
