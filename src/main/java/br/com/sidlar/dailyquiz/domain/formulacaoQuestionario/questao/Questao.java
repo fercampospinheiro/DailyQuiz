@@ -40,22 +40,8 @@ public class Questao {
 		}
 	}
 
-
 	public void setOrdem(Integer ordem) {
 		this.ordem = ordem;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		Questao questao = (Questao) o;
-
-		if (ordem != null ? !ordem.equals(questao.ordem) : questao.ordem != null) return false;
-		if (pergunta != null ? !pergunta.equals(questao.pergunta) : questao.pergunta != null) return false;
-
-		return true;
 	}
 
     public void setPergunta(String pergunta) {
@@ -89,4 +75,17 @@ public class Questao {
 	public Alternativa getAlternativaCorreta() {
 		return this.alternativaCorreta;
 	}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Questao questao = (Questao) o;
+
+        if (ordem != null ? !ordem.equals(questao.ordem) : questao.ordem != null) return false;
+        if (pergunta != null ? !pergunta.equals(questao.pergunta) : questao.pergunta != null) return false;
+
+        return true;
+    }
 }

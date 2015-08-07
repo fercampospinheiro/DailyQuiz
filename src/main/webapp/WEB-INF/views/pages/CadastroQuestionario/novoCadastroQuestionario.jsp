@@ -221,6 +221,13 @@
             })
         }
 
+        function redefineAtributoNameAlternativaCorreta(context){
+            var  $alternativas = $(context).closest(".lista-alternativas");
+            $alternativas.find(".input-alternativa").each(function(indiceAlternativa,value){
+                $(value).attr("name","formulariosCadastroQuestao["+ indiceQuestao + "].formulariosCadastroAlternativa["+ indiceAlternativa + "].descricao");
+            })
+        }
+
 
         function redefineAtributosNameAlternativas(context){
             redefineAtributoNameDescricaoAlternativa(context);
@@ -294,9 +301,11 @@
 
 <script id="alternativa-template" type="text/x-handlebars-template">
     <div class="alternativa ui-state-default input-group">
-        <div class="ordem input-group-addon">
-            <input type="hidden" class="ordem-alternativa" value="1">
 
+        <input type="hidden" class="ordem-alternativa" value="1">
+
+        <div class="ordem input-group-addon">
+           <input type="radio" class="radio-alternativa-correta" name="" />
         </div>
             <input  id="input-alternativa" class= "form-control input-alternativa"  placeholder="informe a alternativa"/>
             <a href="#" class="exclui-alternativa input-group-addon">

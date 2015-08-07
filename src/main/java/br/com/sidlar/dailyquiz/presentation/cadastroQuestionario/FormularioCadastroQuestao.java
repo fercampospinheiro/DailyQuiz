@@ -7,6 +7,7 @@ public class FormularioCadastroQuestao {
 
     private int ordem;
     private String pergunta;
+    private int idAlternativaCorreta;
     List<FormularioCadastroAlternativa> formulariosCadastroAlternativa;
 
     public void setOrdem(int ordem) {
@@ -31,5 +32,13 @@ public class FormularioCadastroQuestao {
 
     public List<FormularioCadastroAlternativa> getFormulariosCadastroAlternativa() {
         return formulariosCadastroAlternativa;
+    }
+
+    public int getIdAlternativaCorreta() {
+        return idAlternativaCorreta;
+    }
+
+    public void setIdAlternativaCorreta(int idAlternativaCorreta) {
+        this.idAlternativaCorreta = idAlternativaCorreta;
     }
 }
